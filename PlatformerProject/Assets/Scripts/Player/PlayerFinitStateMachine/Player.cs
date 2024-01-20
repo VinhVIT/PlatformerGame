@@ -10,6 +10,13 @@ public class Player : MonoBehaviour
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
+    // public PlayerWallClimbState WallClimbState { get; private set; }
+    public PlayerWallGrabState WallGrabState { get; private set; }
+    public PlayerWallSlideState WallSlideState { get; private set; }
+
 
     [SerializeField]
     private PlayerData playerData;
@@ -21,9 +28,18 @@ public class Player : MonoBehaviour
     public Rigidbody2D RB { get; private set; }
     #endregion
 
+    #region Check Transforms
+
+    [SerializeField]
+    private Transform groundCheck;
+    [SerializeField]
+    private Transform wallCheck;
+
+    #endregion
+
     #region Other Variables
     public Vector2 CurrentVelocity { get; private set; }
-    public int FacingDirection { get; private set; }    
+    public int FacingDirection { get; private set; }
 
     private Vector2 workspace;
     #endregion
@@ -35,6 +51,13 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
+        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
+        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
+        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        // WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
+        WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
+        WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
+
     }
 
     private void Start()
@@ -68,12 +91,28 @@ public class Player : MonoBehaviour
         CurrentVelocity = workspace;
     }
 
+    public void SetVelocityY(float velocity)
+    {
+        workspace.Set(CurrentVelocity.x, velocity);
+        RB.velocity = workspace;
+        CurrentVelocity = workspace;
+    }
+
     #endregion
 
     #region Check Functions
+
+    public bool CheckIfGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
+    }
+    public bool CheckIfTouchingWall()
+    {
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
+    }
     public void CheckIfShouldFlip(int xInput)
     {
-        if(xInput != 0 && xInput != FacingDirection)
+        if (xInput != 0 && xInput != FacingDirection)
         {
             Flip();
         }
@@ -82,6 +121,11 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Functions
+
+    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+
+    private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+
     private void Flip()
     {
         FacingDirection *= -1;
