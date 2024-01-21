@@ -107,148 +107,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _WallClimb_0
+      name: _LedgeClimb_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 120
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d27c032790db30340a422efe2e24154b
-      internalID: 1431461890
+      spriteID: d5ba8b0ce246f5a4784e935b05ee7269
+      internalID: -446899092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _WallClimb_1
+      name: _LedgeClimb_1
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 120
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4072df3c98f63114c9343907009edaed
-      internalID: 1817972545
+      spriteID: f8291c29ccfbb524791a3c7c37eff442
+      internalID: -493027145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _WallClimb_2
+      name: _LedgeClimb_2
       rect:
         serializedVersion: 2
         x: 240
         y: 0
         width: 120
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b15a5b3d9365f846912c86c1d852274
-      internalID: 1210659404
+      spriteID: 6f74354b110d4a546a1838848477995b
+      internalID: 2052679689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _WallClimb_3
+      name: _LedgeClimb_3
       rect:
         serializedVersion: 2
         x: 360
         y: 0
         width: 120
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4287e3c761b11f43a094f183773e3b5
-      internalID: 1298419423
+      spriteID: e8239a72aff688d4ebcc2bcb5b0b62fe
+      internalID: -826079281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _WallClimb_4
+      name: _LedgeClimb_4
       rect:
         serializedVersion: 2
         x: 480
         y: 0
         width: 120
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf12ee37a104dbe428ae1640c242685c
-      internalID: -416476885
+      spriteID: 93ba104776aebd244acc47da2ca7f51f
+      internalID: -49832860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _WallClimb_5
+      name: _LedgeClimb_5
       rect:
         serializedVersion: 2
         x: 600
         y: 0
         width: 120
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d25fb86ac692bf743a84512d219cf1e7
-      internalID: 1550856520
+      spriteID: 065d5d2906369da4d924d6fbbbe7203c
+      internalID: -748325822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _WallClimb_6
+      name: _LedgeClimb_6
       rect:
         serializedVersion: 2
         x: 720
         y: 0
         width: 120
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbca760c18f0b1440ad937014670079b
-      internalID: -522099606
+      spriteID: 7f018ee1207be594a8651301e48f62ad
+      internalID: -281779267
       vertices: []
       indices: 
       edges: []
@@ -264,13 +264,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _WallClimb_5: 1550856520
-      _WallClimb_2: 1210659404
-      _WallClimb_3: 1298419423
-      _WallClimb_6: -522099606
-      _WallClimb_4: -416476885
-      _WallClimb_1: 1817972545
-      _WallClimb_0: 1431461890
+      _LedgeClimb_0: -446899092
+      _LedgeClimb_2: 2052679689
+      _LedgeClimb_3: -826079281
+      _LedgeClimb_4: -49832860
+      _LedgeClimb_5: -748325822
+      _LedgeClimb_1: -493027145
+      _LedgeClimb_6: -281779267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
