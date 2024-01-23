@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "ba7cd2c3-3188-458a-9088-df4321b18068",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DashDirection",
+                    "type": "Value",
+                    "id": "52479846-b994-400c-9ff3-83e03bcde551",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -91,7 +109,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0562d3f1-37b7-4102-a04a-ddc6f31370db",
+                    "id": "c161b8be-e8a2-4a1a-aba1-881a5cb87596",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
@@ -102,12 +120,34 @@
                 },
                 {
                     "name": "",
-                    "id": "5f1eb1ed-1c29-4257-a67d-757ac7595321",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "79fb20fc-2091-467a-a8ba-802c2747b63c",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61a1bc79-c616-48aa-8816-54b46a7a8561",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8a2941b-0562-465f-847f-1a1182606ad5",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DashDirection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

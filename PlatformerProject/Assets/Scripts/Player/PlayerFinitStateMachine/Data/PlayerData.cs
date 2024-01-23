@@ -24,9 +24,21 @@ public class PlayerData : ScriptableObject
     public float wallJumpTime = .4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
     [Header("Ledge CLimb State")]
-    public Vector2 startOffset;
-    public Vector2 stopOffset;
-    public float climbSpeed = 1f;
+    public Vector2 startOffset;//startPos when detectedLedge
+    public Vector2 stopOffset;//endPos when finish LedgeClimb
+    [Header("Dash State")]
+    public float dashCooldown = 1f;
+    public float maxHoldTime = 1f;
+    public float holdTimeScale = .25f;
+    public float dashTime = .2f;
+    public float dashVelocity = 30f;
+    public float drag = 10f;//airDrag affect gravity when dash
+    public float dashEndYMultiplier = .2f;
+    public float distBetweenAfterImages = .5f;
+    [Header("Crouch States")]
+    public float crouchMovementVelocity = 5f;
+    public float crouchColliderHeight = .8f;
+    public float standColliderHeight = 1.6f;
 
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
