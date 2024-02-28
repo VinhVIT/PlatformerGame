@@ -18,6 +18,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
+    public bool AttackInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -41,23 +42,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         RawMovementInput = context.ReadValue<Vector2>();
 
-        if (Mathf.Abs(RawMovementInput.x) > 0.5f)
-        {
-            NormInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
-        }
-        else
-        {
-            NormInputX = 0;
-        }
-
-        if (Mathf.Abs(RawMovementInput.y) > 0.5f)
-        {
-            NormInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
-        }
-        else
-        {
-            NormInputY = 0;
-        }
+        NormInputX = Mathf.RoundToInt(RawMovementInput.x);
+        NormInputY = Mathf.RoundToInt(RawMovementInput.y);  
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -104,13 +90,22 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnDashDirectionInput(InputAction.CallbackContext context)
     {
-        Debug.Log("a");
         RawDashDirectionInput = context.ReadValue<Vector2>();
         RawDashDirectionInput = cam.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
 
         DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
     }
-
+    public void OnAttackInput(InputAction.CallbackContext context)
+    {
+        if(context.started) 
+        {
+            AttackInput = true;
+        }
+        if(context.canceled)
+        {
+            AttackInput = false;
+        }
+    }
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;

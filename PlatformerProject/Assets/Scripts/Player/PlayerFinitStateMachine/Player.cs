@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerCrouchMoveState CrouchMoveState { get; private set; }
+    public PlayerAttackState AttackState { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour
 
     #region Other Variables
     public Vector2 CurrentVelocity { get; private set; }
-    public int FacingDirection { get; private set; }    
+    public int FacingDirection { get; private set; }
 
     private Vector2 workspace;
     #endregion
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
+        AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }
 
     private void Start()
@@ -167,7 +170,7 @@ public class Player : MonoBehaviour
 
     public void CheckIfShouldFlip(int xInput)
     {
-        if(xInput != 0 && xInput != FacingDirection)
+        if (xInput != 0 && xInput != FacingDirection)
         {
             Flip();
         }
@@ -201,8 +204,10 @@ public class Player : MonoBehaviour
     }
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
-
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+    private void AnimtionStartTrigger() => StateMachine.CurrentState.AnimationStartTrigger();
+    private void AniamtionTurnOnFlipTrigger() => AttackState.AnimationTurnOnFlipTrigger();
+    private void AniamtionTurnOffFlipTrigger() => AttackState.AnimationTurnOffFlipTrigger();
 
     private void Flip()
     {

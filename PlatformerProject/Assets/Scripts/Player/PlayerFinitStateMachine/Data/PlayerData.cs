@@ -39,7 +39,9 @@ public class PlayerData : ScriptableObject
     public float crouchMovementVelocity = 5f;
     public float crouchColliderHeight = .8f;
     public float standColliderHeight = 1.6f;
-
+    [Header("Attack States")]
+    public int attackCounter = 2;
+    public float[] attackMovementSpeed;
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public float wallCheckDistance = 0.5f;

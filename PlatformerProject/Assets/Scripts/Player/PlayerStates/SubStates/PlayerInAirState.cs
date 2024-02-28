@@ -9,6 +9,7 @@ public class PlayerInAirState : PlayerState
     private bool jumpInput;
     private bool grabInput;
     private bool dashInput;
+    private bool attackInput;
     private bool jumpInputStop;
     //Check
     private bool isGrounded;
@@ -76,10 +77,14 @@ public class PlayerInAirState : PlayerState
         jumpInputStop = player.InputHandler.JumpInputStop;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
+        attackInput = player.InputHandler.AttackInput;
 
         CheckJumpMultiplier();
-
-        if (isGrounded && player.CurrentVelocity.y < 0.01f)
+        if(attackInput)
+        {
+            stateMachine.ChangeState(player.AttackState);
+        }
+        else if (isGrounded && player.CurrentVelocity.y < 0.01f)
         {            
             stateMachine.ChangeState(player.LandState);
         }

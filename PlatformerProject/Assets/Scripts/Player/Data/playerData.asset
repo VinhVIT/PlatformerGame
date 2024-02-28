@@ -24,7 +24,21 @@ MonoBehaviour:
   wallJumpAngle: {x: 1, y: 2}
   startOffset: {x: 0.4, y: 0.9}
   stopOffset: {x: 0.4, y: 0.75}
-  climbSpeed: 1
+  dashCooldown: 1
+  maxHoldTime: 1
+  holdTimeScale: 0.25
+  dashTime: 0.2
+  dashVelocity: 30
+  drag: 10
+  dashEndYMultiplier: 0.2
+  distBetweenAfterImages: 0.5
+  crouchMovementVelocity: 5
+  crouchColliderHeight: 0.8
+  standColliderHeight: 1.6
+  attackCounter: 2
+  attackMovementSpeed:
+  - 2
+  - 3
   groundCheckRadius: 0.3
   wallCheckDistance: 0.5
   whatIsGround:
