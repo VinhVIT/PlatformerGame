@@ -9,6 +9,7 @@ public class PlayerAttackState : PlayerAbilityState
     private float velocityToSet;
     private bool setVelocity;
     private bool shouldCheckFlip;
+    private List<IDamageable> detectedDamageable = new List<IDamageable>();
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
         attackCounter = playerData.attackCounter;
@@ -26,7 +27,7 @@ public class PlayerAttackState : PlayerAbilityState
 
         if (shouldCheckFlip)
         {
-            player.CheckIfShouldFlip(xInput);
+            core.Movement.CheckIfShouldFlip(xInput);
         }
 
         ResetAttackCounter();
@@ -34,7 +35,7 @@ public class PlayerAttackState : PlayerAbilityState
 
         if (setVelocity)
         {
-            player.SetVelocityX(velocityToSet * player.FacingDirection);
+            core.Movement.SetVelocityX(velocityToSet * core.Movement.FacingDirection);
         }
     }
     private void ResetAttackCounter()
@@ -58,20 +59,38 @@ public class PlayerAttackState : PlayerAbilityState
     }
     private void SetPlayerVelocity(float velocity)
     {
-        player.SetVelocityX(velocity * player.FacingDirection);
+        core.Movement.SetVelocityX(velocity * core.Movement.FacingDirection);
         velocityToSet = velocity;
         setVelocity = true;
     }
-    public void SetFlipCheck(bool value)
+    public void AddToDetected(Collider2D collision)
     {
-        shouldCheckFlip = value;
+        IDamageable damageable = collision.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            detectedDamageable.Add(damageable);
+        }
     }
-    public void AnimationTurnOffFlipTrigger()
+    public void RemoveFromDetected(Collider2D collision)
     {
-        SetFlipCheck(false);
+        IDamageable damageable = collision.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            detectedDamageable.Remove(damageable);
+        }
     }
-    public void AnimationTurnOnFlipTrigger()
+    private void CheckAttack()
     {
-        SetFlipCheck(true);
+        foreach (IDamageable item in detectedDamageable)
+        {
+            item.Damage(playerData.attackDamage[attackCounter]);
+        }
+    }
+    public void SetFlipCheck(bool value) => shouldCheckFlip = value;
+    public void AnimationTurnOffFlipTrigger() => SetFlipCheck(false);
+    public void AnimationTurnOnFlipTrigger() => SetFlipCheck(true);
+    public void AnimationActionTrigger()
+    {
+        CheckAttack();
     }
 }

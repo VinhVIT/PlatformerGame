@@ -8,7 +8,6 @@ public class PlayerGroundedState : PlayerState
     protected int yInput;
 
     protected bool isTouchingCeiling;
-
     private bool JumpInput;
     private bool grabInput;
     private bool isGrounded;
@@ -25,10 +24,10 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = player.CheckIfGrounded();
-        isTouchingWall = player.CheckIfTouchingWall();
-        isTouchingLedge = player.CheckIfTouchingLedge();
-        isTouchingCeiling = player.CheckForCeiling();
+        isGrounded = core.CollisionSenses.Ground;
+        isTouchingWall = core.CollisionSenses.WallFront;
+        isTouchingLedge = core.CollisionSenses.Ledge;
+        isTouchingCeiling = core.CollisionSenses.Ceiling;
     }
 
     public override void Enter()
@@ -55,18 +54,20 @@ public class PlayerGroundedState : PlayerState
         dashInput = player.InputHandler.DashInput;
         attackInput = player.InputHandler.AttackInput;
 
-        if(attackInput && !isTouchingCeiling)
+        if (attackInput && !isTouchingCeiling)
         {
             stateMachine.ChangeState(player.AttackState);
         }
-        else if (JumpInput && player.JumpState.CanJump())
+        else if (JumpInput && player.JumpState.CanJump() && !isTouchingCeiling)
         {
             stateMachine.ChangeState(player.JumpState);
-        }else if (!isGrounded)
+        }
+        else if (!isGrounded)
         {
             player.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.InAirState);
-        }else if(isTouchingWall && grabInput && isTouchingLedge)
+        }
+        else if (isTouchingWall && grabInput && isTouchingLedge)
         {
             stateMachine.ChangeState(player.WallGrabState);
         }
