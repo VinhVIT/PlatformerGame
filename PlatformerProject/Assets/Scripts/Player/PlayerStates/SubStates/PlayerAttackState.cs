@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerAttackState : PlayerAbilityState
@@ -9,7 +10,8 @@ public class PlayerAttackState : PlayerAbilityState
     private float velocityToSet;
     private bool setVelocity;
     private bool shouldCheckFlip;
-    private List<IDamageable> detectedDamageable = new List<IDamageable>();
+    private List<IDamageable> detectedDamageables = new List<IDamageable>();
+    private List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
         attackCounter = playerData.attackCounter;
@@ -27,7 +29,7 @@ public class PlayerAttackState : PlayerAbilityState
 
         if (shouldCheckFlip)
         {
-            core.Movement.CheckIfShouldFlip(xInput);
+            Movement?.CheckIfShouldFlip(xInput);
         }
 
         ResetAttackCounter();
@@ -35,7 +37,7 @@ public class PlayerAttackState : PlayerAbilityState
 
         if (setVelocity)
         {
-            core.Movement.SetVelocityX(velocityToSet * core.Movement.FacingDirection);
+            Movement?.SetVelocityX(velocityToSet * Movement.FacingDirection);
         }
     }
     private void ResetAttackCounter()
@@ -59,7 +61,7 @@ public class PlayerAttackState : PlayerAbilityState
     }
     private void SetPlayerVelocity(float velocity)
     {
-        core.Movement.SetVelocityX(velocity * core.Movement.FacingDirection);
+        Movement?.SetVelocityX(velocity * Movement.FacingDirection);
         velocityToSet = velocity;
         setVelocity = true;
     }
@@ -68,7 +70,13 @@ public class PlayerAttackState : PlayerAbilityState
         IDamageable damageable = collision.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            detectedDamageable.Add(damageable);
+            detectedDamageables.Add(damageable);
+        }
+
+        IKnockbackable knockbackable = collision.GetComponent<IKnockbackable>();
+        if (knockbackable != null)
+        {
+            detectedKnockbackables.Add(knockbackable);
         }
     }
     public void RemoveFromDetected(Collider2D collision)
@@ -76,14 +84,24 @@ public class PlayerAttackState : PlayerAbilityState
         IDamageable damageable = collision.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            detectedDamageable.Remove(damageable);
+            detectedDamageables.Remove(damageable);
+        }
+
+        IKnockbackable knockbackable = collision.GetComponent<IKnockbackable>();
+        if (knockbackable != null)
+        {
+            detectedKnockbackables.Remove(knockbackable);
         }
     }
     private void CheckAttack()
     {
-        foreach (IDamageable item in detectedDamageable)
+        foreach (IDamageable item in detectedDamageables.ToList())
         {
             item.Damage(playerData.attackDamage[attackCounter]);
+        }
+        foreach (IKnockbackable item in detectedKnockbackables.ToList())
+        {
+            item.Knockback(playerData.knockbackAngle[attackCounter], playerData.knockbackStrength[attackCounter], Movement.FacingDirection);
         }
     }
     public void SetFlipCheck(bool value) => shouldCheckFlip = value;

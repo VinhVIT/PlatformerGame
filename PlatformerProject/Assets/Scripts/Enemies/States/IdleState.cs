@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IdleState : State
-{
+{   
+    
     protected D_IdleState stateData;
 
     protected bool flipAfterIdle;
@@ -11,6 +12,9 @@ public class IdleState : State
     protected bool isPlayerInMinAgroRange;
 
     protected float idleTime;
+
+    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    private Movement movement;
 
     public IdleState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(etity, stateMachine, animBoolName)
     {
@@ -27,7 +31,7 @@ public class IdleState : State
     {
         base.Enter();
 
-        entity.SetVelocity(0f);
+        Movement?.SetVelocityX(0f);
         isIdleTimeOver = false;        
         SetRandomIdleTime();
     }
@@ -38,13 +42,14 @@ public class IdleState : State
 
         if (flipAfterIdle)
         {
-            entity.Flip();
+            Movement?.Flip();
         }
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        Movement?.SetVelocityX(0f);
 
         if(Time.time >= startTime + idleTime)
         {

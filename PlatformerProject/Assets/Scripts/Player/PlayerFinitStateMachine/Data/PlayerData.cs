@@ -43,4 +43,6 @@ public class PlayerData : ScriptableObject
     public int attackCounter = 2;
     public int[] attackDamage;
     public float[] attackMovementSpeed;
+    public float[] knockbackStrength;
+    public Vector2[] knockbackAngle;
 }

@@ -11,6 +11,10 @@ public class PlayerTouchingWallState : PlayerState
     protected bool isTouchingLedge;
     protected int xInput;
     protected int yInput;
+    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    private Movement movement;
+    private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
+    private CollisionSenses collisionSenses;
 
     public PlayerTouchingWallState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -30,11 +34,13 @@ public class PlayerTouchingWallState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = core.CollisionSenses.Ground;
-        isTouchingWall = core.CollisionSenses.WallFront;
-        isTouchingLedge = core.CollisionSenses.Ledge;
-
-        if(isTouchingWall && !isTouchingLedge)
+        if (CollisionSenses)//Check if has this component or not
+        {
+            isGrounded = CollisionSenses.Ground;
+            isTouchingWall = CollisionSenses.WallFront;
+            isTouchingLedge = CollisionSenses.LedgeHorizontal;
+        }
+        if (isTouchingWall && !isTouchingLedge)
         {
             player.LedgeClimbState.SetDetectedPosition(player.transform.position);
         }
@@ -60,7 +66,7 @@ public class PlayerTouchingWallState : PlayerState
         jumpInput = player.InputHandler.JumpInput;
 
         if (jumpInput)
-        {            
+        {
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             stateMachine.ChangeState(player.WallJumpState);
         }
@@ -68,11 +74,11 @@ public class PlayerTouchingWallState : PlayerState
         {
             stateMachine.ChangeState(player.IdleState);
         }
-        else if(!isTouchingWall || (xInput != core.Movement.FacingDirection && !grabInput))
+        else if (!isTouchingWall || (xInput != Movement.FacingDirection && !grabInput))
         {
             stateMachine.ChangeState(player.InAirState);
         }
-        else if(isTouchingWall && !isTouchingLedge)
+        else if (isTouchingWall && !isTouchingLedge)
         {
             stateMachine.ChangeState(player.LedgeClimbState);
         }

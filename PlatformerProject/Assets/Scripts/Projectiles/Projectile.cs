@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private AttackDetails attackDetails;
+    // private AttackDetails attackDetails;
 
     private float speed;
     private float travelDistance;
     private float xStartPos;
-
-    [SerializeField]
-    private float gravity;
-    [SerializeField]
-    private float damageRadius;
+    [SerializeField] private float projectTileDamage;
+    [SerializeField] private float gravity;
+    [SerializeField] private float damageRadius;
 
     private Rigidbody2D rb;
 
@@ -43,7 +41,7 @@ public class Projectile : MonoBehaviour
     {
         if (!hasHitGround)
         {
-            attackDetails.position = transform.position;
+            // attackDetails.position = transform.position;
 
             if (isGravityOn)
             {
@@ -62,7 +60,12 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)//hit player
             {
-                damageHit.transform.SendMessage("Damage", attackDetails);
+                // damageHit.transform.SendMessage("Damage", attackDetails);
+                IDamageable damageable = damageHit.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.Damage(projectTileDamage);
+                }
                 Destroy(gameObject);
             }
 
@@ -79,14 +82,14 @@ public class Projectile : MonoBehaviour
                 isGravityOn = true;
                 rb.gravityScale = gravity;
             }
-        }        
+        }
     }
 
     public void FireProjectile(float speed, float travelDistance, float damage)
     {
         this.speed = speed;
         this.travelDistance = travelDistance;
-        attackDetails.damageAmount = damage;
+        projectTileDamage = damage;
     }
 
     private void OnDrawGizmos()

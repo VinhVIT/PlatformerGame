@@ -6,8 +6,11 @@ public class PlayerGroundedState : PlayerState
 {
     protected int xInput;
     protected int yInput;
-
     protected bool isTouchingCeiling;
+    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    private Movement movement;
+    private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
+    private CollisionSenses collisionSenses;
     private bool JumpInput;
     private bool grabInput;
     private bool isGrounded;
@@ -24,10 +27,13 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = core.CollisionSenses.Ground;
-        isTouchingWall = core.CollisionSenses.WallFront;
-        isTouchingLedge = core.CollisionSenses.Ledge;
-        isTouchingCeiling = core.CollisionSenses.Ceiling;
+        if (CollisionSenses)//Check if has this component or not
+        {
+            isGrounded = CollisionSenses.Ground;
+            isTouchingWall = CollisionSenses.WallFront;
+            isTouchingLedge = CollisionSenses.LedgeHorizontal;
+            isTouchingCeiling = CollisionSenses.Ceiling;
+        }
     }
 
     public override void Enter()
