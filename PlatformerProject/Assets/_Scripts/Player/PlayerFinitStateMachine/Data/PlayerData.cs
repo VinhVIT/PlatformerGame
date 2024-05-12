@@ -7,7 +7,8 @@ public class PlayerData : ScriptableObject
 {
     [Header("Move State")]
     public float movementVelocity = 10f;
-
+    public float moveTimeThreshold = .5f;
+    public float moveTimeElapsed = 0f;
     [Header("Jump State")]
     public float jumpVelocity = 15f;
     public int amountOfJumps = 1;
@@ -45,4 +46,6 @@ public class PlayerData : ScriptableObject
     public float[] attackMovementSpeed;
     public float[] knockbackStrength;
     public Vector2[] knockbackAngle;
+    [Header("Turn States")]
+    public float turnFriction = 5f;
 }

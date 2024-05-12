@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   movementVelocity: 10
+  moveTimeThreshold: 0.8
+  moveTimeElapsed: 0
   jumpVelocity: 15
   amountOfJumps: 1
   coyoteTime: 0.2
@@ -46,3 +48,4 @@ MonoBehaviour:
   knockbackAngle:
   - {x: 1, y: 1}
   - {x: 2, y: 2}
+  turnFriction: 5
