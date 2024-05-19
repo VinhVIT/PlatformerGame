@@ -7,6 +7,7 @@ public class PlayerData : ScriptableObject
 {
     [Header("Move State")]
     public float movementVelocity = 10f;
+    public float movementAcceleration = 0.4f;
     [Header("Jump State")]
     public float jumpVelocity = 15f;
     public int amountOfJumps = 1;
@@ -22,9 +23,13 @@ public class PlayerData : ScriptableObject
     public float wallJumpVelocity = 20f;
     public float wallJumpTime = .4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
-    [Header("Ledge CLimb State")]
+    [Header("Ledge Grab State")]
     public Vector2 startOffset;//startPos when detectedLedge
-    public Vector2 stopOffset;//endPos when finish LedgeClimb
+    public Vector2 stopOffset;//endPos when finish LedgeGrab
+    [Header("Ledge Grab State")]
+    public float ledgeJumpVelocity = 20f;
+    public float ledgeJumpTime = .2f;
+
     [Header("Dash State")]
     public float dashCooldown = 1f;
     public float maxHoldTime = 1f;
@@ -39,8 +44,9 @@ public class PlayerData : ScriptableObject
     public float crouchColliderHeight = .8f;
     public float standColliderHeight = 1.6f;
     [Header("Attack States")]
-    public int attackCounter = 2;
+    public int attackCounter = 3;
     public int[] attackDamage;
+    public float attackResetCooldown = 2f;
     public float[] attackMovementSpeed;
     public float[] knockbackStrength;
     public Vector2[] knockbackAngle;

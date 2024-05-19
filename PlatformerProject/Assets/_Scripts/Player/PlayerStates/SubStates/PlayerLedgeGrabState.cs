@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLedgeClimbState : PlayerState
+public class PlayerLedgeGrabState : PlayerState
 {   
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
@@ -15,14 +15,12 @@ public class PlayerLedgeClimbState : PlayerState
     private Vector2 workspace;
 
     private bool isHanging;
-    private bool isClimbing;
     private bool jumpInput;
     private bool isTouchingCeiling;
 
-    private int xInput;
     private int yInput;
 
-    public PlayerLedgeClimbState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public PlayerLedgeGrabState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
 
@@ -60,11 +58,6 @@ public class PlayerLedgeClimbState : PlayerState
 
         isHanging = false;
 
-        if (isClimbing)
-        {
-            player.transform.position = stopPos;
-            isClimbing = false;
-        }
     }
 
     public override void LogicUpdate()
@@ -84,27 +77,19 @@ public class PlayerLedgeClimbState : PlayerState
         }
         else
         {
-            xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;
             jumpInput = player.InputHandler.JumpInput;
 
             Movement?.SetVelocityZero();
             player.transform.position = startPos;
 
-            // if (xInput == Movement.FacingDirection && isHanging && !isClimbing)
-            // {
-            //     CheckForSpace();
-            //     isClimbing = true;
-            //     player.Anim.SetBool("climbLedge", true);
-            // }
-            if (yInput == -1 && isHanging && !isClimbing)
+            if (yInput == -1 && isHanging)
             {
                 stateMachine.ChangeState(player.InAirState);
             }
-            else if(jumpInput && !isClimbing)
+            else if(jumpInput && isHanging)
             {
-                player.WallJumpState.DetermineWallJumpDirection(true);
-                stateMachine.ChangeState(player.WallJumpState);
+                stateMachine.ChangeState(player.LedgeJumpState);
             }
         }
       

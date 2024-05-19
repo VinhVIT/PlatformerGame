@@ -10,6 +10,8 @@ public class PlayerAttackState : PlayerAbilityState
     private float velocityToSet;
     private bool setVelocity;
     private bool shouldCheckFlip;
+    private float lastAttackTime;
+
     private List<IDamageable> detectedDamageables = new List<IDamageable>();
     private List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
@@ -20,7 +22,6 @@ public class PlayerAttackState : PlayerAbilityState
     {
         base.Enter();
         setVelocity = false;
-        attackCounter++;
     }
     public override void LogicUpdate()
     {
@@ -58,6 +59,9 @@ public class PlayerAttackState : PlayerAbilityState
         base.AnimationFinishTrigger();
         SetPlayerVelocity(0f);
         isAbilityDone = true;
+        
+        attackCounter++;
+        lastAttackTime = Time.time;
     }
     private void SetPlayerVelocity(float velocity)
     {
@@ -102,6 +106,13 @@ public class PlayerAttackState : PlayerAbilityState
         foreach (IKnockbackable item in detectedKnockbackables.ToList())
         {
             item.Knockback(playerData.knockbackAngle[attackCounter], playerData.knockbackStrength[attackCounter], Movement.FacingDirection);
+        }
+    }
+    public void CheckToResetAttackCounter()
+    {
+        if(Time.time >= lastAttackTime + playerData.attackResetCooldown)
+        {
+            attackCounter = 0;
         }
     }
     public void SetFlipCheck(bool value) => shouldCheckFlip = value;

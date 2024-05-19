@@ -16,9 +16,10 @@ public class Player : MonoBehaviour
     public PlayerLandState LandState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
-    public PlayerWallClimbState WallClimbState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
-    public PlayerLedgeClimbState LedgeClimbState { get; private set; }
+    public PlayerLedgeGrabState LedgeGrabState { get; private set; }
+    public PlayerLedgeJumpState LedgeJumpState { get; private set; }
+
     public PlayerDashState DashState { get; private set; }
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
@@ -54,9 +55,9 @@ public class Player : MonoBehaviour
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
         WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-        WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
-        LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
+        LedgeGrabState = new PlayerLedgeGrabState(this, StateMachine, playerData, "ledgeGrab");
+        LedgeJumpState = new PlayerLedgeJumpState(this, StateMachine, playerData, "inAir");
         DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");

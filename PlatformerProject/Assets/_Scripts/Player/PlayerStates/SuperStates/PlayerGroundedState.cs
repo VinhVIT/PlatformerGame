@@ -61,7 +61,8 @@ public class PlayerGroundedState : PlayerState
         attackInput = player.InputHandler.AttackInput;
 
         if (attackInput && !isTouchingCeiling)
-        {
+        {   
+            player.AttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.AttackState);
         }
         else if (JumpInput && player.JumpState.CanJump() && !isTouchingCeiling)
