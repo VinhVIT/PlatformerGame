@@ -21,9 +21,7 @@ public class Player : MonoBehaviour
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
-    public PlayerCrouchMoveState CrouchMoveState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
-    public PlayerTurnState TurnState {get; private set;}
 
     [SerializeField]
     private PlayerData playerData;
@@ -61,9 +59,7 @@ public class Player : MonoBehaviour
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
-        CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
         AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
-        TurnState = new PlayerTurnState(this, StateMachine, playerData, "turn");
     }
 
     private void Start()

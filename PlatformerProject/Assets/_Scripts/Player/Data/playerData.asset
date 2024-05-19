@@ -40,8 +40,8 @@ MonoBehaviour:
   attackCounter: 2
   attackDamage: 0a00000014000000
   attackMovementSpeed:
-  - 2
-  - 3
+  - 0.5
+  - 1
   knockbackStrength:
   - 10
   - 15

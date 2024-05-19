@@ -91,13 +91,13 @@ public class PlayerLedgeClimbState : PlayerState
             Movement?.SetVelocityZero();
             player.transform.position = startPos;
 
-            if (xInput == Movement.FacingDirection && isHanging && !isClimbing)
-            {
-                CheckForSpace();
-                isClimbing = true;
-                player.Anim.SetBool("climbLedge", true);
-            }
-            else if (yInput == -1 && isHanging && !isClimbing)
+            // if (xInput == Movement.FacingDirection && isHanging && !isClimbing)
+            // {
+            //     CheckForSpace();
+            //     isClimbing = true;
+            //     player.Anim.SetBool("climbLedge", true);
+            // }
+            if (yInput == -1 && isHanging && !isClimbing)
             {
                 stateMachine.ChangeState(player.InAirState);
             }

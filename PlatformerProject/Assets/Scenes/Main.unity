@@ -597,15 +597,15 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.47, y: 0.3}
-    oldSize: {x: 5, y: 3.3333333}
+    pivot: {x: 0.4, y: 0.5}
+    oldSize: {x: 3.2, y: 2.2}
     newSize: {x: 5, y: 3.3333333}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1.6}
+  m_Size: {x: 0.7, y: 1.7}
   m_EdgeRadius: 0
 --- !u!50 &218347858
 Rigidbody2D:
@@ -695,7 +695,7 @@ SpriteRenderer:
   m_SortingLayerID: 756119877
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1524457581, guid: 3692892ea47d7d540957bbf948619873, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42adbce0e0d3c74439f44aa74a6ef915, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3939,7 +3939,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3950,7 +3950,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &530547760
 GameObject:
@@ -4237,7 +4237,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: -0.2}
+  m_Offset: {x: 0.048745096, y: -0.24103296}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4248,7 +4248,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.5}
+  m_Size: {x: 0.5640595, y: 1.5820658}
   m_EdgeRadius: 0
 --- !u!114 &677750642
 MonoBehaviour:
@@ -6339,7 +6339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071910323}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
