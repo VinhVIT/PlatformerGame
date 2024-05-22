@@ -7,9 +7,12 @@ public class PlayerAbilityState : PlayerState
     protected bool isAbilityDone;
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
-    private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
+    protected CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     private CollisionSenses collisionSenses;
+    protected ParticleManager ParticleManager => particleManager ?? core.GetCoreComponent(ref particleManager);
+    private ParticleManager particleManager;
     private bool isGrounded;
+    protected bool isTouchingCeiling;
 
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -21,6 +24,7 @@ public class PlayerAbilityState : PlayerState
         if (CollisionSenses)//Check if has this component or not
         {
             isGrounded = CollisionSenses.Ground;
+            isTouchingCeiling = CollisionSenses.Ceiling;
         }
     }
 
@@ -35,7 +39,6 @@ public class PlayerAbilityState : PlayerState
     {
         base.Exit();
     }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();

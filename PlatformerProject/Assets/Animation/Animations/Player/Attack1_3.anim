@@ -50,9 +50,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: 0.5936862
-        inSlope: 7.0747194
-        outSlope: 7.0747194
+        value: 0.97032857
+        inSlope: 5.6862254
+        outSlope: 5.6862254
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -143,7 +143,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: 2.8355238
+        value: 2.0822392
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -153,8 +153,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 1.3240757
-        inSlope: -12.396063
-        outSlope: -12.396063
+        inSlope: -8.785242
+        outSlope: -8.785242
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -516,9 +516,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: 0.5936862
-        inSlope: 7.0747194
-        outSlope: 7.0747194
+        value: 0.97032857
+        inSlope: 5.6862254
+        outSlope: 5.6862254
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -609,7 +609,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: 2.8355238
+        value: 2.0822392
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -619,8 +619,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 1.3240757
-        inSlope: -12.396063
-        outSlope: -12.396063
+        inSlope: -8.785242
+        outSlope: -8.785242
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -848,7 +848,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
+  - time: 0.13333334
     functionName: AnimationTurnOffFlipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

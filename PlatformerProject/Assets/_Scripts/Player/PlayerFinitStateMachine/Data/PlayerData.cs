@@ -39,6 +39,11 @@ public class PlayerData : ScriptableObject
     public float drag = 10f;//airDrag affect gravity when dash
     public float dashEndYMultiplier = .2f;
     public float distBetweenAfterImages = .5f;
+    [Header("Slide State")]
+    public float slideCooldown = 1f;
+    public float slideTime = .2f;
+    public float slideVelocity = 30f;
+
     [Header("Crouch States")]
     public float crouchMovementVelocity = 5f;
     public float crouchColliderHeight = .8f;

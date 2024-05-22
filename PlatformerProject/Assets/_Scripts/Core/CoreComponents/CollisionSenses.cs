@@ -5,7 +5,6 @@ using UnityEngine;
 public class CollisionSenses : CoreComponent {
 
 	private Movement Movement => movement ?? core.GetCoreComponent(ref movement);
-
 	private Movement movement;
 
 	#region Check Transforms
@@ -45,7 +44,7 @@ public class CollisionSenses : CoreComponent {
 	[SerializeField] private float wallCheckDistance;
 
 	[SerializeField] private LayerMask whatIsGround;
-
+	
 	#endregion
 
 	public bool Ceiling {

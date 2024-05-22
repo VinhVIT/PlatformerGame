@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleManager : CoreComponent
-{
+{   
+    public GameObject dustParticle;
     private Transform particleContainer;
 
     protected override void Awake()

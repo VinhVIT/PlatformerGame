@@ -18,6 +18,9 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
+    public bool SlideInput {get; private set;}
+    public bool SlideInputStop {get; private set;}
+
     public bool AttackInput { get; private set; }
 
     [SerializeField]
@@ -25,6 +28,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private float jumpInputStartTime;
     private float dashInputStartTime;
+    private float slideInputStartTime;
+
 
     private void Start()
     {
@@ -36,6 +41,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckJumpInputHoldTime();
         CheckDashInputHoldTime();
+        CheckSlideInputHoldTime();
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -88,6 +94,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnSlideInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            SlideInput = true;
+            SlideInputStop = false;
+            slideInputStartTime = Time.time;
+        }
+        else if (context.canceled)
+        {
+            SlideInputStop = true;
+        }
+    }
     public void OnDashDirectionInput(InputAction.CallbackContext context)
     {
         RawDashDirectionInput = context.ReadValue<Vector2>();
@@ -107,8 +126,9 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     public void UseJumpInput() => JumpInput = false;
-
     public void UseDashInput() => DashInput = false;
+    public void UseSlideInput() => SlideInput = false;
+
 
     private void CheckJumpInputHoldTime()
     {
@@ -123,6 +143,13 @@ public class PlayerInputHandler : MonoBehaviour
         if (Time.time >= dashInputStartTime + inputHoldTime)
         {
             DashInput = false;
+        }
+    }
+    private void CheckSlideInputHoldTime()
+    {
+        if (Time.time >= slideInputStartTime + inputHoldTime)
+        {
+            SlideInput = false;
         }
     }
 }

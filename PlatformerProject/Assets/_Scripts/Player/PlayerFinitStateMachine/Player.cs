@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public PlayerLedgeJumpState LedgeJumpState { get; private set; }
 
     public PlayerDashState DashState { get; private set; }
+    public PlayerSlideState SlideState { get; private set; }
+
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
 
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
         LedgeGrabState = new PlayerLedgeGrabState(this, StateMachine, playerData, "ledgeGrab");
         LedgeJumpState = new PlayerLedgeJumpState(this, StateMachine, playerData, "inAir");
         DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
+        SlideState = new PlayerSlideState(this, StateMachine, playerData, "slide");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }

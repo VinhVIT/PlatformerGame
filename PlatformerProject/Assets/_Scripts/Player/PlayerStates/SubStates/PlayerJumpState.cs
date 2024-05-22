@@ -4,7 +4,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PlayerJumpState : PlayerAbilityState
-{
+{   
+    
     private int amountOfJumpsLeft;
 
     public PlayerJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
@@ -20,6 +21,7 @@ public class PlayerJumpState : PlayerAbilityState
         isAbilityDone = true;
         amountOfJumpsLeft--;
         player.InAirState.SetIsJumping();
+        ParticleManager.StartParticle(ParticleManager.dustParticle,CollisionSenses.GroundCheck.position,Quaternion.identity);
     }
 
     public bool CanJump()
