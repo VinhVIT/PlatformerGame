@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Variables
-
     private Vector2 workspace;
     #endregion
 

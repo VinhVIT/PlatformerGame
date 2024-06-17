@@ -11,6 +11,8 @@ public class PlayerLandState : PlayerGroundedState
     {
         base.Enter();
         Movement?.SetVelocityZero();
+        ParticleManager.StartParticle(playerData.dustFallParticle,CollisionSenses.GroundCheck.position,Quaternion.identity);
+
     }
     public override void LogicUpdate()
     {

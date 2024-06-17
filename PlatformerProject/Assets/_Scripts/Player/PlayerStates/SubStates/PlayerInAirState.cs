@@ -26,6 +26,7 @@ public class PlayerInAirState : PlayerState
     private bool coyoteTime;
     private bool isJumping;
     private bool isTouchingLedge;
+    private float fallSpeedYDampingChangeThreshold;
 
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -61,6 +62,7 @@ public class PlayerInAirState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
     }
 
     public override void Exit()
@@ -79,6 +81,7 @@ public class PlayerInAirState : PlayerState
 
         CheckCoyoteTime();
         CheckWallJumpCoyoteTime();
+        LimitFallSpeed();
 
         xInput = player.InputHandler.NormInputX;
         jumpInput = player.InputHandler.JumpInput;
@@ -89,7 +92,7 @@ public class PlayerInAirState : PlayerState
 
         CheckJumpMultiplier();
         if (attackInput)
-        {   
+        {
             player.AttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.AttackState);
         }
@@ -97,7 +100,7 @@ public class PlayerInAirState : PlayerState
         {
             stateMachine.ChangeState(player.LandState);
         }
-        else if (isTouchingWall && !isTouchingLedge && !isGrounded)
+        else if (isTouchingWall && !isTouchingLedge && !isGrounded && movement.CurrentVelocity.y < 0)
         {
             stateMachine.ChangeState(player.LedgeGrabState);
         }
@@ -132,7 +135,19 @@ public class PlayerInAirState : PlayerState
             player.Anim.SetFloat("yVelocity", Movement.CurrentVelocity.y);
             player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
         }
+        // if player are falling past 
+        if (Movement.CurrentVelocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+        //if player are standing still or moving up
+        if (Movement.CurrentVelocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            //reset so it can be call again
+            CameraManager.instance.LerpedFromPlayerFalling = false;
 
+            CameraManager.instance.LerpYDamping(false);
+        }
     }
 
     private void CheckJumpMultiplier()
@@ -181,7 +196,13 @@ public class PlayerInAirState : PlayerState
         wallJumpCoyoteTime = true;
         startWallJumpCoyoteTime = Time.time;
     }
-
+    private void LimitFallSpeed()
+    {
+        if (Movement.CurrentVelocity.y < playerData.minFallSpeed)
+        {
+            Movement.SetVelocityY(Movement.CurrentVelocity.y * playerData.fallSpeedDampingFactor);
+        }
+    }
     public void StopWallJumpCoyoteTime() => wallJumpCoyoteTime = false;
 
     public void SetIsJumping() => isJumping = true;

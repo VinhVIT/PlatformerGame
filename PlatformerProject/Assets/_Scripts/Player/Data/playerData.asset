@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVelocity: 8
   movementAcceleration: 0.4
-  jumpVelocity: 15
+  jumpVelocity: 16
   amountOfJumps: 1
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.3
   wallSlideVelocity: 2
   wallClimbVelocity: 3
-  wallJumpVelocity: 20
+  wallJumpVelocity: 17
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
   startOffset: {x: 0.4, y: 0.9}
@@ -56,3 +56,7 @@ MonoBehaviour:
   - {x: 1, y: 2}
   - {x: 1, y: 1}
   - {x: 3, y: 2}
+  dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
+    type: 3}
+  dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,
+    type: 3}

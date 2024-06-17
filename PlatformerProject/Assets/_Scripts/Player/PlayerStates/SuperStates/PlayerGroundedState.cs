@@ -9,8 +9,10 @@ public class PlayerGroundedState : PlayerState
     protected bool isTouchingCeiling;
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
-    private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
+    protected CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     private CollisionSenses collisionSenses;
+    protected ParticleManager ParticleManager => particleManager ?? core.GetCoreComponent(ref particleManager);
+    private ParticleManager particleManager;
     private bool JumpInput;
     private bool grabInput;
     private bool isGrounded;

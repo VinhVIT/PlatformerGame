@@ -5,12 +5,9 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private Transform respawnPoint;
-    [SerializeField]
-    private GameObject player;
-    [SerializeField]
-    private float respawnTime;
+    [SerializeField] private Transform respawnPoint;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float respawnTime;
 
     private float respawnTimeStart;
 
@@ -20,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
+        CVC = GameObject.Find("CenterPlayerFollowCam(OpenRoom)").GetComponent<CinemachineVirtualCamera>();
     }
 
     private void Update()
@@ -35,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckRespawn()
     {
-        if(Time.time >= respawnTimeStart + respawnTime && respawn)
+        if (Time.time >= respawnTimeStart + respawnTime && respawn)
         {
             var playerTemp = Instantiate(player, respawnPoint);
             CVC.m_Follow = playerTemp.transform;

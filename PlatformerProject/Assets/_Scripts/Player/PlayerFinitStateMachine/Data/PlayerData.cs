@@ -14,6 +14,8 @@ public class PlayerData : ScriptableObject
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
+    public float minFallSpeed = -15f; 
+    public float fallSpeedDampingFactor = 0.75f;
     public float variableJumpHeightMultiplier = 0.5f;
     [Header("Wall Slide State")]
     public float wallSlideVelocity = 2f;
@@ -55,4 +57,9 @@ public class PlayerData : ScriptableObject
     public float[] attackMovementSpeed;
     public float[] knockbackStrength;
     public Vector2[] knockbackAngle;
+    [Header("Particle Prefabs")]
+    public GameObject dustJumpParticle;
+    public GameObject dustFallParticle;
+    
+
 }

@@ -17,6 +17,9 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
         Movement?.SetVelocityX(0f);
+        CameraManager.instance.LerpedFromPlayerFalling = false;
+        CameraManager.instance.LerpYDamping(false);
+
     }
 
     public override void Exit()
@@ -38,12 +41,12 @@ public class PlayerIdleState : PlayerGroundedState
             {
                 stateMachine.ChangeState(player.CrouchIdleState);
             }
-        }       
-        
+        }
+
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
     }
-}       
+}

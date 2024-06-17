@@ -38,6 +38,11 @@ public class Movement : CoreComponent
         SetFinalVelocity();
     }
 
+    public void SetVelocity(float velocity, float angle, int direction)
+    {
+        Vector2 angleVector = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+        SetVelocity(velocity, angleVector * direction);
+    }
     public void SetVelocity(float velocity, Vector2 direction)
     {
         workspace = direction * velocity;
@@ -69,6 +74,7 @@ public class Movement : CoreComponent
         if (xInput != 0 && xInput != FacingDirection)
         {
             Flip();
+            CameraFollowObject.Instance.CallTurn();
         }
     }
     public void Flip()
