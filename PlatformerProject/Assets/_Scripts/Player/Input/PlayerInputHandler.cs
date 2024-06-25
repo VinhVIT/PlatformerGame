@@ -19,17 +19,14 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
     public bool SlideInput {get; private set;}
-    public bool SlideInputStop {get; private set;}
-
     public bool AttackInput { get; private set; }
+    public bool SpellCastInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
     private float dashInputStartTime;
-    private float slideInputStartTime;
-
 
     private void Start()
     {
@@ -41,7 +38,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckJumpInputHoldTime();
         CheckDashInputHoldTime();
-        CheckSlideInputHoldTime();
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -99,12 +95,10 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             SlideInput = true;
-            SlideInputStop = false;
-            slideInputStartTime = Time.time;
         }
         else if (context.canceled)
         {
-            SlideInputStop = true;
+            SlideInput = false;
         }
     }
     public void OnDashDirectionInput(InputAction.CallbackContext context)
@@ -125,6 +119,17 @@ public class PlayerInputHandler : MonoBehaviour
             AttackInput = false;
         }
     }
+    public void OnSpellCastInput(InputAction.CallbackContext context)
+    {
+        if(context.started) 
+        {
+            SpellCastInput = true;
+        }
+        if(context.canceled)
+        {
+            SpellCastInput = false;
+        }
+    }
     public void UseJumpInput() => JumpInput = false;
     public void UseDashInput() => DashInput = false;
     public void UseSlideInput() => SlideInput = false;
@@ -143,13 +148,6 @@ public class PlayerInputHandler : MonoBehaviour
         if (Time.time >= dashInputStartTime + inputHoldTime)
         {
             DashInput = false;
-        }
-    }
-    private void CheckSlideInputHoldTime()
-    {
-        if (Time.time >= slideInputStartTime + inputHoldTime)
-        {
-            SlideInput = false;
         }
     }
 }

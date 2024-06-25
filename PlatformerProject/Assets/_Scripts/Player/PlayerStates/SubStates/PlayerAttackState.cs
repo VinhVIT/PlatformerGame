@@ -8,9 +8,9 @@ public class PlayerAttackState : PlayerAbilityState
     private int xInput;
     private int attackCounter;
     private float velocityToSet;
+    private float lastAttackTime;
     private bool setVelocity;
     private bool shouldCheckFlip;
-    private float lastAttackTime;
 
     private List<IDamageable> detectedDamageables = new List<IDamageable>();
     private List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
@@ -51,15 +51,15 @@ public class PlayerAttackState : PlayerAbilityState
     public override void AnimationStartTrigger()
     {
         base.AnimationStartTrigger();
-        SetPlayerVelocity(playerData.attackMovementSpeed[attackCounter]);
 
+        SetPlayerVelocity(playerData.attackMovementSpeed[attackCounter]);
     }
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
         SetPlayerVelocity(0f);
         isAbilityDone = true;
-        
+
         attackCounter++;
         lastAttackTime = Time.time;
     }
@@ -110,7 +110,7 @@ public class PlayerAttackState : PlayerAbilityState
     }
     public void CheckToResetAttackCounter()
     {
-        if(Time.time >= lastAttackTime + playerData.attackResetCooldown)
+        if (Time.time >= lastAttackTime + playerData.attackResetCooldown)
         {
             attackCounter = 0;
         }
@@ -118,8 +118,5 @@ public class PlayerAttackState : PlayerAbilityState
     public void SetFlipCheck(bool value) => shouldCheckFlip = value;
     public void AnimationTurnOffFlipTrigger() => SetFlipCheck(false);
     public void AnimationTurnOnFlipTrigger() => SetFlipCheck(true);
-    public void AnimationActionTrigger()
-    {
-        CheckAttack();
-    }
+    public void AnimationActionTrigger() => CheckAttack();
 }

@@ -8,6 +8,8 @@ public class PlayerData : ScriptableObject
     [Header("Move State")]
     public float movementVelocity = 10f;
     public float movementAcceleration = 0.4f;
+    public PhysicsMaterial2D noFriction;
+    public PhysicsMaterial2D fullFriction;
     [Header("Jump State")]
     public float jumpVelocity = 15f;
     public int amountOfJumps = 1;

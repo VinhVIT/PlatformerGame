@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70424,11 +70424,11 @@ TextureImporter:
       Free_2063: -1189618601
       Free_508: 1663005311
       Free_2510: -2015309461
-      Free_920: 1109699052
       Free_1546: 1870323059
+      Free_439: 493375722
       Free_408: -19057750
       Free_2134: -1692392622
-      Free_439: 493375722
+      Free_920: 1109699052
       Free_2974: 50137427
       Free_1244: -441404482
       Free_1788: -1547937049

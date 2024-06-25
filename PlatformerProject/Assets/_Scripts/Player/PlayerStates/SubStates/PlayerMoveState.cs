@@ -23,11 +23,12 @@ public class PlayerMoveState : PlayerGroundedState
         base.LogicUpdate();
         if (!isExitingState)
         {
-            if (stateMachine.CurrentState != player.SlideState)
+            if (stateMachine.CurrentState != player.SlideState )
             {
                 Movement?.CheckIfShouldFlip(xInput);
                 Movement?.SetVelocityX(playerData.movementVelocity * xInput);
             }
+
             if (xInput == 0)
             {
                 stateMachine.ChangeState(player.IdleState);

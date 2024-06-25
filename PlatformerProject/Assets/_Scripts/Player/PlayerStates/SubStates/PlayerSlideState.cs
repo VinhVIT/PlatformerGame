@@ -26,10 +26,20 @@ public class PlayerSlideState : PlayerAbilityState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (Time.unscaledTime >= startTime + playerData.slideTime && !isTouchingCeiling)
+        if (Time.unscaledTime >= startTime + playerData.slideTime)
         {
             isAbilityDone = true;
             Time.timeScale = 1f;
+            
+            if (isTouchingCeiling)
+            {
+                stateMachine.ChangeState(player.CrouchIdleState);
+            }
+        }
+
+        if (!CollisionSenses.Ground)
+        {
+            stateMachine.ChangeState(player.InAirState);
         }
     }
 

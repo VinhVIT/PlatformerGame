@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVelocity: 8
   movementAcceleration: 0.4
+  noFriction: {fileID: 6200000, guid: 03301e8e8906d2941bd4c0e90755c817, type: 2}
+  fullFriction: {fileID: 6200000, guid: d0b3fefc04fc6c844ade74311199c236, type: 2}
   jumpVelocity: 16
   amountOfJumps: 1
   coyoteTime: 0.2
-  variableJumpHeightMultiplier: 0.3
+  minFallSpeed: -15
+  fallSpeedDampingFactor: 0.75
+  variableJumpHeightMultiplier: 0.1
   wallSlideVelocity: 2
   wallClimbVelocity: 3
   wallJumpVelocity: 17

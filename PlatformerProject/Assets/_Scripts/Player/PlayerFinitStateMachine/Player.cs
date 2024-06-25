@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 
 public class Player : MonoBehaviour
 {
@@ -91,7 +88,7 @@ public class Player : MonoBehaviour
     #region Other Functions
 
     public void SetColliderHeight(float height)
-    {
+    {   
         Vector2 center = MovementCollider.offset;
         workspace.Set(MovementCollider.size.x, height);
 

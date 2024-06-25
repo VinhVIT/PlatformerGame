@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLedgeGrabState : PlayerState
-{   
+{
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
     private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
@@ -64,35 +64,21 @@ public class PlayerLedgeGrabState : PlayerState
     {
         base.LogicUpdate();
 
-        if (isAnimationFinished)
-        {
-            if (isTouchingCeiling)
-            {
-                stateMachine.ChangeState(player.CrouchIdleState);
-            }
-            else
-            {
-                stateMachine.ChangeState(player.IdleState);
-            }
-        }
-        else
-        {
-            yInput = player.InputHandler.NormInputY;
-            jumpInput = player.InputHandler.JumpInput;
+        yInput = player.InputHandler.NormInputY;
+        jumpInput = player.InputHandler.JumpInput;
 
-            Movement?.SetVelocityZero();
-            player.transform.position = startPos;
+        Movement?.SetVelocityZero();
+        player.transform.position = startPos;
 
-            if (yInput == -1 && isHanging)
-            {
-                stateMachine.ChangeState(player.InAirState);
-            }
-            else if(jumpInput && isHanging)
-            {
-                stateMachine.ChangeState(player.LedgeJumpState);
-            }
+        if (yInput == -1 && isHanging)
+        {
+            stateMachine.ChangeState(player.InAirState);
         }
-      
+        else if (jumpInput && isHanging)
+        {
+            stateMachine.ChangeState(player.LedgeJumpState);
+        }
+
     }
 
     public void SetDetectedPosition(Vector2 pos) => detectedPos = pos;

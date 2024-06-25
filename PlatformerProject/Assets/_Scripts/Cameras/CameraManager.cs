@@ -55,7 +55,7 @@ public class CameraManager : MonoBehaviour
     }
     private IEnumerator SwapCameraBound(Collider2D areaBound)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         _confiner.m_BoundingShape2D = areaBound;
     }
     #region Lerp the Y Damping

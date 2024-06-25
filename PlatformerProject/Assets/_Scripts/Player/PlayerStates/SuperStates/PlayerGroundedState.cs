@@ -66,7 +66,7 @@ public class PlayerGroundedState : PlayerState
         attackInput = player.InputHandler.AttackInput;
 
         if (attackInput && !isTouchingCeiling)
-        {   
+        {
             player.AttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.AttackState);
         }
@@ -87,12 +87,12 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if(slideInput && player.SlideState.CheckIfCanSlide())
+        else if (slideInput && player.SlideState.CheckIfCanSlide())
         {
             stateMachine.ChangeState(player.SlideState);
         }
     }
-
+    
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();

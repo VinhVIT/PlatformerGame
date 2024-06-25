@@ -20,17 +20,19 @@ public class PlayerIdleState : PlayerGroundedState
         CameraManager.instance.LerpedFromPlayerFalling = false;
         CameraManager.instance.LerpYDamping(false);
 
+        Movement.RB.sharedMaterial = playerData.fullFriction;
+
     }
 
     public override void Exit()
     {
         base.Exit();
+        Movement.RB.sharedMaterial = playerData.noFriction;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         if (!isExitingState)
         {
             if (xInput != 0)
@@ -44,7 +46,6 @@ public class PlayerIdleState : PlayerGroundedState
         }
 
     }
-
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
