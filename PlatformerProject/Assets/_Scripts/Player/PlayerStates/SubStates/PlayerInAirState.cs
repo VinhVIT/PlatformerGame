@@ -104,7 +104,7 @@ public class PlayerInAirState : PlayerState
         {
             stateMachine.ChangeState(player.LedgeGrabState);
         }
-        else if (jumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime) && isTouchingLedge)
+        else if (xInput ==Movement.FacingDirection && jumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime) && isTouchingLedge)
         {
             StopWallJumpCoyoteTime();
             isTouchingWall = CollisionSenses.WallFront;

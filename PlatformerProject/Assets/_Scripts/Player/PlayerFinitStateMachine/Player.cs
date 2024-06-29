@@ -22,9 +22,10 @@ public class Player : MonoBehaviour
 
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
+    public PlayerSpellCastState SpellCastState { get; private set; }
 
-    [SerializeField]
-    private PlayerData playerData;
+
+    [SerializeField] private PlayerData playerData;
     #endregion
 
     #region Components
@@ -60,6 +61,8 @@ public class Player : MonoBehaviour
         SlideState = new PlayerSlideState(this, StateMachine, playerData, "slide");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        SpellCastState = new PlayerSpellCastState(this, StateMachine, playerData, "spellCast");
+
     }
 
     private void Start()
@@ -88,7 +91,7 @@ public class Player : MonoBehaviour
     #region Other Functions
 
     public void SetColliderHeight(float height)
-    {   
+    {
         Vector2 center = MovementCollider.offset;
         workspace.Set(MovementCollider.size.x, height);
 

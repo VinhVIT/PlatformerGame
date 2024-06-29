@@ -73,9 +73,12 @@ public class MyScriptEditor : Editor
         DrawDefaultInspector();
         if (cameraControlTrigger.customInspectorObjects.swapCameras)
         {
-            cameraControlTrigger.customInspectorObjects.cameraOnLeft = EditorGUILayout.ObjectField("Camera on Left", cameraControlTrigger.customInspectorObjects.cameraOnLeft,
+            cameraControlTrigger.customInspectorObjects.cameraOnLeft = EditorGUILayout.ObjectField
+            ("Camera on Left", cameraControlTrigger.customInspectorObjects.cameraOnLeft,
             typeof(CinemachineVirtualCamera), true) as CinemachineVirtualCamera;
-            cameraControlTrigger.customInspectorObjects.cameraOnRight = EditorGUILayout.ObjectField("Camera on Right", cameraControlTrigger.customInspectorObjects.cameraOnRight,
+            
+            cameraControlTrigger.customInspectorObjects.cameraOnRight = EditorGUILayout.ObjectField
+            ("Camera on Right", cameraControlTrigger.customInspectorObjects.cameraOnRight,
             typeof(CinemachineVirtualCamera), true) as CinemachineVirtualCamera;
         }
         if (cameraControlTrigger.customInspectorObjects.panCameraOnContact)

@@ -203,7 +203,29 @@
                 {
                     "name": "",
                     "id": "857a4548-4a00-4ad2-b02c-be713bb0b436",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellCast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4cdffe16-7c30-41a1-a6f8-e329e1a70ee4",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellCast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "855d6e3b-6edd-4d2a-947f-6eda0ddc7094",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

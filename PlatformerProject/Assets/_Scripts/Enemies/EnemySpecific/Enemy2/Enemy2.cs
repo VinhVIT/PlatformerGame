@@ -14,29 +14,18 @@ public class Enemy2 : Entity
     public E2_DodgeState dodgeState { get; private set; }
     public E2_RangedAttackState rangedAttackState { get; private set; }
 
-    [SerializeField]
-    private D_MoveState moveStateData;
-    [SerializeField]
-    private D_IdleState idleStateData;
-    [SerializeField]
-    private D_PlayerDetected playerDetectedStateData;
-    [SerializeField]
-    private D_MeleeAttack meleeAttackStateData;
-    [SerializeField]
-    private D_LookForPlayer lookForPlayerStateData;
-    [SerializeField]
-    private D_StunState stunStateData;
-    [SerializeField]
-    private D_DeadState deadStateData;
-    [SerializeField]
-    public D_DodgeState dodgeStateData;
-    [SerializeField]
-    private D_RangedAttackState rangedAttackStateData;
+    [SerializeField] private D_MoveState moveStateData;
+    [SerializeField] private D_IdleState idleStateData;
+    [SerializeField] private D_PlayerDetected playerDetectedStateData;
+    [SerializeField] private D_MeleeAttack meleeAttackStateData;
+    [SerializeField] private D_LookForPlayer lookForPlayerStateData;
+    [SerializeField] private D_StunState stunStateData;
+    [SerializeField] private D_DeadState deadStateData;
+    [SerializeField] public D_DodgeState dodgeStateData;
+    [SerializeField] private D_RangedAttackState rangedAttackStateData;
 
-    [SerializeField]
-    private Transform meleeAttackPosition;
-    [SerializeField]
-    private Transform rangedAttackPosition;
+    [SerializeField] private Transform meleeAttackPosition;
+    [SerializeField] private Transform rangedAttackPosition;
 
     public override void Awake()
     {

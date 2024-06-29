@@ -49,13 +49,13 @@ public class CameraManager : MonoBehaviour
         AreaTrigger.OnAreaChange += AreaTrigger_OnAreaChange;
     }
 
-    private void AreaTrigger_OnAreaChange(Collider2D areaBound)
+    private void AreaTrigger_OnAreaChange(Collider2D areaBound, float delayTime)
     {
-        StartCoroutine(SwapCameraBound(areaBound));
+        StartCoroutine(SwapCameraBound(areaBound, delayTime));
     }
-    private IEnumerator SwapCameraBound(Collider2D areaBound)
+    private IEnumerator SwapCameraBound(Collider2D areaBound, float delay)
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(delay);
         _confiner.m_BoundingShape2D = areaBound;
     }
     #region Lerp the Y Damping
@@ -172,4 +172,8 @@ public class CameraManager : MonoBehaviour
         }
     }
     #endregion
+    void OnDestroy()
+    {
+        AreaTrigger.OnAreaChange -= AreaTrigger_OnAreaChange;
+    }
 }

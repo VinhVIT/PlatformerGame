@@ -60,7 +60,6 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)//hit player
             {
-                // damageHit.transform.SendMessage("Damage", attackDetails);
                 IDamageable damageable = damageHit.GetComponent<IDamageable>();
                 if (damageable != null)
                 {

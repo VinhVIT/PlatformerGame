@@ -21,6 +21,9 @@ public class PlayerGroundedState : PlayerState
     private bool dashInput;
     private bool slideInput;
     private bool attackInput;
+    private bool spellCastInput;
+    private int spellSlotInput;
+
 
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -64,11 +67,21 @@ public class PlayerGroundedState : PlayerState
         dashInput = player.InputHandler.DashInput;
         slideInput = player.InputHandler.SlideInput;
         attackInput = player.InputHandler.AttackInput;
+        spellCastInput = player.InputHandler.SpellCastInput;
+        spellSlotInput = player.InputHandler.SpellSlotInput;
 
         if (attackInput && !isTouchingCeiling)
         {
             player.AttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.AttackState);
+        }
+        else if (spellCastInput)
+        {
+            player.SpellCastState.SetSpellData(spellSlotInput);
+            if (player.SpellCastState.CheckIfCanCastSpell())
+            {
+                stateMachine.ChangeState(player.SpellCastState);
+            }
         }
         else if (JumpInput && player.JumpState.CanJump() && !isTouchingCeiling)
         {
@@ -92,7 +105,7 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.SlideState);
         }
     }
-    
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();

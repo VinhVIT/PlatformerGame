@@ -64,3 +64,5 @@ MonoBehaviour:
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,
     type: 3}
+  spell1: {fileID: 11400000, guid: 068a41cedb6a56e4db3ec98e737e356d, type: 2}
+  spell2: {fileID: 11400000, guid: e41e50941bf5bd045964f70814cfcf64, type: 2}

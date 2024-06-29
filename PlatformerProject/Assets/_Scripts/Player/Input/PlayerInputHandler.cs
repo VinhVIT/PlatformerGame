@@ -18,9 +18,11 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
-    public bool SlideInput {get; private set;}
+    public bool SlideInput { get; private set; }
     public bool AttackInput { get; private set; }
     public bool SpellCastInput { get; private set; }
+    public int SpellSlotInput { get; private set; }
+
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -45,7 +47,7 @@ public class PlayerInputHandler : MonoBehaviour
         RawMovementInput = context.ReadValue<Vector2>();
 
         NormInputX = Mathf.RoundToInt(RawMovementInput.x);
-        NormInputY = Mathf.RoundToInt(RawMovementInput.y);  
+        NormInputY = Mathf.RoundToInt(RawMovementInput.y);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -110,22 +112,27 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void OnAttackInput(InputAction.CallbackContext context)
     {
-        if(context.started) 
+        if (context.started)
         {
             AttackInput = true;
         }
-        if(context.canceled)
+        if (context.canceled)
         {
             AttackInput = false;
         }
     }
     public void OnSpellCastInput(InputAction.CallbackContext context)
     {
-        if(context.started) 
-        {
+        if (context.started)
+        {   
             SpellCastInput = true;
+            int spellSlot;
+            if (int.TryParse(context.control.name, out spellSlot))
+            {   
+                SpellSlotInput = spellSlot;
+            }
         }
-        if(context.canceled)
+        if (context.canceled)
         {
             SpellCastInput = false;
         }

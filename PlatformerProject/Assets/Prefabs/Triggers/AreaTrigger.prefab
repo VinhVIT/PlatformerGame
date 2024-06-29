@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextAreaBound: {fileID: 0}
+  needChangeBackground: 0
+  backgroundToChange: {fileID: 0}
 --- !u!1 &840143139340304359
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +187,7 @@ Transform:
   - {fileID: 840143139692412209}
   - {fileID: 840143138835614563}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &840143139692412212
 GameObject:
@@ -279,3 +281,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextAreaBound: {fileID: 0}
+  needChangeBackground: 0
+  backgroundToChange: {fileID: 0}

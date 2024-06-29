@@ -62,6 +62,8 @@ public class PlayerData : ScriptableObject
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;
-    
+    [Header("Spell SO")]
+    public SpellData spell1;
+    public SpellData spell2;
 
 }
