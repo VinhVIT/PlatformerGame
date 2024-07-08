@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4329290142811054203}
   - component: {fileID: 5605919275038657076}
   - component: {fileID: 7033235490548918577}
-  - component: {fileID: -5648410553711215871}
+  - component: {fileID: 6607699069030922772}
   m_Layer: 7
   m_Name: IceBall
   m_TagString: Untagged
@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 756119877
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1818082582, guid: 0a33b01aec5bf2e4c907d94ddfe7330b, type: 3}
+  m_Sprite: {fileID: 1019067728, guid: e74a226df7107b244baa2da000483bf5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 5.625, y: 2.421875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -120,9 +120,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.27, y: 0}
+  m_Offset: {x: -1.39, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.3
 --- !u!50 &5605919275038657076
 Rigidbody2D:
   serializedVersion: 4
@@ -160,7 +160,7 @@ Animator:
   m_GameObject: {fileID: 5549885128049999345}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 19af558d8081f10459938a51aeea83bf, type: 2}
+  m_Controller: {fileID: 9100000, guid: f9df998426feda84f889b880be5aeb51, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -170,7 +170,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &-5648410553711215871
+--- !u!114 &6607699069030922772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,9 +179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5549885128049999345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 786222f4156c94541b7d88917e73aefa, type: 3}
+  m_Script: {fileID: 11500000, guid: 13c7c75493554084eb53fd9e7511ed3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 068a41cedb6a56e4db3ec98e737e356d, type: 2}
-  hitEffectPrefab: {fileID: 5549885128049999345, guid: dbf1af5c02438324d90447720723182c,
-    type: 3}
+  data: {fileID: 11400000, guid: 5aefcea4d8314c948a37b99573729f30, type: 2}

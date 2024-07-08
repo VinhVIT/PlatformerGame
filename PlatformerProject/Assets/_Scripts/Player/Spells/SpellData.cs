@@ -35,5 +35,6 @@ public enum SpellType
     OneTime,
     Area,
     Target,
-    NoneDamage
+    NoneDamage,
+    Summon,
 }

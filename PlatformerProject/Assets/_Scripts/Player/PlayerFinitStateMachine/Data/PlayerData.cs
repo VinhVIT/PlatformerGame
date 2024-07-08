@@ -65,5 +65,9 @@ public class PlayerData : ScriptableObject
     [Header("Spell SO")]
     public SpellData spell1;
     public SpellData spell2;
+    public SpellData spell3;
+    public SpellData spell4;
+    public SpellData spell5;
+
 
 }

@@ -26,7 +26,7 @@ public class AreaTrigger : MonoBehaviour
             // move to next area
             OnAreaChange?.Invoke(nextAreaBound, delayTime);
             StartCoroutine(ChangePosition(other, destination));
-
+            //change background
             if (needChangeBackground && backgroundToChange != null)
             {
                 StartCoroutine(ChangeBackground());
@@ -37,13 +37,13 @@ public class AreaTrigger : MonoBehaviour
     {
         float transitionWaitingTime = delayTime * 2;// X2 because each transition have start and end
         PlayerInput playerInput = other.GetComponent<PlayerInput>();
-
+        
+        playerInput.enabled = false;
         Time.timeScale = 0f;
 
         yield return new WaitForSecondsRealtime(delayTime);
         //turn off player input and move player
         other.transform.position = pos.position;
-        playerInput.enabled = false;
         Time.timeScale = 1f;
         isChangeArea = !isChangeArea;
 

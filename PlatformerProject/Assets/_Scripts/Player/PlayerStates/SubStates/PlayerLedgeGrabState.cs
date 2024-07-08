@@ -57,7 +57,6 @@ public class PlayerLedgeGrabState : PlayerState
         base.Exit();
 
         isHanging = false;
-
     }
 
     public override void LogicUpdate()

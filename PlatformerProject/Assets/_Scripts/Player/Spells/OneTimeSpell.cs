@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class OneTimeSpell : Spell
 {
-    private float moveSpeed = 10f;
+    [SerializeField]private float moveSpeed = 10f;
     private Animator anim;
     private void Start()
     {

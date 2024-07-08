@@ -64,5 +64,8 @@ MonoBehaviour:
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,
     type: 3}
-  spell1: {fileID: 11400000, guid: 068a41cedb6a56e4db3ec98e737e356d, type: 2}
-  spell2: {fileID: 11400000, guid: e41e50941bf5bd045964f70814cfcf64, type: 2}
+  spell1: {fileID: 11400000, guid: 4f9da8e3d44cd5547b980104adc428db, type: 2}
+  spell2: {fileID: 11400000, guid: da4db3bc817d6ad4e9898079823837f4, type: 2}
+  spell3: {fileID: 11400000, guid: 799b95dc790bfa846a7be6c8aa9a24b0, type: 2}
+  spell4: {fileID: 11400000, guid: 88a217c4919651c4cb61afba0a85995d, type: 2}
+  spell5: {fileID: 11400000, guid: d6b9ed52d53edf04bad2cc9b3f5e2d84, type: 2}

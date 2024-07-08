@@ -8,6 +8,8 @@ public class PlayerSlideState : PlayerAbilityState
     private Vector2 slideDirection;
     private float lastSlideTime;
     private bool jumpInput;
+    private Vector2 lastAIPos;
+
     public PlayerSlideState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
@@ -28,9 +30,12 @@ public class PlayerSlideState : PlayerAbilityState
         base.LogicUpdate();
 
         jumpInput = player.InputHandler.JumpInput;
+        PlaceAfterImage();
 
         if (Time.unscaledTime >= startTime + playerData.slideTime)
         {
+            CheckIfShouldPlaceAfterImage();
+
             isAbilityDone = true;
             Time.timeScale = 1f;
 
@@ -61,5 +66,18 @@ public class PlayerSlideState : PlayerAbilityState
         return CanSlide && Time.time >= lastSlideTime + playerData.slideCooldown;
     }
 
+    private void CheckIfShouldPlaceAfterImage()
+    {
+        if (Vector2.Distance(player.transform.position, lastAIPos) >= playerData.distBetweenAfterImages)
+        {
+            PlaceAfterImage();
+        }
+    }
+
+    private void PlaceAfterImage()
+    {
+        PlayerAfterImagePool.Instance.GetFromPool();
+        lastAIPos = player.transform.position;
+    }
     public void ResetCanSlide() => CanSlide = true;
 }

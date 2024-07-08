@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class PlayerSpellCastState : PlayerAbilityState
 {
-    public SpellData spellData;
+    public SpellData currentSpellData;
     private float lastCastTime;
-    private Transform spellCastRange;
     public PlayerSpellCastState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
 
@@ -16,11 +15,23 @@ public class PlayerSpellCastState : PlayerAbilityState
     {
         if (spellSlotInput == 1)
         {
-            spellData = playerData.spell1;
+            currentSpellData = playerData.spell1;
         }
         else if (spellSlotInput == 2)
         {
-            spellData = playerData.spell2;
+            currentSpellData = playerData.spell2;
+        }
+        else if (spellSlotInput == 3)
+        {
+            currentSpellData = playerData.spell3;
+        }
+        else if (spellSlotInput == 4)
+        {
+            currentSpellData = playerData.spell4;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        }
+        else if (spellSlotInput == 5)
+        {
+            currentSpellData = playerData.spell5;
         }
     }
     public override void Enter()
@@ -54,13 +65,19 @@ public class PlayerSpellCastState : PlayerAbilityState
     }
     private void CastSpell()
     {
-        switch (spellData.spellType)
+        switch (currentSpellData.spellType)
         {
             case SpellType.OneTime:
                 CastOneHitSpell();
                 break;
             case SpellType.Target:
                 CastTargetSpell();
+                break;
+            case SpellType.Summon:
+                CastSummonSpell();
+                break;
+            case SpellType.Area:
+                CastAreaSpell();
                 break;
             default:
                 Debug.Log("Unknown spell type");
@@ -72,16 +89,32 @@ public class PlayerSpellCastState : PlayerAbilityState
     {
         float castRange = 1.5f;
 
-        SpellManager.Instance.CastSpell(spellData.spellPrefab, player.transform.position +
+        SpellManager.Instance.CastSpell(currentSpellData.spellPrefab, player.transform.position +
             new Vector3(castRange, 0, 0) * Movement.FacingDirection, player.transform.rotation);
     }
     private void CastTargetSpell()
-    {   
-        SpellManager.Instance.CastSpell(spellData.spellPrefab, CollisionSenses.EnemyInRange,
+    {
+        SpellManager.Instance.CastSpell(currentSpellData.spellPrefab, CollisionSenses.EnemyInRange,
          player.transform.rotation);
+    }
+    private void CastSummonSpell()
+    {
+        float castRange = 1.5f;
+
+        SpellManager.Instance.CastSpell(currentSpellData.spellPrefab, player.transform.position +
+            new Vector3(castRange, 0, 0) * Movement.FacingDirection, player.transform.rotation);
+    }
+    private void CastAreaSpell()
+    {
+        float castRange = 2f;
+        Vector2 castPosition = player.MovementCollider.bounds.center;
+        castPosition.y -= player.MovementCollider.bounds.size.y / 2f;
+        castPosition.x = player.transform.position.x + castRange * Movement.FacingDirection;
+
+        SpellManager.Instance.CastSpell(currentSpellData.spellPrefab, castPosition, player.transform.rotation);
     }
     public bool CheckIfCanCastSpell()
     {
-        return Time.time >= lastCastTime + spellData.cooldownTime;
+        return Time.time >= lastCastTime + currentSpellData.cooldownTime;
     }
 }
