@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4329290142811054203}
   - component: {fileID: 5605919275038657076}
   - component: {fileID: 7033235490548918577}
-  - component: {fileID: 5234124458686504047}
+  - component: {fileID: 6937735496358993499}
   m_Layer: 7
-  m_Name: IceSpear
+  m_Name: IceShard 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 756119877
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1802404328, guid: 288bfae38bb5c9b4db966233b58b4335, type: 3}
+  m_Sprite: {fileID: 1818082582, guid: 0a33b01aec5bf2e4c907d94ddfe7330b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 22.5, y: 7.25}
+  m_Size: {x: 3, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -120,9 +120,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.39, y: 0}
+  m_Offset: {x: 0.27, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.1
 --- !u!50 &5605919275038657076
 Rigidbody2D:
   serializedVersion: 4
@@ -160,7 +160,7 @@ Animator:
   m_GameObject: {fileID: 5549885128049999345}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 687e6286747aa9443acb18a25b039ef9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 19af558d8081f10459938a51aeea83bf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -170,7 +170,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &5234124458686504047
+--- !u!114 &6937735496358993499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,5 +183,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castPositionType: 0
-  moveAble: 0
+  moveAble: 1
   moveSpeed: 10

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4329290142811054203}
   - component: {fileID: 5605919275038657076}
   - component: {fileID: 7033235490548918577}
-  - component: {fileID: 3227650885180983096}
+  - component: {fileID: 4282185376352586132}
   m_Layer: 7
   m_Name: LightShot
   m_TagString: Untagged
@@ -170,7 +170,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &3227650885180983096
+--- !u!114 &4282185376352586132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +179,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5549885128049999345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 786222f4156c94541b7d88917e73aefa, type: 3}
+  m_Script: {fileID: 11500000, guid: fee3a3182d3237249aa9d3c650117b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 4f9da8e3d44cd5547b980104adc428db, type: 2}
+  castPositionType: 0
+  moveAble: 1
+  moveSpeed: 10

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4329290142811054203}
   - component: {fileID: 5605919275038657076}
   - component: {fileID: 7033235490548918577}
-  - component: {fileID: -2564245622979960215}
+  - component: {fileID: -2392808191752779152}
   m_Layer: 7
   m_Name: ShiningNova
   m_TagString: Untagged
@@ -170,7 +170,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &-2564245622979960215
+--- !u!114 &-2392808191752779152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +179,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5549885128049999345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f65148b822105c439ed43790bae8a94, type: 3}
+  m_Script: {fileID: 11500000, guid: fee3a3182d3237249aa9d3c650117b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: da4db3bc817d6ad4e9898079823837f4, type: 2}
+  castPositionType: 2
+  moveAble: 0
+  moveSpeed: 10

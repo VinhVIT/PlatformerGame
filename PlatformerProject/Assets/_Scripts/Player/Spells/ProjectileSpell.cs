@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class OneTimeSpell : Spell
+public class ProjectileSpell : Spell
 {
     [SerializeField]private float moveSpeed = 10f;
     private Animator anim;

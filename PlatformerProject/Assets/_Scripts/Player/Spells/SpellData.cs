@@ -32,7 +32,7 @@ public enum Element
 }
 public enum SpellType
 {
-    OneTime,
+    Projectile,
     Area,
     Target,
     NoneDamage,

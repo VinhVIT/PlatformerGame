@@ -27,7 +27,7 @@ public class PlayerSpellCastState : PlayerAbilityState
         }
         else if (spellSlotInput == 4)
         {
-            currentSpellData = playerData.spell4;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+            currentSpellData = playerData.spell4;
         }
         else if (spellSlotInput == 5)
         {
@@ -39,7 +39,7 @@ public class PlayerSpellCastState : PlayerAbilityState
         base.Enter();
         Movement?.SetVelocityX(0f);
 
-        Spell.OnCastingDone += OnCastingDoneHander;
+        SpellSetting.OnCastingDone += OnCastingDoneHander;
     }
 
     private void OnCastingDoneHander()
@@ -52,7 +52,7 @@ public class PlayerSpellCastState : PlayerAbilityState
     {
         base.Exit();
         lastCastTime = Time.time;
-        Spell.OnCastingDone -= OnCastingDoneHander;
+        SpellSetting.OnCastingDone -= OnCastingDoneHander;
     }
     public override void LogicUpdate()
     {
@@ -61,14 +61,14 @@ public class PlayerSpellCastState : PlayerAbilityState
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
-        CastSpell();
+        CastSpellTest();
     }
     private void CastSpell()
     {
         switch (currentSpellData.spellType)
         {
-            case SpellType.OneTime:
-                CastOneHitSpell();
+            case SpellType.Projectile:
+                CastProjectileSpell();
                 break;
             case SpellType.Target:
                 CastTargetSpell();
@@ -85,7 +85,11 @@ public class PlayerSpellCastState : PlayerAbilityState
         }
 
     }
-    private void CastOneHitSpell()
+    private void CastSpellTest()
+    {
+        SpellHander.Instance.CastSpell(currentSpellData.spellPrefab, player.transform);
+    }
+    private void CastProjectileSpell()
     {
         float castRange = 1.5f;
 
