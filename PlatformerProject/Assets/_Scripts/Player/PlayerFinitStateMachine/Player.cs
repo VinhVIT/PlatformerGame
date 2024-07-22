@@ -101,7 +101,6 @@ public class Player : MonoBehaviour
         MovementCollider.offset = center;
     }
 
-
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     private void AnimtionStartTrigger() => StateMachine.CurrentState.AnimationStartTrigger();

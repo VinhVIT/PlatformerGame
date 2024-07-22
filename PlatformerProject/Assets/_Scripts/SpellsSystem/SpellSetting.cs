@@ -3,31 +3,28 @@ using UnityEngine;
 
 public class SpellSetting : MonoBehaviour
 {
-    public static event Action OnCastingDone;
-    [SerializeField] private CastPosition castPositionType;
-    [SerializeField] private bool moveAble;
-    [ConditionalHide("moveAble", true)]
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private SpellData data;
     private Animator anim;
     private Rigidbody2D rb;
     private void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
     }
     public Vector3 GetCastPosition(Transform caster)
     {
         ICastable castable = null;
 
-        switch (castPositionType)
+        switch (data.castType)
         {
-            case CastPosition.Infront:
+            case CastType.Infront:
                 castable = new CastInFront();
                 break;
-            case CastPosition.OnGround:
+            case CastType.OnGround:
                 castable = new CastOnGround();
                 break;
-            case CastPosition.EnemyPos:
+            case CastType.EnemyPos:
                 castable = new CastAtEnemyPos();
                 break;
         }
@@ -44,13 +41,12 @@ public class SpellSetting : MonoBehaviour
     }
     public void CastTimeFinishTrigger()
     {
-        OnCastingDone?.Invoke();
-        if (moveAble)
+        EventManager.Player.OnSpellCastDone?.Invoke();
+        if (data.moveAble)
         {
             IMoveableSpell moveableSpell = new MoveStraightSpell();
-            moveableSpell.Move(rb, transform, moveSpeed);
+            moveableSpell.Move(rb, transform, data.moveSpeed);
         }
-        // rb.velocity = transform.right * moveSpeed;
     }
     public void AnimationFinishTrigger()
     {
@@ -58,14 +54,18 @@ public class SpellSetting : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        anim.SetTrigger("hit");
-        rb.velocity = Vector2.zero;
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            damageable.Damage(data.damage);
+        }
+        
+        if (data.damageType == DamageType.Single)
+        {
+            anim.SetTrigger("hit");
+            rb.velocity = Vector2.zero;
+
+        }
     }
 }
 
-public enum CastPosition
-{
-    Infront,
-    OnGround,
-    EnemyPos
-}

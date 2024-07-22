@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee3a3182d3237249aa9d3c650117b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castPositionType: 2
+  OnSpellCastingDone: {fileID: 11400000, guid: 0638c16bbf8b5dd4c988297c2c7c13a9, type: 2}
+  data: {fileID: 11400000, guid: e41e50941bf5bd045964f70814cfcf64, type: 2}
   moveAble: 0
   moveSpeed: 10

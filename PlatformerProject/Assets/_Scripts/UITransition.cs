@@ -13,10 +13,10 @@ public class UITransition : MonoBehaviour
     }
     private void Start()
     {
-        AreaTrigger.OnAreaChange += AreaTrigger_OnAreaChange;
+        EventManager.Trigger.OnAreaChange += AreaTrigger_OnAreaChange;
     }
 
-    private void AreaTrigger_OnAreaChange(Collider2D col, float delayTime)
+    private void AreaTrigger_OnAreaChange(float delayTime, Collider2D col)
     {
         anim.SetBool("fade", true);
         Invoke("ResetCanvasGroup", delayTime);
@@ -27,7 +27,6 @@ public class UITransition : MonoBehaviour
     }
     void OnDestroy()
     {
-        AreaTrigger.OnAreaChange -= AreaTrigger_OnAreaChange;
-
+        EventManager.Trigger.OnAreaChange -= AreaTrigger_OnAreaChange;
     }
 }

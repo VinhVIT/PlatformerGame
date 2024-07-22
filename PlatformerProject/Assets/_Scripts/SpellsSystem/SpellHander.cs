@@ -20,7 +20,6 @@ public class SpellHander : MonoBehaviour
             if (castPosition != Vector3.zero)
             {
                 Instantiate(spellPrefab, castPosition, caster.rotation);
-                Debug.Log($"Casting {spellPrefab.name} at {castPosition}");
             }
             else
             {

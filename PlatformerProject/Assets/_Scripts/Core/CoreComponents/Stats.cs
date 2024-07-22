@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Stats : CoreComponent
 {
-    public event Action OnHealthZero;
 
     [SerializeField] private float maxHealth = 50f;
     private float currentHealth;
@@ -21,7 +20,7 @@ public class Stats : CoreComponent
         if (currentHealth <= 0)
         {
             currentHealth = 0f;
-            OnHealthZero?.Invoke();
+            EventManager.Player.OnZeroHealth?.Invoke();
         }
     }
     public void IncreaseHealth(float amount)

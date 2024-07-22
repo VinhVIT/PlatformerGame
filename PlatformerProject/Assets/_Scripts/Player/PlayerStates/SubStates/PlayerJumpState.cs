@@ -21,7 +21,7 @@ public class PlayerJumpState : PlayerAbilityState
         isAbilityDone = true;
         amountOfJumpsLeft--;
         player.InAirState.SetIsJumping();
-        ParticleManager.StartParticle(playerData.dustJumpParticle,CollisionSenses.GroundCheck.position,Quaternion.identity);
+        // ParticleManager.StartParticle(playerData.dustJumpParticle,CollisionSenses.GroundCheck.position,Quaternion.identity);
     }
 
     public bool CanJump()

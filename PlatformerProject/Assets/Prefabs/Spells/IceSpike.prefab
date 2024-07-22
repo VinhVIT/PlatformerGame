@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5718695738315767212}
   - component: {fileID: 8646916776958850362}
-  - component: {fileID: 4329290142811054203}
   - component: {fileID: 5605919275038657076}
   - component: {fileID: 7033235490548918577}
   - component: {fileID: -4416505329097404148}
+  - component: {fileID: 2842676114274983172}
   m_Layer: 7
   m_Name: IceSpike
   m_TagString: Untagged
@@ -88,41 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4329290142811054203
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5549885128049999345}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.39, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.3
 --- !u!50 &5605919275038657076
 Rigidbody2D:
   serializedVersion: 4
@@ -182,6 +147,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee3a3182d3237249aa9d3c650117b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castPositionType: 1
-  moveAble: 0
-  moveSpeed: 10
+  data: {fileID: 11400000, guid: d6b9ed52d53edf04bad2cc9b3f5e2d84, type: 2}
+--- !u!61 &2842676114274983172
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549885128049999345}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.020513058, y: 0.21474421}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 9, y: 1.45}
+    newSize: {x: 22.5, y: 7.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.86890507, y: 0.42948842}
+  m_EdgeRadius: 0

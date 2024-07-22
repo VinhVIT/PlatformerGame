@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    public static PlayerInput playerInput;
     private Camera cam;
 
     public Vector2 RawMovementInput { get; private set; }
@@ -156,5 +156,13 @@ public class PlayerInputHandler : MonoBehaviour
         {
             DashInput = false;
         }
+    }
+    public static void DeactivatePlayerControl()
+    {
+        playerInput.currentActionMap.Disable();
+    }
+    public static void ActivatePlayerControl()
+    {
+        playerInput.currentActionMap.Enable();
     }
 }

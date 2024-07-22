@@ -16,7 +16,9 @@ MonoBehaviour:
   manaCost: 10
   damage: 10
   cooldownTime: 3
-  spellPrefab: {fileID: 5549885128049999345, guid: fd95fc7aaa7220f448c049a55c19123c,
+  moveAble: 1
+  moveSpeed: 10
+  spellPrefab: {fileID: 5549885128049999345, guid: ce65cf6971fc0a445b2c0c297866686e,
     type: 3}
   spellElement: 0
-  spellType: 0
+  castType: 0

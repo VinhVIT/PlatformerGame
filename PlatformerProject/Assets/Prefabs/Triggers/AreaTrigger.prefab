@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4fd653d34d7fc4a843cb09f795c90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnAreaChange: {fileID: 11400000, guid: cbd33bcf06e9ffd41948701f881349b6, type: 2}
   nextAreaBound: {fileID: 0}
   needChangeBackground: 0
   backgroundToChange: {fileID: 0}
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4fd653d34d7fc4a843cb09f795c90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnAreaChange: {fileID: 11400000, guid: cbd33bcf06e9ffd41948701f881349b6, type: 2}
   nextAreaBound: {fileID: 0}
   needChangeBackground: 0
   backgroundToChange: {fileID: 0}

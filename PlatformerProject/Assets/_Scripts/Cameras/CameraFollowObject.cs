@@ -16,7 +16,7 @@ public class CameraFollowObject : MonoBehaviour
     private void Awake()
     {   
         Instance = this;
-        playerMovement = player.GetComponentInChildren<Movement>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Movement>();
         isFacingRight = playerMovement.FacingDirection != 1;
     }
 

@@ -63,11 +63,5 @@ public class PlayerData : ScriptableObject
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;
     [Header("Spell SO")]
-    public SpellData spell1;
-    public SpellData spell2;
-    public SpellData spell3;
-    public SpellData spell4;
-    public SpellData spell5;
-
-
+    public SpellData[] spellDatas;
 }

@@ -60,6 +60,7 @@ public class PlayerSlideState : PlayerAbilityState
         base.Exit();
         Movement?.SetVelocityZero();
         lastSlideTime = Time.time;
+        Time.timeScale = 1f;
     }
     public bool CheckIfCanSlide()
     {
