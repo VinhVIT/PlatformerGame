@@ -6,7 +6,6 @@ public class PlayerWallJumpState : PlayerAbilityState
 {
     private int wallJumpDirection;
     private bool dashInput;
-
     public PlayerWallJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
@@ -14,11 +13,8 @@ public class PlayerWallJumpState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-        player.InputHandler.UseJumpInput();
-        player.JumpState.ResetAmountOfJumpsLeft();
-        Movement?.SetVelocity(playerData.wallJumpVelocity, playerData.wallJumpAngle, wallJumpDirection);
-        Movement?.CheckIfShouldFlip(wallJumpDirection);
-        player.JumpState.DecreaseAmountOfJumpsLeft();
+        Movement.SetVelocityZero();
+        player.SetGravity(0f);
     }
 
     public override void LogicUpdate()
@@ -31,13 +27,27 @@ public class PlayerWallJumpState : PlayerAbilityState
 
         if (dashInput && player.DashState.CheckIfCanDash())
         {
+            player.ResetGravity();
             stateMachine.ChangeState(player.DashState);
         }
-
-        if (Time.time >= startTime + playerData.wallJumpTime)
+        if (Time.time >= startTime + playerData.wallJumpTime && Movement.CurrentVelocity.y < 0)
         {
             isAbilityDone = true;
         }
+    }
+    private void WallJump()
+    {
+        player.ResetGravity();
+        player.InputHandler.UseJumpInput();
+        player.JumpState.ResetAmountOfJumpsLeft();
+        Movement?.SetVelocity(playerData.wallJumpVelocity, playerData.wallJumpAngle, wallJumpDirection);
+        Movement?.CheckIfShouldFlip(wallJumpDirection);
+        player.JumpState.DecreaseAmountOfJumpsLeft();
+    }
+    public override void AnimationStartTrigger()
+    {
+        base.AnimationStartTrigger();
+        WallJump();
     }
 
     public void DetermineWallJumpDirection(bool isTouchingWall)

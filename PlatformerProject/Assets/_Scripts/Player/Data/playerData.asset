@@ -19,17 +19,17 @@ MonoBehaviour:
   jumpVelocity: 16
   amountOfJumps: 1
   coyoteTime: 0.2
-  minFallSpeed: -15
+  minFallSpeed: -20
   fallSpeedDampingFactor: 0.75
   variableJumpHeightMultiplier: 0.1
   wallSlideVelocity: 2
   wallClimbVelocity: 3
   wallJumpVelocity: 17
-  wallJumpTime: 0.4
-  wallJumpAngle: {x: 1, y: 2}
+  wallJumpTime: 0.05
+  wallJumpAngle: {x: 0.1, y: 0.15}
   startOffset: {x: 0.4, y: 0.9}
   stopOffset: {x: 0.4, y: 0.75}
-  ledgeJumpVelocity: 18
+  ledgeJumpVelocity: 16
   ledgeJumpTime: 0.2
   dashCooldown: 1
   maxHoldTime: 1
@@ -40,22 +40,22 @@ MonoBehaviour:
   dashEndYMultiplier: 0.2
   distBetweenAfterImages: 0.5
   slideCooldown: 1
-  slideTime: 0.6
+  slideTime: 0.5
   slideVelocity: 13
   crouchMovementVelocity: 5
   crouchColliderHeight: 0.8
   standColliderHeight: 1.6
   attackCounter: 3
   attackDamage: 0f0000000a00000019000000
-  attackResetCooldown: 2
   attackMovementSpeed:
+  - 0.3
   - 0.2
-  - 0.4
-  - 0.4
+  - 0.1
   knockbackStrength:
   - 15
   - 10
   - 20
+  attackResetCooldown: 0.2
   knockbackAngle:
   - {x: 1, y: 2}
   - {x: 1, y: 1}

@@ -7,7 +7,6 @@ public class PlayerSlideState : PlayerAbilityState
     public bool CanSlide { get; private set; }
     private Vector2 slideDirection;
     private float lastSlideTime;
-    private bool jumpInput;
     private Vector2 lastAIPos;
 
     public PlayerSlideState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
@@ -29,29 +28,20 @@ public class PlayerSlideState : PlayerAbilityState
     {
         base.LogicUpdate();
 
-        jumpInput = player.InputHandler.JumpInput;
-        PlaceAfterImage();
+        // PlaceAfterImage();
 
-        if (Time.unscaledTime >= startTime + playerData.slideTime)
+        if (Time.unscaledTime >= startTime + playerData.slideTime && !isTouchingCeiling)
         {
-            CheckIfShouldPlaceAfterImage();
+            // CheckIfShouldPlaceAfterImage();
 
             isAbilityDone = true;
             Time.timeScale = 1f;
 
-            if (isTouchingCeiling)
-            {
-                stateMachine.ChangeState(player.CrouchIdleState);
-            }
         }
 
         if (!CollisionSenses.Ground)
         {
             stateMachine.ChangeState(player.InAirState);
-        }
-        else if (jumpInput)
-        {
-            stateMachine.ChangeState(player.JumpState);
         }
     }
 

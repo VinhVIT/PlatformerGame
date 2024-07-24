@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
-    public PlayerLedgeGrabState LedgeGrabState { get; private set; }
+    public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerLedgeJumpState LedgeJumpState { get; private set; }
 
     public PlayerDashState DashState { get; private set; }
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
     #region Other Variables
     private Vector2 workspace;
+    private float originGravity;
     #endregion
 
     #region Unity Callback Functions
@@ -54,8 +55,8 @@ public class Player : MonoBehaviour
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
         WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
-        LedgeGrabState = new PlayerLedgeGrabState(this, StateMachine, playerData, "ledgeGrab");
+        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "wallJump");
+        LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
         LedgeJumpState = new PlayerLedgeJumpState(this, StateMachine, playerData, "inAir");
         DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
         SlideState = new PlayerSlideState(this, StateMachine, playerData, "slide");
@@ -72,6 +73,8 @@ public class Player : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         DashDirectionIndicator = transform.Find("DashDirectionIndicator");
         MovementCollider = GetComponent<BoxCollider2D>();
+
+        originGravity = RB.gravityScale;
 
         StateMachine.Initialize(IdleState);
     }
@@ -100,7 +103,8 @@ public class Player : MonoBehaviour
         MovementCollider.size = workspace;
         MovementCollider.offset = center;
     }
-
+    public void SetGravity(float amount) => RB.gravityScale = amount;
+    public void ResetGravity() => RB.gravityScale = originGravity;
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     private void AnimtionStartTrigger() => StateMachine.CurrentState.AnimationStartTrigger();

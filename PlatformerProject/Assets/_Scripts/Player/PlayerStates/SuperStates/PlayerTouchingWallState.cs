@@ -42,7 +42,7 @@ public class PlayerTouchingWallState : PlayerState
         }
         if (isTouchingWall && !isTouchingLedge)
         {
-            player.LedgeGrabState.SetDetectedPosition(player.transform.position);
+            player.LedgeClimbState.SetDetectedPosition(player.transform.position);
         }
     }
 
@@ -80,7 +80,7 @@ public class PlayerTouchingWallState : PlayerState
         }
         else if (isTouchingWall && !isTouchingLedge)
         {
-            stateMachine.ChangeState(player.LedgeGrabState);
+            stateMachine.ChangeState(player.LedgeClimbState);
         }
     }
 

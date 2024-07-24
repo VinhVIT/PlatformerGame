@@ -16,7 +16,7 @@ public class PlayerData : ScriptableObject
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
-    public float minFallSpeed = -15f; 
+    public float minFallSpeed = -20f; 
     public float fallSpeedDampingFactor = 0.75f;
     public float variableJumpHeightMultiplier = 0.5f;
     [Header("Wall Slide State")]
@@ -30,7 +30,7 @@ public class PlayerData : ScriptableObject
     [Header("Ledge Grab State")]
     public Vector2 startOffset;//startPos when detectedLedge
     public Vector2 stopOffset;//endPos when finish LedgeGrab
-    [Header("Ledge Grab State")]
+    [Header("Ledge Jump State")]
     public float ledgeJumpVelocity = 20f;
     public float ledgeJumpTime = .2f;
 
@@ -55,9 +55,9 @@ public class PlayerData : ScriptableObject
     [Header("Attack States")]
     public int attackCounter = 3;
     public int[] attackDamage;
-    public float attackResetCooldown = 2f;
     public float[] attackMovementSpeed;
     public float[] knockbackStrength;
+    public float attackResetCooldown = 2f;
     public Vector2[] knockbackAngle;
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
