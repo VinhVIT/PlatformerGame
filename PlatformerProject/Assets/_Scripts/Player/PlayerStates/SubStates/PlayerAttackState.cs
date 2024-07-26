@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerAttackState : PlayerAbilityState
+public abstract class PlayerAttackState : PlayerAbilityState
 {
     private int xInput;
-    private int attackCounter;
+    protected int attackCounter;
     private float velocityToSet;
     private float lastAttackTime;
     private bool setVelocity;
     private bool shouldCheckFlip;
 
-    private List<IDamageable> detectedDamageables = new List<IDamageable>();
-    private List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
+    protected List<IDamageable> detectedDamageables = new List<IDamageable>();
+    protected List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
-        attackCounter = playerData.attackCounter;
+
     }
+    protected abstract int AttackCounter { get; }
+    protected abstract AttackDetails AttackDetails { get; }
+
     public override void Enter()
     {
         base.Enter();
@@ -28,12 +31,13 @@ public class PlayerAttackState : PlayerAbilityState
         base.LogicUpdate();
         xInput = player.InputHandler.NormInputX;
 
+        ResetAttackCounter();
+
         if (shouldCheckFlip)
         {
             Movement?.CheckIfShouldFlip(xInput);
         }
 
-        ResetAttackCounter();
         player.Anim.SetInteger("attackCounter", attackCounter);
 
         if (setVelocity)
@@ -41,18 +45,11 @@ public class PlayerAttackState : PlayerAbilityState
             Movement?.SetVelocityX(velocityToSet * Movement.FacingDirection);
         }
     }
-    private void ResetAttackCounter()
-    {
-        if (attackCounter >= playerData.attackCounter)
-        {
-            attackCounter = 0;
-        }
-    }
     public override void AnimationStartTrigger()
     {
         base.AnimationStartTrigger();
 
-        SetPlayerVelocity(playerData.attackMovementSpeed[attackCounter]);
+        SetPlayerVelocity(AttackDetails.attackMovementSpeed);
     }
     public override void AnimationFinishTrigger()
     {
@@ -63,7 +60,7 @@ public class PlayerAttackState : PlayerAbilityState
         attackCounter++;
         lastAttackTime = Time.time;
     }
-    private void SetPlayerVelocity(float velocity)
+    protected void SetPlayerVelocity(float velocity)
     {
         Movement?.SetVelocityX(velocity * Movement.FacingDirection);
         velocityToSet = velocity;
@@ -97,15 +94,23 @@ public class PlayerAttackState : PlayerAbilityState
             detectedKnockbackables.Remove(knockbackable);
         }
     }
-    private void CheckAttack()
+    protected virtual void CheckAttack()
     {
         foreach (IDamageable item in detectedDamageables.ToList())
         {
-            item.Damage(playerData.attackDamage[attackCounter]);
+            item.Damage(AttackDetails.attackDamage);
+
         }
         foreach (IKnockbackable item in detectedKnockbackables.ToList())
         {
-            item.Knockback(playerData.knockbackAngle[attackCounter], playerData.knockbackStrength[attackCounter], Movement.FacingDirection);
+            item.Knockback(AttackDetails.knockbackAngle, AttackDetails.knockbackStrength, Movement.FacingDirection);
+        }
+    }
+    private void ResetAttackCounter()
+    {
+        if (attackCounter >= AttackCounter)
+        {
+            attackCounter = 0;
         }
     }
     public void CheckToResetAttackCounter()
@@ -116,7 +121,7 @@ public class PlayerAttackState : PlayerAbilityState
         }
     }
     public void SetFlipCheck(bool value) => shouldCheckFlip = value;
-    public void AnimationTurnOffFlipTrigger() => SetFlipCheck(false);
-    public void AnimationTurnOnFlipTrigger() => SetFlipCheck(true);
-    public void AnimationActionTrigger() => CheckAttack();
+    public override void AnimationTurnOffFlipTrigger() => SetFlipCheck(false);
+    public override void AnimationTurnOnFlipTrigger() => SetFlipCheck(true);
+    public override void AnimationActionTrigger() => CheckAttack();
 }

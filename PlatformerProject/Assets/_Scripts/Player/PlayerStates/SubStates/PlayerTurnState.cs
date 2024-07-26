@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTurnState : MonoBehaviour
+public class PlayerTurnState : PlayerGroundedState
 {
-    // Start is called before the first frame update
-    void Start()
+    private float slideSpeed;
+
+    public PlayerTurnState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) 
+        : base(player, stateMachine, playerData, animBoolName)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        base.Enter();
+        slideSpeed = playerData.turnSlideSpeed;
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if (isAnimationFinished)
+        {
+            Movement.Flip();
+            stateMachine.ChangeState(player.IdleState);
+        }
+        else
+        {
+            Movement.SetVelocityX(slideSpeed * Movement.FacingDirection);
+            slideSpeed = Mathf.Lerp(slideSpeed, 0, playerData.turnSlideDeceleration * Time.deltaTime);
+        }
     }
 }

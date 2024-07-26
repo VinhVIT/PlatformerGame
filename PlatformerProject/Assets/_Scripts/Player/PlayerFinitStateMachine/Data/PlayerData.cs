@@ -8,6 +8,7 @@ public class PlayerData : ScriptableObject
     [Header("Move State")]
     public float movementVelocity = 10f;
     public float movementAcceleration = 0.4f;
+    public float maxMovingTime = 1f;
     public PhysicsMaterial2D noFriction;
     public PhysicsMaterial2D fullFriction;
     [Header("Jump State")]
@@ -16,7 +17,7 @@ public class PlayerData : ScriptableObject
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
-    public float minFallSpeed = -20f; 
+    public float minFallSpeed = -20f;
     public float fallSpeedDampingFactor = 0.75f;
     public float variableJumpHeightMultiplier = 0.5f;
     [Header("Wall Slide State")]
@@ -43,22 +44,54 @@ public class PlayerData : ScriptableObject
     public float drag = 10f;//airDrag affect gravity when dash
     public float dashEndYMultiplier = .2f;
     public float distBetweenAfterImages = .5f;
-    [Header("Slide State")]
-    public float slideCooldown = 1f;
-    public float slideTime = .2f;
-    public float slideVelocity = 30f;
+    [Header("Roll State")]
+    public float rollCooldown = 1f;
+    public float rollTime = .2f;
+    public float rollVelocity = 30f;
 
     [Header("Crouch States")]
     public float crouchMovementVelocity = 5f;
     public float crouchColliderHeight = .8f;
     public float standColliderHeight = 1.6f;
     [Header("Attack States")]
-    public int attackCounter = 3;
-    public int[] attackDamage;
-    public float[] attackMovementSpeed;
-    public float[] knockbackStrength;
     public float attackResetCooldown = 2f;
-    public Vector2[] knockbackAngle;
+    [Header("Ground Attack States")]
+    public int groundAttackCounter = 3;
+    public AttackDetails[] groundAttackDetails;
+
+    [Header("Air Attack States")]
+    public int airAttackCounter = 2;
+    public AttackDetails[] airAttackDetails;
+    #region AttackDetails Automatic Set
+    private void OnValidate()
+    {
+        ValidateAttackDetails(ref groundAttackDetails, groundAttackCounter);
+        ValidateAttackDetails(ref airAttackDetails, airAttackCounter);
+    }
+
+    private void ValidateAttackDetails(ref AttackDetails[] attackDetails, int counter)
+    {
+        if (attackDetails == null || attackDetails.Length != counter)
+        {
+            AttackDetails[] newAttackDetails = new AttackDetails[counter];
+
+            for (int i = 0; i < counter; i++)
+            {
+                if (attackDetails != null && i < attackDetails.Length)
+                {
+                    newAttackDetails[i] = attackDetails[i];
+                }
+            }
+
+            attackDetails = newAttackDetails;
+        }
+    }
+    #endregion
+    [Header("Turn States")]
+    public float turnSlideSpeed = 10f;
+    public float turnSlideDeceleration = 2f;
+    [Header("Block State")]
+    public float perfectBlockTime = .5f;
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;

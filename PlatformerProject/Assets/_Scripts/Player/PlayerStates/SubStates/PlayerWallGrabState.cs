@@ -22,16 +22,15 @@ public class PlayerWallGrabState : PlayerTouchingWallState
         if (!isExitingState)
         {
             HoldPosition();
-            if (yInput < 0 || !grabInput)
-            {
-                stateMachine.ChangeState(player.WallSlideState);
-            }
+            // if (yInput < 0 || !grabInput)
+            // {
+            //     stateMachine.ChangeState(player.WallSlideState);
+            // }
         }
     }
     private void HoldPosition()
     {
         player.transform.position = holdPosition;
-        Movement?.SetVelocityX(0f);
-        Movement?.SetVelocityY(0f);
+        Movement?.SetVelocityZero();
     }
 }

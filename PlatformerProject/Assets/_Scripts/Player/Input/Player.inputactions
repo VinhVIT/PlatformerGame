@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "fc175858-8329-480b-834e-75424fa85e5b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "ba7cd2c3-3188-458a-9088-df4321b18068",
@@ -69,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Slide",
+                    "name": "Roll",
                     "type": "Button",
                     "id": "ce58a0f6-6411-4d02-8609-ff8ab9c88043",
                     "expectedControlType": "Button",
@@ -196,7 +205,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slide",
+                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -252,6 +261,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpellCast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e56769b-89b6-490f-8327-d42886b30fd7",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

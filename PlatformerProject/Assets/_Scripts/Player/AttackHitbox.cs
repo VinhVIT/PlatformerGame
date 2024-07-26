@@ -12,11 +12,14 @@ public class AttackHitbox : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {   
-        player.AttackState.AddToDetected(collision);
+        player.GroundAttackState.AddToDetected(collision);
+        player.AirAttackState.AddToDetected(collision);
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {   
+        player.GroundAttackState.RemoveFromDetected(collision);
+        player.AirAttackState.RemoveFromDetected(collision);
 
-        player.AttackState.RemoveFromDetected(collision);
     }
 }

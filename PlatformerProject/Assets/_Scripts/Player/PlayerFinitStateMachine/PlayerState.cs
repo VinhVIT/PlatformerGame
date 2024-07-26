@@ -61,4 +61,9 @@ public class PlayerState
     public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
     
     public virtual void AnimationStartTrigger() => isAnimationStarted = true;
+    public virtual void AnimationTurnOnFlipTrigger(){}
+    public virtual void AnimationTurnOffFlipTrigger(){}
+    public virtual void AnimationActionTrigger(){}
+
+    
 }

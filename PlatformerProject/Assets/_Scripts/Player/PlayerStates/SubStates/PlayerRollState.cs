@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSlideState : PlayerAbilityState
+public class PlayerRollState : PlayerAbilityState
 {
-    public bool CanSlide { get; private set; }
-    private Vector2 slideDirection;
-    private float lastSlideTime;
+    public bool CanRoll { get; private set; }
+    private Vector2 rollDirection;
+    private float lastRollTime;
     private Vector2 lastAIPos;
 
-    public PlayerSlideState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public PlayerRollState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
     public override void Enter()
     {
         base.Enter();
 
-        CanSlide = false;
-        player.InputHandler.UseSlideInput();
-        slideDirection = Vector2.right * Movement.FacingDirection;
+        CanRoll = false;
+        player.InputHandler.UseRollInput();
+        rollDirection = Vector2.right * Movement.FacingDirection;
 
         Time.timeScale = .75f;
         startTime = Time.unscaledTime;
-        Movement?.SetVelocity(playerData.slideVelocity, slideDirection);
+        Movement?.SetVelocity(playerData.rollVelocity, rollDirection);
     }
     public override void LogicUpdate()
     {
@@ -30,7 +30,7 @@ public class PlayerSlideState : PlayerAbilityState
 
         // PlaceAfterImage();
 
-        if (Time.unscaledTime >= startTime + playerData.slideTime && !isTouchingCeiling)
+        if (Time.unscaledTime >= startTime + playerData.rollTime && !isTouchingCeiling)
         {
             // CheckIfShouldPlaceAfterImage();
 
@@ -49,12 +49,12 @@ public class PlayerSlideState : PlayerAbilityState
     {
         base.Exit();
         Movement?.SetVelocityZero();
-        lastSlideTime = Time.time;
+        lastRollTime = Time.time;
         Time.timeScale = 1f;
     }
-    public bool CheckIfCanSlide()
+    public bool CheckIfCanRoll()
     {
-        return CanSlide && Time.time >= lastSlideTime + playerData.slideCooldown;
+        return CanRoll && Time.time >= lastRollTime + playerData.rollCooldown;
     }
 
     private void CheckIfShouldPlaceAfterImage()
@@ -70,5 +70,5 @@ public class PlayerSlideState : PlayerAbilityState
         PlayerAfterImagePool.Instance.GetFromPool();
         lastAIPos = player.transform.position;
     }
-    public void ResetCanSlide() => CanSlide = true;
+    public void ResetCanRoll() => CanRoll = true;
 }

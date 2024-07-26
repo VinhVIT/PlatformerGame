@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVelocity: 8
   movementAcceleration: 0.4
+  maxMovingTime: 1.5
   noFriction: {fileID: 6200000, guid: 03301e8e8906d2941bd4c0e90755c817, type: 2}
   fullFriction: {fileID: 6200000, guid: d0b3fefc04fc6c844ade74311199c236, type: 2}
   jumpVelocity: 16
@@ -39,27 +40,40 @@ MonoBehaviour:
   drag: 10
   dashEndYMultiplier: 0.2
   distBetweenAfterImages: 0.5
-  slideCooldown: 1
-  slideTime: 0.5
-  slideVelocity: 13
+  rollCooldown: 1
+  rollTime: 0.5
+  rollVelocity: 12
   crouchMovementVelocity: 5
   crouchColliderHeight: 0.8
   standColliderHeight: 1.6
-  attackCounter: 3
-  attackDamage: 0f0000000a00000019000000
-  attackMovementSpeed:
-  - 0.3
-  - 0.2
-  - 0.1
-  knockbackStrength:
-  - 15
-  - 10
-  - 20
   attackResetCooldown: 0.2
-  knockbackAngle:
-  - {x: 1, y: 2}
-  - {x: 1, y: 1}
-  - {x: 3, y: 2}
+  groundAttackCounter: 3
+  groundAttackDetails:
+  - attackDamage: 10
+    attackMovementSpeed: 0.2
+    knockbackStrength: 15
+    knockbackAngle: {x: 1, y: 1}
+  - attackDamage: 15
+    attackMovementSpeed: 0.1
+    knockbackStrength: 10
+    knockbackAngle: {x: 1, y: 2}
+  - attackDamage: 20
+    attackMovementSpeed: 0.2
+    knockbackStrength: 20
+    knockbackAngle: {x: 3, y: 1}
+  airAttackCounter: 2
+  airAttackDetails:
+  - attackDamage: 2
+    attackMovementSpeed: 0
+    knockbackStrength: 0
+    knockbackAngle: {x: 0, y: 0}
+  - attackDamage: 3
+    attackMovementSpeed: 0
+    knockbackStrength: 0
+    knockbackAngle: {x: 0, y: 0}
+  turnSlideSpeed: 3
+  turnSlideDeceleration: 1
+  perfectBlockTime: 0.5
   dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,

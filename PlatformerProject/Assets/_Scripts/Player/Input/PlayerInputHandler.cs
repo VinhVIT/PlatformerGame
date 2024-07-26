@@ -16,9 +16,10 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
     public bool GrabInput { get; private set; }
+    public bool BlockInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
-    public bool SlideInput { get; private set; }
+    public bool RollInput { get; private set; }
     public bool AttackInput { get; private set; }
     public bool SpellCastInput { get; private set; }
     public int SpellSlotInput { get; private set; }
@@ -77,7 +78,17 @@ public class PlayerInputHandler : MonoBehaviour
             GrabInput = false;
         }
     }
-
+    public void OnBlockInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            BlockInput = true;
+        }
+        else if (context.canceled)
+        {
+            BlockInput = false;
+        }
+    }
     public void OnDashInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -92,15 +103,15 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void OnSlideInput(InputAction.CallbackContext context)
+    public void OnRollInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            SlideInput = true;
+            RollInput = true;
         }
         else if (context.canceled)
         {
-            SlideInput = false;
+            RollInput = false;
         }
     }
     public void OnDashDirectionInput(InputAction.CallbackContext context)
@@ -124,11 +135,11 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnSpellCastInput(InputAction.CallbackContext context)
     {
         if (context.started)
-        {   
+        {
             SpellCastInput = true;
             int spellSlot;
             if (int.TryParse(context.control.name, out spellSlot))
-            {   
+            {
                 SpellSlotInput = spellSlot;
             }
         }
@@ -139,8 +150,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void UseJumpInput() => JumpInput = false;
     public void UseDashInput() => DashInput = false;
-    public void UseSlideInput() => SlideInput = false;
-
+    public void UseRollInput() => RollInput = false;
 
     private void CheckJumpInputHoldTime()
     {

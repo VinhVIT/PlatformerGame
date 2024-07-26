@@ -5,7 +5,6 @@ public class Player : MonoBehaviour
 {
     #region State Variables
     public PlayerStateMachine StateMachine { get; private set; }
-
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
     public PlayerJumpState JumpState { get; private set; }
@@ -18,12 +17,16 @@ public class Player : MonoBehaviour
     public PlayerLedgeJumpState LedgeJumpState { get; private set; }
 
     public PlayerDashState DashState { get; private set; }
-    public PlayerSlideState SlideState { get; private set; }
+    public PlayerBlockState BlockState { get; private set; }
+
+    public PlayerRollState RollState { get; private set; }
+    public PlayerTurnState TurnState { get; private set; }
 
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
-    public PlayerAttackState AttackState { get; private set; }
-    public PlayerSpellCastState SpellCastState { get; private set; }
+    public PlayerGroundAttackState GroundAttackState { get; private set; }
+    public PlayerAirAttackState AirAttackState { get; private set; }
 
+    public PlayerSpellCastState SpellCastState { get; private set; }
 
     [SerializeField] private PlayerData playerData;
     #endregion
@@ -59,11 +62,14 @@ public class Player : MonoBehaviour
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
         LedgeJumpState = new PlayerLedgeJumpState(this, StateMachine, playerData, "inAir");
         DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
-        SlideState = new PlayerSlideState(this, StateMachine, playerData, "slide");
+        BlockState = new PlayerBlockState(this, StateMachine, playerData, "block");
+        RollState = new PlayerRollState(this, StateMachine, playerData, "roll");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
-        AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
-        SpellCastState = new PlayerSpellCastState(this, StateMachine, playerData, "spellCast");
+        GroundAttackState = new PlayerGroundAttackState(this, StateMachine, playerData, "groundAttack");
+        AirAttackState = new PlayerAirAttackState(this, StateMachine, playerData, "airAttack");
 
+        SpellCastState = new PlayerSpellCastState(this, StateMachine, playerData, "spellCast");
+        TurnState = new PlayerTurnState(this, StateMachine, playerData, "turn");
     }
 
     private void Start()
@@ -107,9 +113,9 @@ public class Player : MonoBehaviour
     public void ResetGravity() => RB.gravityScale = originGravity;
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
-    private void AnimtionStartTrigger() => StateMachine.CurrentState.AnimationStartTrigger();
-    private void AniamtionTurnOnFlipTrigger() => AttackState.AnimationTurnOnFlipTrigger();
-    private void AnimationTurnOffFlipTrigger() => AttackState.AnimationTurnOffFlipTrigger();
-    private void AnimationActionTrigger() => AttackState.AnimationActionTrigger();
+    private void AnimationStartTrigger() => StateMachine.CurrentState.AnimationStartTrigger();
+    private void AnimationTurnOnFlipTrigger() => StateMachine.CurrentState.AnimationTurnOnFlipTrigger();
+    private void AnimationTurnOffFlipTrigger() => StateMachine.CurrentState.AnimationTurnOffFlipTrigger();
+    private void AnimationActionTrigger() => StateMachine.CurrentState.AnimationActionTrigger();
     #endregion
 }

@@ -10,6 +10,7 @@ public class PlayerInAirState : PlayerState
     private CollisionSenses collisionSenses;
     //Input
     private int xInput;
+    private int yInput;
     private bool jumpInput;
     private bool grabInput;
     private bool dashInput;
@@ -84,6 +85,7 @@ public class PlayerInAirState : PlayerState
         LimitFallSpeed();
 
         xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
         grabInput = player.InputHandler.GrabInput;
@@ -93,8 +95,9 @@ public class PlayerInAirState : PlayerState
         CheckJumpMultiplier();
         if (attackInput)
         {
-            player.AttackState.CheckToResetAttackCounter();
-            stateMachine.ChangeState(player.AttackState);
+            player.AirAttackState.CheckIsDownWardAttack(yInput);
+            player.AirAttackState.CheckToResetAttackCounter();
+            stateMachine.ChangeState(player.AirAttackState);
         }
         else if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
         {
@@ -104,7 +107,7 @@ public class PlayerInAirState : PlayerState
         {
             stateMachine.ChangeState(player.LedgeClimbState);
         }
-        else if (xInput ==Movement.FacingDirection && jumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime) && isTouchingLedge)
+        else if (xInput == Movement.FacingDirection && jumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime) && isTouchingLedge)
         {
             StopWallJumpCoyoteTime();
             isTouchingWall = CollisionSenses.WallFront;

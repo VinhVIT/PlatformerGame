@@ -7,6 +7,7 @@ public class PlayerGroundedState : PlayerState
     protected int xInput;
     protected int yInput;
     protected bool isTouchingCeiling;
+    protected bool blockInput;
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
     protected CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
@@ -19,7 +20,7 @@ public class PlayerGroundedState : PlayerState
     private bool isTouchingWall;
     private bool isTouchingLedge;
     private bool dashInput;
-    private bool slideInput;
+    private bool rollInput;
     private bool attackInput;
     private bool spellCastInput;
     private int spellSlotInput;
@@ -48,7 +49,7 @@ public class PlayerGroundedState : PlayerState
 
         player.JumpState.ResetAmountOfJumpsLeft();
         player.DashState.ResetCanDash();
-        player.SlideState.ResetCanSlide();
+        player.RollState.ResetCanRoll();
     }
 
     public override void Exit()
@@ -65,15 +66,16 @@ public class PlayerGroundedState : PlayerState
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
-        slideInput = player.InputHandler.SlideInput;
+        blockInput = player.InputHandler.BlockInput;
+        rollInput = player.InputHandler.RollInput;
         attackInput = player.InputHandler.AttackInput;
         spellCastInput = player.InputHandler.SpellCastInput;
         spellSlotInput = player.InputHandler.SpellSlotInput;
 
         if (attackInput && !isTouchingCeiling)
         {
-            player.AttackState.CheckToResetAttackCounter();
-            stateMachine.ChangeState(player.AttackState);
+            player.GroundAttackState.CheckToResetAttackCounter();
+            stateMachine.ChangeState(player.GroundAttackState);
         }
         else if (spellCastInput)
         {
@@ -92,6 +94,10 @@ public class PlayerGroundedState : PlayerState
             player.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.InAirState);
         }
+        else if (blockInput && stateMachine.CurrentState != player.BlockState)
+        {
+            stateMachine.ChangeState(player.BlockState);
+        }
         else if (isTouchingWall && grabInput && isTouchingLedge)
         {
             stateMachine.ChangeState(player.WallGrabState);
@@ -100,10 +106,11 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if (slideInput && player.SlideState.CheckIfCanSlide())
+        else if (rollInput && player.RollState.CheckIfCanRoll())
         {
-            stateMachine.ChangeState(player.SlideState);
+            stateMachine.ChangeState(player.RollState);
         }
+
     }
 
     public override void PhysicsUpdate()

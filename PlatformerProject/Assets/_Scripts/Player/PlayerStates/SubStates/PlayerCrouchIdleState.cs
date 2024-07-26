@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCrouchIdleState : PlayerGroundedState
 {
-    private bool slideInput;
+    private bool rollInput;
 
     public PlayerCrouchIdleState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -33,7 +33,7 @@ public class PlayerCrouchIdleState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        slideInput = player.InputHandler.SlideInput;
+        rollInput = player.InputHandler.RollInput;
 
         if (!isExitingState)
         {
@@ -41,9 +41,9 @@ public class PlayerCrouchIdleState : PlayerGroundedState
             {
                 stateMachine.ChangeState(player.IdleState);
             }
-            else if (slideInput && player.SlideState.CheckIfCanSlide())
+            else if (rollInput && player.RollState.CheckIfCanRoll())
             {
-                stateMachine.ChangeState(player.SlideState);
+                stateMachine.ChangeState(player.RollState);
             }
         }
     }
