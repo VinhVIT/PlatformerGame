@@ -7,7 +7,6 @@ public static class EventManager
 {
     public static readonly PlayerEvents Player = new PlayerEvents();
     public static readonly TriggerEvents Trigger = new TriggerEvents();
-
     public class PlayerEvents
     {
         public UnityAction OnSpellCastDone;

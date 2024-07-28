@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "55f4a605-d943-4d45-b86c-ca1f195d1ea4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Block",
                     "type": "Button",
                     "id": "fc175858-8329-480b-834e-75424fa85e5b",
@@ -157,7 +166,7 @@
                 {
                     "name": "",
                     "id": "79fb20fc-2091-467a-a8ba-802c2747b63c",
-                    "path": "<Keyboard>/leftCtrl",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -201,7 +210,7 @@
                 {
                     "name": "",
                     "id": "da32a6cc-7abd-48f3-b547-fa12ef97b7c1",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -272,6 +281,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f362fb5-4a82-47f8-b514-1912b408756b",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -62,6 +62,7 @@ public class PlayerData : ScriptableObject
     [Header("Air Attack States")]
     public int airAttackCounter = 2;
     public AttackDetails[] airAttackDetails;
+    public AttackDetails downWardAttackDetails;
     #region AttackDetails Automatic Set
     private void OnValidate()
     {
@@ -92,9 +93,13 @@ public class PlayerData : ScriptableObject
     public float turnSlideDeceleration = 2f;
     [Header("Block State")]
     public float perfectBlockTime = .5f;
+    public float blockRecoveryTime = 2f;
+    public AttackDetails[] blockCounterAttackDetails;
+
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;
+    public GameObject blockFX;
     [Header("Spell SO")]
     public SpellData[] spellDatas;
 }

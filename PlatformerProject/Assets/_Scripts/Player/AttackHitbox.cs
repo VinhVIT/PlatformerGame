@@ -14,12 +14,14 @@ public class AttackHitbox : MonoBehaviour
     {   
         player.GroundAttackState.AddToDetected(collision);
         player.AirAttackState.AddToDetected(collision);
+        player.BlockCounterState.AddToDetected(collision);
 
     }
     private void OnTriggerExit2D(Collider2D collision)
     {   
         player.GroundAttackState.RemoveFromDetected(collision);
         player.AirAttackState.RemoveFromDetected(collision);
+        player.BlockCounterState.AddToDetected(collision);
 
     }
 }

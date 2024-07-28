@@ -1,0 +1,466 @@
+fileFormatVersion: 2
+guid: 0040fcbbe4de4504f99fab55395d21cd
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1110
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ff5620a6e4f074293da3f7c8035fd1
+      internalID: -1625972128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 1110
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c6f6e6e54ea6142ae305f71d20c739
+      internalID: -1993606940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 1110
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd772d2d83d42294e9904d48227c77fa
+      internalID: 637553621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 1110
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00dbb997ca794f944978df17d3699568
+      internalID: 1488801589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 2280
+        y: 1110
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6160de95b5551364d8c185915ca9f4f7
+      internalID: -252382247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2850
+        y: 1110
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d672bc64d4557c34a89776257c4ede93
+      internalID: 1926084641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 3420
+        y: 1110
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa1c0cd1e0c07324a979311a2d575a93
+      internalID: 37404220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 675
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef537854caa12f4a8756f04299ba526
+      internalID: -1735769900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 675
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 734bb8ed7b19a4e458c848a99e91f2aa
+      internalID: -717925668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 675
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3cf5a21a4db4d24d99cc41392ddb0ce
+      internalID: 1387286165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 675
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0649eeba431e9124290ae496e4e26bf9
+      internalID: -1466548208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2280
+        y: 675
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60cf0c357c7985d41ad38c14c003a2d4
+      internalID: -2074767416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 2850
+        y: 675
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08def231b75ab924f84451e02cb23cd8
+      internalID: 1434942514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 3420
+        y: 675
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0520e0bfb54ae1042bfd59b963185723
+      internalID: 1889023087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gv+cAU-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 570
+        height: 195
+      alignment: 9
+      pivot: {x: 0.45, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1d98679c9f8c884ba3060be487c2a33
+      internalID: 1381518168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      gv+cAU-Sheet_0: -1625972128
+      gv+cAU-Sheet_3: 1488801589
+      gv+cAU-Sheet_4: -252382247
+      gv+cAU-Sheet_5: 1926084641
+      gv+cAU-Sheet_11: -2074767416
+      gv+cAU-Sheet_2: 637553621
+      gv+cAU-Sheet_6: 37404220
+      gv+cAU-Sheet_12: 1434942514
+      gv+cAU-Sheet_1: -1993606940
+      gv+cAU-Sheet_13: 1889023087
+      gv+cAU-Sheet_14: 1381518168
+      gv+cAU-Sheet_7: -1735769900
+      gv+cAU-Sheet_9: 1387286165
+      gv+cAU-Sheet_10: -1466548208
+      gv+cAU-Sheet_8: -717925668
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

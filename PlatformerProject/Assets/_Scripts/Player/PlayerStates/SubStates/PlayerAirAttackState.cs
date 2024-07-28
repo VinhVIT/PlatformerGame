@@ -13,16 +13,26 @@ public class PlayerAirAttackState : PlayerAttackState
     }
     protected override int AttackCounter => playerData.airAttackCounter;
 
-    protected override AttackDetails AttackDetails => playerData.airAttackDetails[attackCounter];
+    // protected override AttackDetails AttackDetails => playerData.airAttackDetails[attackCounter];
+    protected override AttackDetails AttackDetails => isDownWardAttack ? playerData.downWardAttackDetails : playerData.airAttackDetails[attackCounter];
     public override void Enter()
     {
         base.Enter();
         player.SetGravity(0f);
         Movement.SetVelocityZero();
+        Movement.CanSetVelocity = false;
 
         if (isDownWardAttack)
         {
             PerformDownWardAttack();
+        }
+    }
+    protected override void CheckAttack()
+    {
+        base.CheckAttack();
+        if (isDownWardAttack)
+        {
+
         }
     }
     public override void Exit()
@@ -30,6 +40,7 @@ public class PlayerAirAttackState : PlayerAttackState
         base.Exit();
         isDownWardAttack = false;
         player.ResetGravity();
+        Movement.CanSetVelocity = true;
         player.Anim.SetBool("isDownWardAttack", false);
         player.Anim.SetBool("downWardAttackHit", false);
     }
@@ -39,7 +50,7 @@ public class PlayerAirAttackState : PlayerAttackState
         yInput = player.InputHandler.NormInputY;
         if (isDownWardAttack && CollisionSenses.Ground)
         {
-            player.Anim.SetBool("downWardAttackHit",true);
+            player.Anim.SetBool("downWardAttackHit", true);
         }
     }
     private void PerformDownWardAttack()
@@ -49,7 +60,7 @@ public class PlayerAirAttackState : PlayerAttackState
     public override void AnimationStartTrigger()
     {
         base.AnimationStartTrigger();
-        if(isDownWardAttack) player.SetGravity(20);
+        if (isDownWardAttack) player.SetGravity(20);
     }
     public void CheckIsDownWardAttack(float yInput)
     {

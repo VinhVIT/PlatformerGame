@@ -14,6 +14,8 @@ public class PlayerGroundedState : PlayerState
     private CollisionSenses collisionSenses;
     protected ParticleManager ParticleManager => particleManager ?? core.GetCoreComponent(ref particleManager);
     private ParticleManager particleManager;
+    protected Combat Combat => combat ?? core.GetCoreComponent(ref combat);
+    private Combat combat;
     private bool JumpInput;
     private bool grabInput;
     private bool isGrounded;
@@ -50,6 +52,7 @@ public class PlayerGroundedState : PlayerState
         player.JumpState.ResetAmountOfJumpsLeft();
         player.DashState.ResetCanDash();
         player.RollState.ResetCanRoll();
+        player.BlockState.ResetCanBlock();
     }
 
     public override void Exit()
@@ -94,7 +97,7 @@ public class PlayerGroundedState : PlayerState
             player.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.InAirState);
         }
-        else if (blockInput && stateMachine.CurrentState != player.BlockState)
+        else if (blockInput && player.BlockState.CheckIfCanBlock() && stateMachine.CurrentState != player.BlockState)
         {
             stateMachine.ChangeState(player.BlockState);
         }

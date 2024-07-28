@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class PlayerAttackState : PlayerAbilityState
 {
+    protected Combat Combat => combat ?? core.GetCoreComponent(ref combat);
+    private Combat combat;
     private int xInput;
     protected int attackCounter;
     private float velocityToSet;
@@ -96,6 +98,7 @@ public abstract class PlayerAttackState : PlayerAbilityState
     }
     protected virtual void CheckAttack()
     {
+
         foreach (IDamageable item in detectedDamageables.ToList())
         {
             item.Damage(AttackDetails.attackDamage);

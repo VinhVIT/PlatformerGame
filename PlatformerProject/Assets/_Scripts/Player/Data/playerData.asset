@@ -40,7 +40,7 @@ MonoBehaviour:
   drag: 10
   dashEndYMultiplier: 0.2
   distBetweenAfterImages: 0.5
-  rollCooldown: 1
+  rollCooldown: 3
   rollTime: 0.5
   rollVelocity: 12
   crouchMovementVelocity: 5
@@ -71,13 +71,25 @@ MonoBehaviour:
     attackMovementSpeed: 0
     knockbackStrength: 0
     knockbackAngle: {x: 0, y: 0}
+  downWardAttackDetails:
+    attackDamage: 30
+    attackMovementSpeed: 0
+    knockbackStrength: 20
+    knockbackAngle: {x: 1, y: 0}
   turnSlideSpeed: 3
   turnSlideDeceleration: 1
   perfectBlockTime: 0.5
+  blockRecoveryTime: 2
+  blockCounterAttackDetails:
+  - attackDamage: 5
+    attackMovementSpeed: 0
+    knockbackStrength: 20
+    knockbackAngle: {x: 1, y: 1}
   dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,
     type: 3}
+  blockFX: {fileID: 6240072112886026631, guid: 0a346589ff39d004c98b333d5bbfd41d, type: 3}
   spellDatas:
   - {fileID: 11400000, guid: 068a41cedb6a56e4db3ec98e737e356d, type: 2}
   - {fileID: 11400000, guid: da4db3bc817d6ad4e9898079823837f4, type: 2}

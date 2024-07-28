@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     public PlayerDashState DashState { get; private set; }
     public PlayerBlockState BlockState { get; private set; }
+    public PlayerBlockCounterState BlockCounterState { get; private set; }
+
 
     public PlayerRollState RollState { get; private set; }
     public PlayerTurnState TurnState { get; private set; }
@@ -25,7 +27,6 @@ public class Player : MonoBehaviour
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerGroundAttackState GroundAttackState { get; private set; }
     public PlayerAirAttackState AirAttackState { get; private set; }
-
     public PlayerSpellCastState SpellCastState { get; private set; }
 
     [SerializeField] private PlayerData playerData;
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         LedgeJumpState = new PlayerLedgeJumpState(this, StateMachine, playerData, "inAir");
         DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
         BlockState = new PlayerBlockState(this, StateMachine, playerData, "block");
+        BlockCounterState = new PlayerBlockCounterState(this, StateMachine, playerData, "blockCounter");
         RollState = new PlayerRollState(this, StateMachine, playerData, "roll");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         GroundAttackState = new PlayerGroundAttackState(this, StateMachine, playerData, "groundAttack");
