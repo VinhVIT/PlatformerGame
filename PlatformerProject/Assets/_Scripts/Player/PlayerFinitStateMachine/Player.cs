@@ -5,30 +5,31 @@ public class Player : MonoBehaviour
 {
     #region State Variables
     public PlayerStateMachine StateMachine { get; private set; }
+    //Behaviour
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerRunState RunState {get; private set;}
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
+    public PlayerBlockState BlockState { get; private set; }
+    public PlayerRollState RollState { get; private set; }
+    public PlayerTurnState TurnState { get; private set; }
+    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
+    //Enviroment Action
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerLedgeJumpState LedgeJumpState { get; private set; }
 
-    public PlayerDashState DashState { get; private set; }
-    public PlayerBlockState BlockState { get; private set; }
-    public PlayerBlockCounterState BlockCounterState { get; private set; }
-
-
-    public PlayerRollState RollState { get; private set; }
-    public PlayerTurnState TurnState { get; private set; }
-
-    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
+    //Attack
     public PlayerGroundAttackState GroundAttackState { get; private set; }
     public PlayerAirAttackState AirAttackState { get; private set; }
+    public PlayerBlockCounterState BlockCounterState { get; private set; }
     public PlayerSpellCastState SpellCastState { get; private set; }
-
+    
     [SerializeField] private PlayerData playerData;
     #endregion
 
@@ -52,26 +53,32 @@ public class Player : MonoBehaviour
         Core = GetComponentInChildren<Core>();
         StateMachine = new PlayerStateMachine();
 
+        //Behaviour
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
+        RunState = new PlayerRunState(this, StateMachine, playerData, "run");
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
+        BlockState = new PlayerBlockState(this, StateMachine, playerData, "block");
+        RollState = new PlayerRollState(this, StateMachine, playerData, "roll");
+        TurnState = new PlayerTurnState(this, StateMachine, playerData, "turn");
+        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
+
+        //Enviroment Action
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
         WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "wallJump");
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
         LedgeJumpState = new PlayerLedgeJumpState(this, StateMachine, playerData, "inAir");
-        DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
-        BlockState = new PlayerBlockState(this, StateMachine, playerData, "block");
-        BlockCounterState = new PlayerBlockCounterState(this, StateMachine, playerData, "blockCounter");
-        RollState = new PlayerRollState(this, StateMachine, playerData, "roll");
-        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
+
+        //Attack
         GroundAttackState = new PlayerGroundAttackState(this, StateMachine, playerData, "groundAttack");
         AirAttackState = new PlayerAirAttackState(this, StateMachine, playerData, "airAttack");
+        BlockCounterState = new PlayerBlockCounterState(this, StateMachine, playerData, "blockCounter");
 
         SpellCastState = new PlayerSpellCastState(this, StateMachine, playerData, "spellCast");
-        TurnState = new PlayerTurnState(this, StateMachine, playerData, "turn");
     }
 
     private void Start()

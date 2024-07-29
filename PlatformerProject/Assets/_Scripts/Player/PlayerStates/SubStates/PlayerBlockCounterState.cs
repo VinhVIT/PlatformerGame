@@ -33,6 +33,10 @@ public class PlayerBlockCounterState : PlayerAttackState
         Movement.CanSetVelocity = true;
 
     }
+    public override void AnimationStartTrigger()
+    {
+        base.AnimationStartTrigger();
+    }
     public override void AnimationTrigger()
     {
         Time.timeScale = 1f;//reset Timescale before knockback

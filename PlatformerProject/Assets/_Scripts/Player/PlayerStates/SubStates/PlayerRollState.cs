@@ -17,7 +17,6 @@ public class PlayerRollState : PlayerAbilityState
         base.Enter();
 
         CanRoll = false;
-        player.InputHandler.UseRollInput();
         rollDirection = Vector2.right * Movement.FacingDirection;
 
         Time.timeScale = .75f;
@@ -28,12 +27,12 @@ public class PlayerRollState : PlayerAbilityState
     {
         base.LogicUpdate();
 
-        // PlaceAfterImage();
+        PlaceAfterImage();
 
         if (Time.unscaledTime >= startTime + playerData.rollTime && !isTouchingCeiling)
         {
-            // CheckIfShouldPlaceAfterImage();
-
+            CheckIfShouldPlaceAfterImage();
+            
             isAbilityDone = true;
             Time.timeScale = 1f;
 

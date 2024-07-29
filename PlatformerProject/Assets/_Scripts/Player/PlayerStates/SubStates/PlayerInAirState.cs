@@ -12,6 +12,7 @@ public class PlayerInAirState : PlayerState
     private int xInput;
     private int yInput;
     private bool jumpInput;
+    private bool runInput;
     private bool grabInput;
     private bool dashInput;
     private bool attackInput;
@@ -48,7 +49,6 @@ public class PlayerInAirState : PlayerState
             isTouchingLedge = CollisionSenses.LedgeHorizontal;
         }
 
-
         if (isTouchingWall && !isTouchingLedge)
         {
             player.LedgeClimbState.SetDetectedPosition(player.transform.position);
@@ -59,13 +59,13 @@ public class PlayerInAirState : PlayerState
             StartWallJumpCoyoteTime();
         }
     }
-
     public override void Enter()
     {
         base.Enter();
         fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
-    }
+        player.RunState.CheckIfShouldSprintJump();
 
+    }
     public override void Exit()
     {
         base.Exit();
@@ -88,71 +88,118 @@ public class PlayerInAirState : PlayerState
         yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
+        runInput = player.InputHandler.RunInput;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
         attackInput = player.InputHandler.AttackInput;
 
         CheckJumpMultiplier();
+
+        if (HandleAttackInput()) return;
+        if (HandleLanding()) return;
+        if (HandleWallInteractions()) return;
+        if (HandleJumpActions()) return;
+        if (HandleDash()) return;
+
+        HandleMovement();
+        HandleCamera();
+    }
+    #region Handler Func
+    private bool HandleAttackInput()
+    {
         if (attackInput)
         {
             player.AirAttackState.CheckIsDownWardAttack(yInput);
             player.AirAttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.AirAttackState);
+            return true;
         }
-        else if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
+        return false;
+    }
+
+    private bool HandleLanding()
+    {
+        if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(player.LandState);
+            return true;
         }
-        else if (isTouchingWall && !isTouchingLedge && !isGrounded && movement.CurrentVelocity.y < 0)
+        return false;
+    }
+
+    private bool HandleWallInteractions()
+    {
+        if (isTouchingWall && !isTouchingLedge && !isGrounded && movement.CurrentVelocity.y < 0)
         {
             stateMachine.ChangeState(player.LedgeClimbState);
+            return true;
         }
-        else if (xInput == Movement.FacingDirection && jumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime) && isTouchingLedge)
+        if (isTouchingWall && grabInput && isTouchingLedge)
+        {
+            stateMachine.ChangeState(player.WallGrabState);
+            return true;
+        }
+        return false;
+    }
+
+    private bool HandleJumpActions()
+    {
+        if (xInput == Movement.FacingDirection && jumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime) && isTouchingLedge)
         {
             StopWallJumpCoyoteTime();
             isTouchingWall = CollisionSenses.WallFront;
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             stateMachine.ChangeState(player.WallJumpState);
+            return true;
         }
-        else if (jumpInput && player.JumpState.CanJump())
+        if (jumpInput && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
+            return true;
         }
-        else if (isTouchingWall && grabInput && isTouchingLedge)
-        {
-            stateMachine.ChangeState(player.WallGrabState);
-        }
-        // else if (isTouchingWall && xInput == Movement.FacingDirection && Movement.CurrentVelocity.y <= 0)
-        // {
-        //     stateMachine.ChangeState(player.WallSlideState);
-        // }
-        else if (dashInput && player.DashState.CheckIfCanDash())
+        return false;
+    }
+
+    private bool HandleDash()
+    {
+        if (dashInput && player.DashState.CheckIfCanDash())
         {
             stateMachine.ChangeState(player.DashState);
+            return true;
+        }
+        return false;
+    }
+
+    private void HandleMovement()
+    {
+        Movement?.CheckIfShouldFlip(xInput);
+        if (runInput)
+        {
+            Movement?.SetVelocityX(playerData.runVelocity * xInput);
         }
         else
         {
-            Movement?.CheckIfShouldFlip(xInput);
             Movement?.SetVelocityX(playerData.movementVelocity * xInput);
-
-            player.Anim.SetFloat("yVelocity", Movement.CurrentVelocity.y);
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
         }
-        // if player are falling past 
+        player.Anim.SetFloat("yVelocity", Movement.CurrentVelocity.y);
+        player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
+    }
+
+    private void HandleCamera()
+    {
         if (Movement.CurrentVelocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
         {
             CameraManager.instance.LerpYDamping(true);
         }
-        //if player are standing still or moving up
         if (Movement.CurrentVelocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
         {
-            //reset so it can be call again
             CameraManager.instance.LerpedFromPlayerFalling = false;
-
             CameraManager.instance.LerpYDamping(false);
         }
     }
 
+    #endregion
+    #region Other Func
     private void CheckJumpMultiplier()
     {
         if (isJumping)
@@ -168,11 +215,6 @@ public class PlayerInAirState : PlayerState
             }
 
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 
     private void CheckCoyoteTime()
@@ -209,4 +251,5 @@ public class PlayerInAirState : PlayerState
     public void StopWallJumpCoyoteTime() => wallJumpCoyoteTime = false;
 
     public void SetIsJumping() => isJumping = true;
+    #endregion
 }

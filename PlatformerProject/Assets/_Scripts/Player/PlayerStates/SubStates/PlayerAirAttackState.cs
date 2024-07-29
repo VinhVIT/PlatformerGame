@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerAirAttackState : PlayerAttackState
 {
     private bool isDownWardAttack = false;
-    private int yInput;
     public PlayerAirAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
         attackCounter = playerData.airAttackCounter;
@@ -30,10 +29,6 @@ public class PlayerAirAttackState : PlayerAttackState
     protected override void CheckAttack()
     {
         base.CheckAttack();
-        if (isDownWardAttack)
-        {
-
-        }
     }
     public override void Exit()
     {
@@ -47,7 +42,6 @@ public class PlayerAirAttackState : PlayerAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        yInput = player.InputHandler.NormInputY;
         if (isDownWardAttack && CollisionSenses.Ground)
         {
             player.Anim.SetBool("downWardAttackHit", true);

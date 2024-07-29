@@ -8,9 +8,12 @@ public class PlayerData : ScriptableObject
     [Header("Move State")]
     public float movementVelocity = 10f;
     public float movementAcceleration = 0.4f;
-    public float maxMovingTime = 1f;
     public PhysicsMaterial2D noFriction;
     public PhysicsMaterial2D fullFriction;
+    [Header("Run State")]
+    public float runVelocity = 15f;
+    public float maxRunningTime = 1f;
+
     [Header("Jump State")]
     public float jumpVelocity = 15f;
     public int amountOfJumps = 1;
@@ -58,10 +61,12 @@ public class PlayerData : ScriptableObject
     [Header("Ground Attack States")]
     public int groundAttackCounter = 3;
     public AttackDetails[] groundAttackDetails;
-
+    //special Attack
+    public AttackDetails sprintAttackDetails;
     [Header("Air Attack States")]
     public int airAttackCounter = 2;
     public AttackDetails[] airAttackDetails;
+    //special Attack
     public AttackDetails downWardAttackDetails;
     #region AttackDetails Automatic Set
     private void OnValidate()
@@ -95,7 +100,8 @@ public class PlayerData : ScriptableObject
     public float perfectBlockTime = .5f;
     public float blockRecoveryTime = 2f;
     public AttackDetails[] blockCounterAttackDetails;
-
+    [Header("Land State")]
+    public float sprintSlideVelocity = 15f;
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;

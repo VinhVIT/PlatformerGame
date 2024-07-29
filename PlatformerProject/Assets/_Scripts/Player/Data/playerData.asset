@@ -17,6 +17,7 @@ MonoBehaviour:
   maxMovingTime: 1.5
   noFriction: {fileID: 6200000, guid: 03301e8e8906d2941bd4c0e90755c817, type: 2}
   fullFriction: {fileID: 6200000, guid: d0b3fefc04fc6c844ade74311199c236, type: 2}
+  runVelocity: 13
   jumpVelocity: 16
   amountOfJumps: 1
   coyoteTime: 0.2
@@ -40,9 +41,9 @@ MonoBehaviour:
   drag: 10
   dashEndYMultiplier: 0.2
   distBetweenAfterImages: 0.5
-  rollCooldown: 3
+  rollCooldown: 1
   rollTime: 0.5
-  rollVelocity: 12
+  rollVelocity: 14
   crouchMovementVelocity: 5
   crouchColliderHeight: 0.8
   standColliderHeight: 1.6
@@ -85,6 +86,7 @@ MonoBehaviour:
     attackMovementSpeed: 0
     knockbackStrength: 20
     knockbackAngle: {x: 1, y: 1}
+  sprintSlideVelocity: 12
   dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,

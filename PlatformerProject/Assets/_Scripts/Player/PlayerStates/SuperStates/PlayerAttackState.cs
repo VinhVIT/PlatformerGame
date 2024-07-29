@@ -11,7 +11,7 @@ public abstract class PlayerAttackState : PlayerAbilityState
     protected int attackCounter;
     private float velocityToSet;
     private float lastAttackTime;
-    private bool setVelocity;
+    protected bool setVelocity;
     private bool shouldCheckFlip;
 
     protected List<IDamageable> detectedDamageables = new List<IDamageable>();

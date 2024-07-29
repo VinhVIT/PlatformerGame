@@ -13,14 +13,18 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2Int DashDirectionInput { get; private set; }
     public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
+
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
-    public bool GrabInput { get; private set; }
-    public bool BlockInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
+
+    public bool GrabInput { get; private set; }
+    public bool BlockInput { get; private set; }
     public bool RollInput { get; private set; }
     public bool AttackInput { get; private set; }
+    public bool RunInput { get; private set; }
+
     public bool SpellCastInput { get; private set; }
     public int SpellSlotInput { get; private set; }
 
@@ -87,6 +91,18 @@ public class PlayerInputHandler : MonoBehaviour
         else if (context.canceled)
         {
             BlockInput = false;
+        }
+    }
+    public void OnRunInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            RunInput = true;
+        }
+
+        if (context.canceled)
+        {
+            RunInput = false;
         }
     }
     public void OnDashInput(InputAction.CallbackContext context)

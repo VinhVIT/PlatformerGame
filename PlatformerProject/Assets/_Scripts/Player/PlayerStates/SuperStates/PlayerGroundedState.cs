@@ -6,6 +6,7 @@ public class PlayerGroundedState : PlayerState
 {
     protected int xInput;
     protected int yInput;
+    protected bool runInput;
     protected bool isTouchingCeiling;
     protected bool blockInput;
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
@@ -21,7 +22,7 @@ public class PlayerGroundedState : PlayerState
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isTouchingLedge;
-    private bool dashInput;
+    protected bool dashInput;
     private bool rollInput;
     private bool attackInput;
     private bool spellCastInput;
@@ -66,6 +67,7 @@ public class PlayerGroundedState : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
+        runInput = player.InputHandler.RunInput;
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
@@ -77,6 +79,7 @@ public class PlayerGroundedState : PlayerState
 
         if (attackInput && !isTouchingCeiling)
         {
+            player.GroundAttackState.CheckIsSprintAttack(runInput);
             player.GroundAttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.GroundAttackState);
         }
