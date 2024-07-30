@@ -74,6 +74,7 @@ public class PlayerInAirState : PlayerState
         oldIsTouchingWallBack = false;
         isTouchingWall = false;
         isTouchingWallBack = false;
+        player.Anim.ResetTrigger("resetSprintJump");
     }
 
     public override void LogicUpdate()
@@ -94,6 +95,7 @@ public class PlayerInAirState : PlayerState
         attackInput = player.InputHandler.AttackInput;
 
         CheckJumpMultiplier();
+        ResetSprintJump();
 
         if (HandleAttackInput()) return;
         if (HandleLanding()) return;
@@ -233,7 +235,14 @@ public class PlayerInAirState : PlayerState
             wallJumpCoyoteTime = false;
         }
     }
-
+    private void ResetSprintJump()
+    {
+        if (dashInput || attackInput)
+        {
+            player.Anim.SetBool("resetSprintJump", true);
+            player.Anim.SetBool("sprintJump", false);
+        }
+    }
     public void StartCoyoteTime() => coyoteTime = true;
 
     public void StartWallJumpCoyoteTime()
