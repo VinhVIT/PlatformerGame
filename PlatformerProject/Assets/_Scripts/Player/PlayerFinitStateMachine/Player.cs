@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     //Behaviour
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
-    public PlayerRunState RunState {get; private set;}
+    public PlayerRunState RunState { get; private set; }
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
@@ -29,7 +29,9 @@ public class Player : MonoBehaviour
     public PlayerAirAttackState AirAttackState { get; private set; }
     public PlayerBlockCounterState BlockCounterState { get; private set; }
     public PlayerSpellCastState SpellCastState { get; private set; }
-    
+    //Abilities
+    public PlayerHealState HealState { get; private set; }
+
     [SerializeField] private PlayerData playerData;
     #endregion
 
@@ -79,6 +81,8 @@ public class Player : MonoBehaviour
         BlockCounterState = new PlayerBlockCounterState(this, StateMachine, playerData, "blockCounter");
 
         SpellCastState = new PlayerSpellCastState(this, StateMachine, playerData, "spellCast");
+        //Abilities
+        HealState = new PlayerHealState(this, StateMachine, playerData, "heal");
     }
 
     private void Start()

@@ -19,6 +19,7 @@ public class PlayerGroundedState : PlayerState
     private Combat combat;
     private bool JumpInput;
     private bool grabInput;
+    private bool healInput;
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isTouchingLedge;
@@ -70,6 +71,7 @@ public class PlayerGroundedState : PlayerState
         runInput = player.InputHandler.RunInput;
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
+        healInput = player.InputHandler.HealInput;
         dashInput = player.InputHandler.DashInput;
         blockInput = player.InputHandler.BlockInput;
         rollInput = player.InputHandler.RollInput;
@@ -82,6 +84,11 @@ public class PlayerGroundedState : PlayerState
             player.GroundAttackState.CheckIsSprintAttack(runInput);
             player.GroundAttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.GroundAttackState);
+        }
+        else if (healInput)
+        {   
+            Debug.Log("heal");
+            stateMachine.ChangeState(player.HealState);
         }
         else if (spellCastInput)
         {

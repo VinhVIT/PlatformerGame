@@ -37,6 +37,6 @@ public class PlayerGroundAttackState : PlayerAttackState
     public override void AnimationTrigger()
     {
         base.AnimationTrigger();
-        SetPlayerVelocity(0f);
+        SetPlayerVelocityX(0f);
     }
 }

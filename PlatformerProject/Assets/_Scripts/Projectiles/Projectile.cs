@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     private float speed;
     private float travelDistance;
     private float xStartPos;
-    [SerializeField] private float projectTileDamage;
+    [SerializeField] private int projectTileDamage;
     [SerializeField] private float gravity;
     [SerializeField] private float damageRadius;
 
@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage)
+    public void FireProjectile(float speed, float travelDistance, int damage)
     {
         this.speed = speed;
         this.travelDistance = travelDistance;

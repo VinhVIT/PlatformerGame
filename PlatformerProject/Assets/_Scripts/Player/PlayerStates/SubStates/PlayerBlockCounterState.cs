@@ -18,24 +18,10 @@ public class PlayerBlockCounterState : PlayerAttackState
         ParticleManager?.StartParticle(playerData.blockFX);
 
     }
-    public override void Exit()
-    {
-        base.Exit();
-    }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
         Movement.SetVelocityZero();
-    }
-    public override void AnimationFinishTrigger()
-    {
-        base.AnimationFinishTrigger();
-        Movement.CanSetVelocity = true;
-
-    }
-    public override void AnimationStartTrigger()
-    {
-        base.AnimationStartTrigger();
     }
     public override void AnimationTrigger()
     {

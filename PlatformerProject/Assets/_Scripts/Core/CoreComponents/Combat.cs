@@ -26,7 +26,7 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
     {
         CheckKnockback();
     }
-    public void Damage(float amount)
+    public void Damage(int amount)
     {
         if (canDamage)
         {

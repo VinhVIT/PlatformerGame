@@ -6,7 +6,7 @@ public class SpellData : ScriptableObject
 {
     public string spellName;
     public float manaCost = 10f;
-    public float damage = 10f;
+    public int damage = 10;
     public float cooldownTime = 3f;
     public bool moveAble;
     [ConditionalHide("moveAble", true)]

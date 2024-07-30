@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVelocity: 8
   movementAcceleration: 0.4
-  maxMovingTime: 1.5
   noFriction: {fileID: 6200000, guid: 03301e8e8906d2941bd4c0e90755c817, type: 2}
   fullFriction: {fileID: 6200000, guid: d0b3fefc04fc6c844ade74311199c236, type: 2}
   runVelocity: 13
+  maxRunningTime: 1
   jumpVelocity: 16
   amountOfJumps: 1
   coyoteTime: 0.2
@@ -62,6 +62,11 @@ MonoBehaviour:
     attackMovementSpeed: 0.2
     knockbackStrength: 20
     knockbackAngle: {x: 3, y: 1}
+  sprintAttackDetails:
+    attackDamage: 20
+    attackMovementSpeed: 12
+    knockbackStrength: 19
+    knockbackAngle: {x: 2, y: 1}
   airAttackCounter: 2
   airAttackDetails:
   - attackDamage: 2

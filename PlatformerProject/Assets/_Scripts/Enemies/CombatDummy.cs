@@ -7,7 +7,7 @@ public class CombatDummy : MonoBehaviour, IDamageable
     [SerializeField] private GameObject hitParticle;
     private Animator anim;
 
-    public void Damage(float amount)
+    public void Damage(int amount)
     {
         Debug.Log("Taken " + amount);
         Instantiate(hitParticle, transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));

@@ -5,8 +5,8 @@ public class Stats : CoreComponent
 {
     public event Action OnHealthZero;
 
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int currentHealth;
 
     protected override void Awake()
     {
@@ -15,7 +15,7 @@ public class Stats : CoreComponent
         currentHealth = maxHealth;
     }
 
-    public void DecreaseHealth(float amount)
+    public void DecreaseHealth(int amount)
     {
         currentHealth -= amount;
 
@@ -29,7 +29,7 @@ public class Stats : CoreComponent
         }
     }
 
-    public void IncreaseHealth(float amount)
+    public void IncreaseHealth(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
     }

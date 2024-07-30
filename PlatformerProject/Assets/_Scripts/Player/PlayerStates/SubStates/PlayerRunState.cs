@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerRunState : PlayerGroundedState
-{   
+{
     private float runningTime;
     public PlayerRunState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -28,7 +28,7 @@ public class PlayerRunState : PlayerGroundedState
             stateMachine.ChangeState(player.MoveState);
             ResetRunningTime();
         }
-        else if (xInput != Movement.FacingDirection)
+        else if (xInput != 0 && xInput != Movement.FacingDirection)
         {
             stateMachine.ChangeState(player.TurnState);
             ResetRunningTime();

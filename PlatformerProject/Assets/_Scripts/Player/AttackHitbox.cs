@@ -21,7 +21,7 @@ public class AttackHitbox : MonoBehaviour
     {   
         player.GroundAttackState.RemoveFromDetected(collision);
         player.AirAttackState.RemoveFromDetected(collision);
-        player.BlockCounterState.AddToDetected(collision);
+        player.BlockCounterState.RemoveFromDetected(collision);
 
     }
 }

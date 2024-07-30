@@ -51,18 +51,18 @@ public abstract class PlayerAttackState : PlayerAbilityState
     {
         base.AnimationStartTrigger();
 
-        SetPlayerVelocity(AttackDetails.attackMovementSpeed);
+        SetPlayerVelocityX(AttackDetails.attackMovementSpeed);
     }
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
-        SetPlayerVelocity(0f);
+        SetPlayerVelocityX(0f);
         isAbilityDone = true;
 
         attackCounter++;
         lastAttackTime = Time.time;
     }
-    protected void SetPlayerVelocity(float velocity)
+    protected void SetPlayerVelocityX(float velocity)
     {
         Movement?.SetVelocityX(velocity * Movement.FacingDirection);
         velocityToSet = velocity;
@@ -100,7 +100,7 @@ public abstract class PlayerAttackState : PlayerAbilityState
     {
 
         foreach (IDamageable item in detectedDamageables.ToList())
-        {
+        {   
             item.Damage(AttackDetails.attackDamage);
 
         }

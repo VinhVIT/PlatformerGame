@@ -102,6 +102,8 @@ public class PlayerData : ScriptableObject
     public AttackDetails[] blockCounterAttackDetails;
     [Header("Land State")]
     public float sprintSlideVelocity = 15f;
+    [Header("Heal State")]
+    public int healingAmount = 20;
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;

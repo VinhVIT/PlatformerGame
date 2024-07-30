@@ -24,13 +24,13 @@ public class PlayerInputHandler : MonoBehaviour
     public bool RollInput { get; private set; }
     public bool AttackInput { get; private set; }
     public bool RunInput { get; private set; }
-
+    public bool HealInput { get; private set; }
+    public bool HealInputStop { get; private set; }
     public bool SpellCastInput { get; private set; }
     public int SpellSlotInput { get; private set; }
 
 
-    [SerializeField]
-    private float inputHoldTime = 0.2f;
+    [SerializeField] private float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
     private float dashInputStartTime;
@@ -105,6 +105,20 @@ public class PlayerInputHandler : MonoBehaviour
             RunInput = false;
         }
     }
+    public void OnHealInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            HealInput = true;
+            HealInputStop = false;
+        }
+
+        if (context.canceled)
+        {
+            HealInput = false;
+            HealInputStop = true;
+        }
+    }
     public void OnDashInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -166,7 +180,6 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void UseJumpInput() => JumpInput = false;
     public void UseDashInput() => DashInput = false;
-    public void UseRollInput() => RollInput = false;
 
     private void CheckJumpInputHoldTime()
     {
