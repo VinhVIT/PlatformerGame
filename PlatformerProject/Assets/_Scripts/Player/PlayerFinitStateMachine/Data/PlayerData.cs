@@ -63,6 +63,12 @@ public class PlayerData : ScriptableObject
     public AttackDetails[] groundAttackDetails;
     //special Attack
     public AttackDetails sprintAttackDetails;
+    public AttackDetails holySlashAttack;
+    [Header("Light Cut Attack")]
+    public AttackDetails lightCutAttack;
+    public float pushDuration = .1f;
+    public float pushVelocity = 50f;
+    public GameObject projectTile;
     [Header("Air Attack States")]
     public int airAttackCounter = 2;
     public AttackDetails[] airAttackDetails;

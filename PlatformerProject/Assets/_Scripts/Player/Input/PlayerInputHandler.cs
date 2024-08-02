@@ -23,6 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool BlockInput { get; private set; }
     public bool RollInput { get; private set; }
     public bool AttackInput { get; private set; }
+    public bool AttackInputStop { get; private set; }
     public bool RunInput { get; private set; }
     public bool HealInput { get; private set; }
     public bool HealInputStop { get; private set; }
@@ -156,10 +157,12 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             AttackInput = true;
+            AttackInputStop = false;
         }
         if (context.canceled)
         {
             AttackInput = false;
+            AttackInputStop = true;
         }
     }
     public void OnSpellCastInput(InputAction.CallbackContext context)

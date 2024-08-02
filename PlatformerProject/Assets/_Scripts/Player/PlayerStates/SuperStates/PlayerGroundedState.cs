@@ -79,14 +79,23 @@ public class PlayerGroundedState : PlayerState
         spellCastInput = player.InputHandler.SpellCastInput;
         spellSlotInput = player.InputHandler.SpellSlotInput;
 
-        if (attackInput && !isTouchingCeiling)
+        if (yInput == 0 && attackInput && !isTouchingCeiling)
         {
             player.GroundAttackState.CheckIsSprintAttack(runInput);
             player.GroundAttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.GroundAttackState);
         }
+        else if (yInput > 0 && attackInput && !isTouchingCeiling)
+        {
+            stateMachine.ChangeState(player.HolySlashState);
+
+        }
+        else if (yInput < 0 && attackInput && !isTouchingCeiling)
+        {
+            stateMachine.ChangeState(player.LightCutAttackState);
+        }
         else if (healInput)
-        {   
+        {
             Debug.Log("heal");
             stateMachine.ChangeState(player.HealState);
         }

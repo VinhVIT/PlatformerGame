@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     public PlayerAirAttackState AirAttackState { get; private set; }
     public PlayerBlockCounterState BlockCounterState { get; private set; }
     public PlayerSpellCastState SpellCastState { get; private set; }
+    public PlayerHolySlashState HolySlashState { get; private set; }
+    public PlayerLightCutAttackState LightCutAttackState { get; private set; }
     //Abilities
     public PlayerHealState HealState { get; private set; }
 
@@ -79,8 +81,9 @@ public class Player : MonoBehaviour
         GroundAttackState = new PlayerGroundAttackState(this, StateMachine, playerData, "groundAttack");
         AirAttackState = new PlayerAirAttackState(this, StateMachine, playerData, "airAttack");
         BlockCounterState = new PlayerBlockCounterState(this, StateMachine, playerData, "blockCounter");
+        HolySlashState = new PlayerHolySlashState(this, StateMachine, playerData, "holySlash");
+        LightCutAttackState = new PlayerLightCutAttackState(this, StateMachine, playerData, "lightCutState");
 
-        SpellCastState = new PlayerSpellCastState(this, StateMachine, playerData, "spellCast");
         //Abilities
         HealState = new PlayerHealState(this, StateMachine, playerData, "heal");
     }

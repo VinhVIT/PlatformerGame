@@ -67,6 +67,20 @@ MonoBehaviour:
     attackMovementSpeed: 12
     knockbackStrength: 19
     knockbackAngle: {x: 2, y: 1}
+  holySlashAttack:
+    attackDamage: 40
+    attackMovementSpeed: 0.2
+    knockbackStrength: 0
+    knockbackAngle: {x: 0, y: 0}
+  lightCutAttack:
+    attackDamage: 40
+    attackMovementSpeed: 0
+    knockbackStrength: 0
+    knockbackAngle: {x: 0, y: 0}
+  pushDuration: 0.1
+  pushVelocity: 50
+  projectTile: {fileID: 520525365201432645, guid: 638c43f630efc384e88c8317f475f965,
+    type: 3}
   airAttackCounter: 2
   airAttackDetails:
   - attackDamage: 2
@@ -92,6 +106,7 @@ MonoBehaviour:
     knockbackStrength: 20
     knockbackAngle: {x: 1, y: 1}
   sprintSlideVelocity: 12
+  healingAmount: 20
   dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,
