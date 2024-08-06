@@ -27,8 +27,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool RunInput { get; private set; }
     public bool HealInput { get; private set; }
     public bool HealInputStop { get; private set; }
-    public bool SpellCastInput { get; private set; }
-    public int SpellSlotInput { get; private set; }
+    public bool BuffInput { get; private set; }
+    public int BuffSlotInput { get; private set; }
 
 
     [SerializeField] private float inputHoldTime = 0.2f;
@@ -165,21 +165,23 @@ public class PlayerInputHandler : MonoBehaviour
             AttackInputStop = true;
         }
     }
-    public void OnSpellCastInput(InputAction.CallbackContext context)
+    public void OnBuffInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            SpellCastInput = true;
-            int spellSlot;
-            if (int.TryParse(context.control.name, out spellSlot))
+            BuffInput = true;
+            int buffSlot;
+            if (int.TryParse(context.control.name, out buffSlot))
             {
-                SpellSlotInput = spellSlot;
+                BuffSlotInput = buffSlot;
             }
+            StartCoroutine(ResetBuffInput());
         }
-        if (context.canceled)
-        {
-            SpellCastInput = false;
-        }
+    }
+    private IEnumerator ResetBuffInput()
+    {
+        yield return new WaitForSeconds(.2f);
+            BuffInput = false;
     }
     public void UseJumpInput() => JumpInput = false;
     public void UseDashInput() => DashInput = false;

@@ -30,7 +30,7 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
     {
         if (canDamage)
         {
-            Stats?.DecreaseHealth(amount);
+            Stats?.Health.Decrease(amount);
         }
         OnBeingAttacked?.Invoke();
         // ParticleManager?.StartParicleWithRandomRotation(damageParticle);

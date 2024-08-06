@@ -26,8 +26,8 @@ public class PlayerGroundedState : PlayerState
     protected bool dashInput;
     private bool rollInput;
     private bool attackInput;
-    private bool spellCastInput;
-    private int spellSlotInput;
+    private bool buffInput;
+    protected int buffSlotInput;
 
 
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
@@ -76,8 +76,8 @@ public class PlayerGroundedState : PlayerState
         blockInput = player.InputHandler.BlockInput;
         rollInput = player.InputHandler.RollInput;
         attackInput = player.InputHandler.AttackInput;
-        spellCastInput = player.InputHandler.SpellCastInput;
-        spellSlotInput = player.InputHandler.SpellSlotInput;
+        buffInput = player.InputHandler.BuffInput;
+        buffSlotInput = player.InputHandler.BuffSlotInput;
 
         if (yInput == 0 && attackInput && !isTouchingCeiling)
         {
@@ -99,13 +99,9 @@ public class PlayerGroundedState : PlayerState
             Debug.Log("heal");
             stateMachine.ChangeState(player.HealState);
         }
-        else if (spellCastInput)
+        else if (buffInput)
         {
-            player.SpellCastState.SetSpellData(spellSlotInput);
-            if (player.SpellCastState.CheckIfCanCastSpell())
-            {
-                stateMachine.ChangeState(player.SpellCastState);
-            }
+            stateMachine.ChangeState(player.BuffState);
         }
         else if (JumpInput && player.JumpState.CanJump() && !isTouchingCeiling)
         {

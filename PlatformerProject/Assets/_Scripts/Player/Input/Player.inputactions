@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SpellCast",
+                    "name": "Buff",
                     "type": "Button",
                     "id": "073353f0-c1a1-47fb-989f-bbfd26d224e5",
                     "expectedControlType": "Button",
@@ -234,7 +234,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SpellCast",
+                    "action": "Buff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -245,40 +245,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SpellCast",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "855d6e3b-6edd-4d2a-947f-6eda0ddc7094",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpellCast",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e4b6df53-c48b-41be-9fd7-dda83c8b5b8f",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpellCast",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "933773f0-918b-4c9c-b6f9-ebc4cda5146a",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpellCast",
+                    "action": "Buff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

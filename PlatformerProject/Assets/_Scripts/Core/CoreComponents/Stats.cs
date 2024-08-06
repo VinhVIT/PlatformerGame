@@ -3,35 +3,14 @@ using UnityEngine;
 [Serializable]
 public class Stats : CoreComponent
 {
-    public event Action OnHealthZero;
-
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int currentHealth;
+    [field: SerializeField] public Stat Health { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
 
-        currentHealth = maxHealth;
+        Health.Init();
     }
 
-    public void DecreaseHealth(int amount)
-    {
-        currentHealth -= amount;
-
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-
-            OnHealthZero?.Invoke();
-
-            Debug.Log("Health is zero!!");
-        }
-    }
-
-    public void IncreaseHealth(int amount)
-    {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-    }
 }
 

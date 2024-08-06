@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public PlayerLightCutAttackState LightCutAttackState { get; private set; }
     //Abilities
     public PlayerHealState HealState { get; private set; }
+    public PlayerBuffState BuffState { get; private set; }
 
     [SerializeField] private PlayerData playerData;
     #endregion
@@ -86,6 +87,8 @@ public class Player : MonoBehaviour
 
         //Abilities
         HealState = new PlayerHealState(this, StateMachine, playerData, "heal");
+        BuffState = new PlayerBuffState(this, StateMachine, playerData, "buff");
+
     }
 
     private void Start()

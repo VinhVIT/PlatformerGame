@@ -34,7 +34,7 @@ public class PlayerHealState : PlayerGroundedState
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
-        Stats.IncreaseHealth(playerData.healingAmount);
+        Stats.Health.Increase(playerData.healingAmount);
         stateMachine.ChangeState(player.IdleState);
     }
 }
