@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerCrouchIdleState : PlayerGroundedState
 {
-    private bool rollInput;
-
     public PlayerCrouchIdleState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }

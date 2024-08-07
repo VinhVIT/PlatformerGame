@@ -76,6 +76,7 @@ public class PlayerBlockState : PlayerGroundedState
     {
         base.AnimationActionTrigger();
         blockCount++;
+        PlayerStats.Stamina.Decrease(30);
     }
     public override void AnimationFinishTrigger()
     {

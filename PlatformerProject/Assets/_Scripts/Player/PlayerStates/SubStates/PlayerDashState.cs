@@ -38,7 +38,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
 
-        if(Movement.CurrentVelocity.y > 0)
+        if (Movement.CurrentVelocity.y > 0)
         {
             Movement?.SetVelocityY(Movement.CurrentVelocity.y * playerData.dashEndYMultiplier);
         }
@@ -60,7 +60,7 @@ public class PlayerDashState : PlayerAbilityState
                 dashDirectionInput = player.InputHandler.DashDirectionInput;
                 dashInputStop = player.InputHandler.DashInputStop;
 
-                if(dashDirectionInput != Vector2.zero)
+                if (dashDirectionInput != Vector2.zero)
                 {
                     dashDirection = dashDirectionInput;
                     dashDirection.Normalize();
@@ -69,7 +69,7 @@ public class PlayerDashState : PlayerAbilityState
                 float angle = Vector2.SignedAngle(Vector2.right, dashDirection);
                 player.DashDirectionIndicator.rotation = Quaternion.Euler(0f, 0f, angle - 45f);
 
-                if(dashInputStop || Time.unscaledTime >= startTime + playerData.maxHoldTime)
+                if (dashInputStop || Time.unscaledTime >= startTime + playerData.maxHoldTime)
                 {
                     isHolding = false;
                     Time.timeScale = 1f;
@@ -79,6 +79,7 @@ public class PlayerDashState : PlayerAbilityState
                     Movement?.SetVelocity(playerData.dashVelocity, dashDirection);
                     player.DashDirectionIndicator.gameObject.SetActive(false);
                     PlaceAfterImage();
+                    PlayerStats.Stamina.Decrease(playerData.dashStamina);
                 }
             }
             else
@@ -98,7 +99,7 @@ public class PlayerDashState : PlayerAbilityState
 
     private void CheckIfShouldPlaceAfterImage()
     {
-        if(Vector2.Distance(player.transform.position, lastAIPos) >= playerData.distBetweenAfterImages)
+        if (Vector2.Distance(player.transform.position, lastAIPos) >= playerData.distBetweenAfterImages)
         {
             PlaceAfterImage();
         }

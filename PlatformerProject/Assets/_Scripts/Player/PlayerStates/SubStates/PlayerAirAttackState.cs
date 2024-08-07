@@ -11,8 +11,6 @@ public class PlayerAirAttackState : PlayerAttackState
         attackCounter = playerData.airAttackCounter;
     }
     protected override int AttackCounter => playerData.airAttackCounter;
-
-    // protected override AttackDetails AttackDetails => playerData.airAttackDetails[attackCounter];
     protected override AttackDetails AttackDetails => isDownWardAttack ? playerData.downWardAttackDetails : playerData.airAttackDetails[attackCounter];
     public override void Enter()
     {
@@ -21,6 +19,7 @@ public class PlayerAirAttackState : PlayerAttackState
         Movement.SetVelocityZero();
         Movement.CanSetVelocity = false;
 
+        PlayerStats.Stamina.Decrease(playerData.airAttackStamina);
         if (isDownWardAttack)
         {
             PerformDownWardAttack();

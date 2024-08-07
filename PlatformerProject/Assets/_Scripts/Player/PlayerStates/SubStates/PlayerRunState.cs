@@ -23,7 +23,10 @@ public class PlayerRunState : PlayerGroundedState
     {
         base.LogicUpdate();
         runningTime += Time.deltaTime;
-        if (!runInput)
+
+        PlayerStats.Stamina.ContinuousDecrease(5, .1f);
+
+        if (!runInput || PlayerStats.Stamina.CurrentValue <= 0)
         {
             stateMachine.ChangeState(player.MoveState);
             ResetRunningTime();
@@ -33,6 +36,7 @@ public class PlayerRunState : PlayerGroundedState
             stateMachine.ChangeState(player.TurnState);
             ResetRunningTime();
         }
+
         if (!isExitingState)
         {
             Movement?.CheckIfShouldFlip(xInput);

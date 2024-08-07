@@ -4,7 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject
-{
+{   
+    [Header("---------PLAYERSTATE-------------------------------")]
     [Header("Move State")]
     public float movementVelocity = 10f;
     public float movementAcceleration = 0.4f;
@@ -110,6 +111,14 @@ public class PlayerData : ScriptableObject
     public float sprintSlideVelocity = 15f;
     [Header("Heal State")]
     public int healingAmount = 20;
+    [Header("---------OTHERDATAS-------------------------------")]
+
+    [Header("Stamina Consume Amount")]
+    public int blockStamina = 30;
+    public int runStamina = 5;
+    public int slideStamina = 50;
+    public int dashStamina = 60;
+    public int airAttackStamina = 25;
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;

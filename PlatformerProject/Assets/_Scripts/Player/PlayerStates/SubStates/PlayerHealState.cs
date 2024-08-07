@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class PlayerHealState : PlayerGroundedState
 {
-    private Stats Stats => stats ?? core.GetCoreComponent(ref stats);
-    private Stats stats;
+
     public PlayerHealState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
@@ -34,7 +33,7 @@ public class PlayerHealState : PlayerGroundedState
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
-        Stats.Health.Increase(playerData.healingAmount);
+        PlayerStats.Health.Increase(playerData.healingAmount);
         stateMachine.ChangeState(player.IdleState);
     }
 }

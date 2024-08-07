@@ -11,6 +11,8 @@ public class PlayerAbilityState : PlayerState
     private CollisionSenses collisionSenses;
     protected ParticleManager ParticleManager => particleManager ?? core.GetCoreComponent(ref particleManager);
     private ParticleManager particleManager;
+    protected PlayerStats PlayerStats => playerStats ?? core.GetCoreComponent(ref playerStats);
+    private PlayerStats playerStats;
     private bool isGrounded;
     protected bool isTouchingCeiling;
 

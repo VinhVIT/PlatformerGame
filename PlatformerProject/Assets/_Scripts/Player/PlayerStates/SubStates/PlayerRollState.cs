@@ -22,6 +22,8 @@ public class PlayerRollState : PlayerAbilityState
         Time.timeScale = .75f;
         startTime = Time.unscaledTime;
         Movement?.SetVelocity(playerData.rollVelocity, rollDirection);
+
+        PlayerStats.Stamina.Decrease(playerData.slideStamina);
     }
     public override void LogicUpdate()
     {
@@ -32,7 +34,7 @@ public class PlayerRollState : PlayerAbilityState
         if (Time.unscaledTime >= startTime + playerData.rollTime && !isTouchingCeiling)
         {
             CheckIfShouldPlaceAfterImage();
-            
+
             isAbilityDone = true;
             Time.timeScale = 1f;
 

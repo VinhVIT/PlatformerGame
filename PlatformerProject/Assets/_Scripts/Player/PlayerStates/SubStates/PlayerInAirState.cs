@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
+    private Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
     private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     private CollisionSenses collisionSenses;
+    private PlayerStats PlayerStats => playerStats ?? core.GetCoreComponent(ref playerStats);
+    private PlayerStats playerStats;
     //Input
     private int xInput;
     private int yInput;
@@ -81,18 +83,11 @@ public class PlayerInAirState : PlayerState
     {
         base.LogicUpdate();
 
+        GetInput();
+
         CheckCoyoteTime();
         CheckWallJumpCoyoteTime();
         LimitFallSpeed();
-
-        xInput = player.InputHandler.NormInputX;
-        yInput = player.InputHandler.NormInputY;
-        jumpInput = player.InputHandler.JumpInput;
-        jumpInputStop = player.InputHandler.JumpInputStop;
-        runInput = player.InputHandler.RunInput;
-        grabInput = player.InputHandler.GrabInput;
-        dashInput = player.InputHandler.DashInput;
-        attackInput = player.InputHandler.AttackInput;
 
         CheckJumpMultiplier();
         ResetSprintJump();
@@ -107,9 +102,20 @@ public class PlayerInAirState : PlayerState
         HandleCamera();
     }
     #region Handler Func
+    private void GetInput()
+    {
+        xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
+        jumpInput = player.InputHandler.JumpInput;
+        jumpInputStop = player.InputHandler.JumpInputStop;
+        runInput = player.InputHandler.RunInput;
+        grabInput = player.InputHandler.GrabInput;
+        dashInput = player.InputHandler.DashInput;
+        attackInput = player.InputHandler.AttackInput;
+    }
     private bool HandleAttackInput()
     {
-        if (attackInput)
+        if (attackInput && PlayerStats.Stamina.EnoughToUse(playerData.airAttackStamina))
         {
             player.AirAttackState.CheckIsDownWardAttack(yInput);
             player.AirAttackState.CheckToResetAttackCounter();
@@ -164,7 +170,8 @@ public class PlayerInAirState : PlayerState
 
     private bool HandleDash()
     {
-        if (dashInput && player.DashState.CheckIfCanDash())
+        if (dashInput && player.DashState.CheckIfCanDash()
+        && PlayerStats.Stamina.EnoughToUse(playerData.dashStamina))
         {
             stateMachine.ChangeState(player.DashState);
             return true;
@@ -175,7 +182,7 @@ public class PlayerInAirState : PlayerState
     private void HandleMovement()
     {
         Movement?.CheckIfShouldFlip(xInput);
-        if (runInput)
+        if (runInput && PlayerStats.Stamina.EnoughToUse(playerData.blockStamina))
         {
             Movement?.SetVelocityX(playerData.runVelocity * xInput);
         }
@@ -237,7 +244,7 @@ public class PlayerInAirState : PlayerState
     }
     private void ResetSprintJump()
     {
-        if (dashInput || attackInput)
+        if (dashInput || attackInput || CollisionSenses.Ground)
         {
             player.Anim.SetBool("resetSprintJump", true);
             player.Anim.SetBool("sprintJump", false);

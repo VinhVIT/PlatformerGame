@@ -30,7 +30,7 @@ public class PlayerMoveState : PlayerGroundedState
             {
                 stateMachine.ChangeState(player.IdleState);
             }
-            else if (runInput)
+            else if (runInput && PlayerStats.Stamina.EnoughToUse(playerData.runStamina))
             {
                 stateMachine.ChangeState(player.RunState);
             }
@@ -54,7 +54,7 @@ public class PlayerMoveState : PlayerGroundedState
                 Movement?.CheckIfShouldFlip(xInput);
                 Movement?.SetVelocityX(playerData.movementVelocity * xInput);
             }
-            
+
         }
     }
 

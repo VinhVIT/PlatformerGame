@@ -41,7 +41,7 @@ MonoBehaviour:
   drag: 10
   dashEndYMultiplier: 0.2
   distBetweenAfterImages: 0.5
-  rollCooldown: 1
+  rollCooldown: 0
   rollTime: 0.5
   rollVelocity: 14
   crouchMovementVelocity: 5
@@ -107,6 +107,11 @@ MonoBehaviour:
     knockbackAngle: {x: 1, y: 1}
   sprintSlideVelocity: 12
   healingAmount: 20
+  blockStamina: 30
+  runStamina: 5
+  slideStamina: 50
+  dashStamina: 60
+  airAttackStamina: 25
   dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,

@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
+    // Variables
     protected int xInput;
     protected int yInput;
     protected bool runInput;
-    protected bool isTouchingCeiling;
+    protected bool jumpInput;
+    protected bool grabInput;
+    protected bool healInput;
+    protected bool dashInput;
     protected bool blockInput;
+    protected bool rollInput;
+    protected bool attackInput;
+    protected bool buffInput;
+    protected int buffSlotInput;
+
+    private bool isGrounded;
+    private bool isTouchingWall;
+    private bool isTouchingLedge;
+    protected bool isTouchingCeiling;
+
+    // Component references
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
     protected CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
@@ -17,20 +32,11 @@ public class PlayerGroundedState : PlayerState
     private ParticleManager particleManager;
     protected Combat Combat => combat ?? core.GetCoreComponent(ref combat);
     private Combat combat;
-    private bool JumpInput;
-    private bool grabInput;
-    private bool healInput;
-    private bool isGrounded;
-    private bool isTouchingWall;
-    private bool isTouchingLedge;
-    protected bool dashInput;
-    private bool rollInput;
-    private bool attackInput;
-    private bool buffInput;
-    protected int buffSlotInput;
+    protected PlayerStats PlayerStats => playerStats ?? core.GetCoreComponent(ref playerStats);
+    private PlayerStats playerStats;
 
-
-    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
+        : base(player, stateMachine, playerData, animBoolName)
     {
     }
 
@@ -38,7 +44,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        if (CollisionSenses)//Check if has this component or not
+        if (CollisionSenses)
         {
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
@@ -57,19 +63,28 @@ public class PlayerGroundedState : PlayerState
         player.BlockState.ResetCanBlock();
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
+        GetInput();
+
+        if (HandleAttack()) return;
+        if (HandleHeal()) return;
+        if (HandleBuff()) return;
+        if (HandleJump()) return;
+        if (HandleStateTransition()) return;
+        if (HandleWallGrab()) return;
+        if (HandleDash()) return;
+        if (HandleRoll()) return;
+    }
+
+    private void GetInput()
+    {
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         runInput = player.InputHandler.RunInput;
-        JumpInput = player.InputHandler.JumpInput;
+        jumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
         healInput = player.InputHandler.HealInput;
         dashInput = player.InputHandler.DashInput;
@@ -78,57 +93,101 @@ public class PlayerGroundedState : PlayerState
         attackInput = player.InputHandler.AttackInput;
         buffInput = player.InputHandler.BuffInput;
         buffSlotInput = player.InputHandler.BuffSlotInput;
+    }
 
+    private bool HandleAttack()
+    {
         if (yInput == 0 && attackInput && !isTouchingCeiling)
         {
             player.GroundAttackState.CheckIsSprintAttack(runInput);
             player.GroundAttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.GroundAttackState);
+            return true;
         }
         else if (yInput > 0 && attackInput && !isTouchingCeiling)
         {
             stateMachine.ChangeState(player.HolySlashState);
-
+            return true;
         }
         else if (yInput < 0 && attackInput && !isTouchingCeiling)
         {
             stateMachine.ChangeState(player.LightCutAttackState);
+            return true;
         }
-        else if (healInput)
+        return false;
+    }
+
+    private bool HandleHeal()
+    {
+        if (healInput)
         {
-            Debug.Log("heal");
             stateMachine.ChangeState(player.HealState);
+            return true;
         }
-        else if (buffInput)
+        return false;
+    }
+
+    private bool HandleBuff()
+    {
+        if (buffInput)
         {
             stateMachine.ChangeState(player.BuffState);
+            return true;
         }
-        else if (JumpInput && player.JumpState.CanJump() && !isTouchingCeiling)
+        return false;
+    }
+
+    private bool HandleJump()
+    {
+        if (jumpInput && player.JumpState.CanJump() && !isTouchingCeiling)
         {
             stateMachine.ChangeState(player.JumpState);
+            return true;
         }
-        else if (!isGrounded)
+        return false;
+    }
+
+    private bool HandleStateTransition()
+    {
+        if (!isGrounded)
         {
             player.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.InAirState);
+            return true;
         }
-        else if (blockInput && player.BlockState.CheckIfCanBlock() && stateMachine.CurrentState != player.BlockState)
-        {
-            stateMachine.ChangeState(player.BlockState);
-        }
-        else if (isTouchingWall && grabInput && isTouchingLedge)
+        return false;
+    }
+
+    private bool HandleWallGrab()
+    {
+        if (isTouchingWall && grabInput && isTouchingLedge)
         {
             stateMachine.ChangeState(player.WallGrabState);
+            return true;
         }
-        else if (dashInput && player.DashState.CheckIfCanDash() && !isTouchingCeiling)
+        return false;
+    }
+
+    private bool HandleDash()
+    {
+        if (dashInput && player.DashState.CheckIfCanDash() && !isTouchingCeiling
+            && PlayerStats.Stamina.EnoughToUse(playerData.dashStamina))
         {
             stateMachine.ChangeState(player.DashState);
+            return true;
         }
-        else if (rollInput && player.RollState.CheckIfCanRoll())
+        return false;
+    }
+
+    private bool HandleRoll()
+    {
+        if (rollInput && player.RollState.CheckIfCanRoll()
+            && PlayerStats.Stamina.EnoughToUse(playerData.slideStamina))
         {
             stateMachine.ChangeState(player.RollState);
+            return true;
         }
-
+        return false;
     }
 
     public override void PhysicsUpdate()
