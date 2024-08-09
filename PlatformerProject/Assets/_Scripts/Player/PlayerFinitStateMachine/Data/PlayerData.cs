@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject
-{   
+{
     [Header("---------PLAYERSTATE-------------------------------")]
     [Header("Move State")]
     public float movementVelocity = 10f;
@@ -111,6 +111,9 @@ public class PlayerData : ScriptableObject
     public float sprintSlideVelocity = 15f;
     [Header("Heal State")]
     public int healingAmount = 20;
+    [Header("Knockback State")]
+    public float knockbackStrength = 10f;
+    public Vector2 knockbackAngle = Vector2.one;
     [Header("---------OTHERDATAS-------------------------------")]
 
     [Header("Stamina Consume Amount")]

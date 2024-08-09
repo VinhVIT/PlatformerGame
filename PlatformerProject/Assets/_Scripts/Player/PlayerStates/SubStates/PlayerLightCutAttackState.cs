@@ -16,7 +16,7 @@ public class PlayerLightCutAttackState : PlayerAttackState
     public override void Enter()
     {
         base.Enter();
-        Movement.SetVelocityZero();
+        Movement?.SetVelocityZero();
         canSetLightCutAttack = true;
     }
 

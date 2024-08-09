@@ -7,7 +7,6 @@ public class PlayerBlockState : PlayerGroundedState
 {
     public bool CanBlock { get; private set; }
     private bool isPerfectBlock;
-    private int blockCount;
     private float lastBlockTime;
     public PlayerBlockState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -16,7 +15,6 @@ public class PlayerBlockState : PlayerGroundedState
     {
         base.Enter();
         CanBlock = false;
-        blockCount = 0;
         Combat.SetCanDamage(false);
         isPerfectBlock = true;
 
@@ -56,7 +54,7 @@ public class PlayerBlockState : PlayerGroundedState
             // player.Anim.SetBool("blockCounter", false);
 
         }
-        if (blockCount >= 3)
+        if (!PlayerStats.Stamina.EnoughToUse(playerData.blockStamina))
         {   //Cant block anymore
             player.Anim.SetBool("blockFailed", true);
         }
@@ -75,7 +73,6 @@ public class PlayerBlockState : PlayerGroundedState
     public override void AnimationActionTrigger()
     {
         base.AnimationActionTrigger();
-        blockCount++;
         PlayerStats.Stamina.Decrease(30);
     }
     public override void AnimationFinishTrigger()

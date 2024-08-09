@@ -10,6 +10,8 @@ public class PlayerInAirState : PlayerState
     private CollisionSenses collisionSenses;
     private PlayerStats PlayerStats => playerStats ?? core.GetCoreComponent(ref playerStats);
     private PlayerStats playerStats;
+    protected Combat Combat => combat ?? core.GetCoreComponent(ref combat);
+    private Combat combat;
     //Input
     private int xInput;
     private int yInput;
@@ -67,6 +69,7 @@ public class PlayerInAirState : PlayerState
         fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
         player.RunState.CheckIfShouldSprintJump();
 
+        Combat.OnBeingAttacked += HandlerOnBeingAttacked;
     }
     public override void Exit()
     {
@@ -77,8 +80,14 @@ public class PlayerInAirState : PlayerState
         isTouchingWall = false;
         isTouchingWallBack = false;
         player.Anim.ResetTrigger("resetSprintJump");
+        Combat.OnBeingAttacked -= HandlerOnBeingAttacked;
+
     }
 
+    private void HandlerOnBeingAttacked()
+    {
+        stateMachine.ChangeState(player.KnockbackState);
+    }
     public override void LogicUpdate()
     {
         base.LogicUpdate();

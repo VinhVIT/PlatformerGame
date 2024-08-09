@@ -16,7 +16,7 @@ public class PlayerAirAttackState : PlayerAttackState
     {
         base.Enter();
         player.SetGravity(0f);
-        Movement.SetVelocityZero();
+        Movement?.SetVelocityZero();
         Movement.CanSetVelocity = false;
 
         PlayerStats.Stamina.Decrease(playerData.airAttackStamina);

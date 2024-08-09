@@ -21,7 +21,7 @@ public class PlayerBlockCounterState : PlayerAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Movement.SetVelocityZero();
+        Movement?.SetVelocityZero();
     }
     public override void AnimationTrigger()
     {

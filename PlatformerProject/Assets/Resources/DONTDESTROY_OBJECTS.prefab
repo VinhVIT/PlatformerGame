@@ -1055,6 +1055,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 073353f0-c1a1-47fb-989f-bbfd26d224e5
     m_ActionName: GamePlay/Attack1[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a8b403c8-9553-4348-99f2-7792e534e264
+    m_ActionName: GamePlay/Heal[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55f4a605-d943-4d45-b86c-ca1f195d1ea4
+    m_ActionName: GamePlay/Run[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc175858-8329-480b-834e-75424fa85e5b
+    m_ActionName: GamePlay/Block[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: GamePlay
@@ -2112,9 +2124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0ca3b2a789ffc498ef5fb3847b73f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticle:
-  - {fileID: 5096148057906189823, guid: 4a122dcc68153794295f6953dd91521e, type: 3}
-  - {fileID: 1962614393226834858, guid: 3d13ef1f52d189642930444f906fc622, type: 3}
+  deathParticles: []
 --- !u!1 &7805445360906379709
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,7 +2869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24aac23e2f40284aa3c738548d8f989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  <Health>k__BackingField:
+    <MaxValue>k__BackingField: 0
 --- !u!1 &7805445361352918816
 GameObject:
   m_ObjectHideFlags: 0

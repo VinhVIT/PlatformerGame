@@ -13,7 +13,9 @@ public class PlayerAbilityState : PlayerState
     private ParticleManager particleManager;
     protected PlayerStats PlayerStats => playerStats ?? core.GetCoreComponent(ref playerStats);
     private PlayerStats playerStats;
-    private bool isGrounded;
+    protected Combat Combat => combat ?? core.GetCoreComponent(ref combat);
+    private Combat combat;
+    protected bool isGrounded;
     protected bool isTouchingCeiling;
 
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)

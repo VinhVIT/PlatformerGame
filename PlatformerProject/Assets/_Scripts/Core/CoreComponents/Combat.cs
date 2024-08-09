@@ -50,6 +50,11 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
             Movement.CanSetVelocity = true;
         }
     }
+    public void ResetKnockbackState()
+    {
+        isKnockbackActive = false;
+        Movement.CanSetVelocity = true;
+    }
     public void SetCanDamage(bool value)
     {
         canDamage = value;

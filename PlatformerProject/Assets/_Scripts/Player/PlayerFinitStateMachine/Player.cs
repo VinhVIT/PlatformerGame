@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public PlayerRollState RollState { get; private set; }
     public PlayerTurnState TurnState { get; private set; }
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
+    public PlayerHurtState HurtState { get; private set; }
+    public PlayerKnockbackState KnockbackState { get; private set; }
     //Enviroment Action
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
@@ -70,6 +72,8 @@ public class Player : MonoBehaviour
         RollState = new PlayerRollState(this, StateMachine, playerData, "roll");
         TurnState = new PlayerTurnState(this, StateMachine, playerData, "turn");
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
+        HurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
+        KnockbackState = new PlayerKnockbackState(this, StateMachine, playerData, "knockback");
 
         //Enviroment Action
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");

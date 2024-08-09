@@ -9,6 +9,9 @@ public class PlayerStaminaUI : MonoBehaviour
     [SerializeField] private Slider staminaWheel;
     [SerializeField] private Slider usageWheel;
 
+    [SerializeField] private Color defaultColor = Color.green; // Default color
+    [SerializeField] private Color lowStaminaColor = Color.red; // Color when stamina is below 25%
+
     private Quaternion initialRotation;
     private float previousStaminaPercentage;
     private PlayerStats PlayerStats => playerStats ?? player.Core.GetCoreComponent(ref playerStats);
@@ -18,7 +21,7 @@ public class PlayerStaminaUI : MonoBehaviour
     {
         initialRotation = transform.rotation;
         previousStaminaPercentage = (float)PlayerStats.Stamina.CurrentValue / PlayerStats.Stamina.MaxValue;
-        UpdateStaminaUI(); // Ensure UI is updated on start
+        UpdateStaminaUI();
     }
 
     private void LateUpdate()
@@ -34,7 +37,7 @@ public class PlayerStaminaUI : MonoBehaviour
         }
         previousStaminaPercentage = staminaPercentage;
 
-        // Update UI visibility based on stamina
+        // Update UI visibility and color based on stamina
         UpdateStaminaUI();
 
         // Reset rotation
@@ -48,5 +51,15 @@ public class PlayerStaminaUI : MonoBehaviour
         // Show UI only when stamina is not full
         staminaWheel.gameObject.SetActive(staminaPercentage < 1f);
         usageWheel.gameObject.SetActive(staminaPercentage < 1f);
+
+        // Change color based on stamina percentage
+        if (staminaPercentage < 0.25f)
+        {
+            staminaWheel.fillRect.GetComponent<Image>().color = lowStaminaColor;
+        }
+        else
+        {
+            staminaWheel.fillRect.GetComponent<Image>().color = defaultColor;
+        }
     }
 }

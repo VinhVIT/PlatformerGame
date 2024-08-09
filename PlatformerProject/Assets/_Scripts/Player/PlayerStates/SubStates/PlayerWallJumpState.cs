@@ -13,7 +13,7 @@ public class PlayerWallJumpState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-        Movement.SetVelocityZero();
+        Movement?.SetVelocityZero();
         player.SetGravity(0f);
     }
 

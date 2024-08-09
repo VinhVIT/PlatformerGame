@@ -107,7 +107,9 @@ MonoBehaviour:
     knockbackAngle: {x: 1, y: 1}
   sprintSlideVelocity: 12
   healingAmount: 20
-  blockStamina: 30
+  knockbackStrength: 15
+  knockbackAngle: {x: 3, y: 4}
+  blockStamina: 40
   runStamina: 5
   slideStamina: 50
   dashStamina: 60

@@ -23,12 +23,12 @@ public class PlayerTurnState : PlayerGroundedState
 
         if (isAnimationFinished)
         {
-            Movement.Flip();
+            Movement?.Flip();
             stateMachine.ChangeState(player.IdleState);
         }
         else
         {
-            Movement.SetVelocityX(slideSpeed * Movement.FacingDirection);
+            Movement?.SetVelocityX(slideSpeed * Movement.FacingDirection);
             slideSpeed = Mathf.Lerp(slideSpeed, 0, playerData.turnSlideDeceleration * Time.deltaTime);
         }
     }

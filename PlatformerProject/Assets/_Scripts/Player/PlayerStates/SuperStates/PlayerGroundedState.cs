@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,12 +62,27 @@ public class PlayerGroundedState : PlayerState
         player.DashState.ResetCanDash();
         player.RollState.ResetCanRoll();
         player.BlockState.ResetCanBlock();
+
+        Combat.OnBeingAttacked += HandlerOnBeingAttacked;
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        Combat.OnBeingAttacked -= HandlerOnBeingAttacked;
+
+    }
+    private void HandlerOnBeingAttacked()
+    {
+        if (stateMachine.CurrentState != player.BlockState)
+        {
+            
+            stateMachine.ChangeState(player.HurtState);
+        }
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         GetInput();
 
         if (HandleAttack()) return;
@@ -75,6 +91,7 @@ public class PlayerGroundedState : PlayerState
         if (HandleJump()) return;
         if (HandleStateTransition()) return;
         if (HandleWallGrab()) return;
+        if (HandleBlock()) return;
         if (HandleDash()) return;
         if (HandleRoll()) return;
     }
@@ -126,7 +143,16 @@ public class PlayerGroundedState : PlayerState
         }
         return false;
     }
-
+    private bool HandleBlock()
+    {
+        if (blockInput && player.BlockState.CheckIfCanBlock()
+        && stateMachine.CurrentState != player.BlockState)
+        {
+            stateMachine.ChangeState(player.BlockState);
+            return true;
+        }
+        return false;
+    }
     private bool HandleBuff()
     {
         if (buffInput)

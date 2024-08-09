@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class PlayerAttackState : PlayerAbilityState
 {
-    protected Combat Combat => combat ?? core.GetCoreComponent(ref combat);
-    private Combat combat;
     private int xInput;
     protected int attackCounter;
     private float velocityToSet;
