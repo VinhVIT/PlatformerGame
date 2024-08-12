@@ -32,7 +32,7 @@ public class E1_LookForPlayerState : LookForPlayerState
 
         if (isPlayerInMinAgroRange)
         {
-            stateMachine.ChangeState(enemy.playerDetectedState);
+            stateMachine.ChangeState(enemy.PlayerDetectedState);
         }
         else if (isAllTurnsTimeDone)
         {

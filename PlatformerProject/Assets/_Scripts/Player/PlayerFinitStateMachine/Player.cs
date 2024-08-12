@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerHurtState HurtState { get; private set; }
     public PlayerKnockbackState KnockbackState { get; private set; }
+    public PlayerDeathState DeathState { get; private set; }
     //Enviroment Action
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
@@ -47,6 +48,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D RB { get; private set; }
     public Transform DashDirectionIndicator { get; private set; }
     public BoxCollider2D MovementCollider { get; private set; }
+    private Combat Combat => combat ?? Core.GetCoreComponent(ref combat);
+    private Combat combat;
     #endregion
 
     #region Other Variables
@@ -74,6 +77,7 @@ public class Player : MonoBehaviour
         CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         HurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
         KnockbackState = new PlayerKnockbackState(this, StateMachine, playerData, "knockback");
+        DeathState = new PlayerDeathState(this, StateMachine, playerData, "death");
 
         //Enviroment Action
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
@@ -134,6 +138,8 @@ public class Player : MonoBehaviour
     }
     public void SetGravity(float amount) => RB.gravityScale = amount;
     public void ResetGravity() => RB.gravityScale = originGravity;
+    public void ChangeLayer() => gameObject.layer = LayerMask.NameToLayer("NoCollisionWithEnemy");
+    public void ResetLayer() => gameObject.layer = LayerMask.NameToLayer("Player");
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     private void AnimationStartTrigger() => StateMachine.CurrentState.AnimationStartTrigger();
@@ -141,4 +147,17 @@ public class Player : MonoBehaviour
     private void AnimationTurnOffFlipTrigger() => StateMachine.CurrentState.AnimationTurnOffFlipTrigger();
     private void AnimationActionTrigger() => StateMachine.CurrentState.AnimationActionTrigger();
     #endregion
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Enemy"))
+        {
+            if (StateMachine.CurrentState == InAirState)
+            {
+                StateMachine.ChangeState(KnockbackState);
+            }
+            else
+                StateMachine.ChangeState(HurtState);
+            Combat.Damage(10);
+        }
+    }
 }

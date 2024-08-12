@@ -32,6 +32,7 @@ public class PlayerDashState : PlayerAbilityState
 
         player.DashDirectionIndicator.gameObject.SetActive(true);
 
+        player.ChangeLayer();
     }
 
     public override void Exit()
@@ -42,6 +43,7 @@ public class PlayerDashState : PlayerAbilityState
         {
             Movement?.SetVelocityY(Movement.CurrentVelocity.y * playerData.dashEndYMultiplier);
         }
+        player.ResetLayer();
     }
 
     public override void LogicUpdate()

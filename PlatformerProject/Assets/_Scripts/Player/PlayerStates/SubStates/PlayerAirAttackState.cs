@@ -44,6 +44,7 @@ public class PlayerAirAttackState : PlayerAttackState
         if (isDownWardAttack && CollisionSenses.Ground)
         {
             player.Anim.SetBool("downWardAttackHit", true);
+            player.ResetLayer();
         }
     }
     private void PerformDownWardAttack()
@@ -53,7 +54,11 @@ public class PlayerAirAttackState : PlayerAttackState
     public override void AnimationStartTrigger()
     {
         base.AnimationStartTrigger();
-        if (isDownWardAttack) player.SetGravity(20);
+        if (isDownWardAttack)
+        {
+            player.SetGravity(20);
+            player.ChangeLayer();
+        }
     }
     public void CheckIsDownWardAttack(float yInput)
     {

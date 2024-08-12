@@ -18,6 +18,7 @@ public class PlayerLightCutAttackState : PlayerAttackState
         base.Enter();
         Movement?.SetVelocityZero();
         canSetLightCutAttack = true;
+        player.ChangeLayer();
     }
 
     public override void LogicUpdate()
@@ -42,6 +43,7 @@ public class PlayerLightCutAttackState : PlayerAttackState
     {
         base.Exit();
         player.Anim.SetBool("lightCutAttack", false);
+        player.ResetLayer();
     }
 
     public override void AnimationTrigger()
@@ -55,7 +57,6 @@ public class PlayerLightCutAttackState : PlayerAttackState
         yield return new WaitForSeconds(playerData.pushDuration);
         Movement?.SetVelocityX(0f);
     }
-    //TODO: ADD DAMAGE TO PROJECTILE
     private IEnumerator SpawnProjectTile()
     {
         yield return new WaitForSeconds(0.1f);

@@ -39,7 +39,7 @@ public class E2_PlayerDetectedState : PlayerDetectedState
             }
             else
             {
-                stateMachine.ChangeState(enemy.meleeAttackState);
+                stateMachine.ChangeState(enemy.MeleeAttackState);
             }            
         }
         else if (performLongRangeAction)

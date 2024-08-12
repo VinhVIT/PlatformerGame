@@ -64,18 +64,26 @@ public class PlayerGroundedState : PlayerState
         player.BlockState.ResetCanBlock();
 
         Combat.OnBeingAttacked += HandlerOnBeingAttacked;
+        PlayerStats.Health.OnCurrentValueZero += HandlerOnCurrentValueZero;
     }
+
+    private void HandlerOnCurrentValueZero()
+    {
+        stateMachine.ChangeState(player.DeathState);
+    }
+
     public override void Exit()
     {
         base.Exit();
         Combat.OnBeingAttacked -= HandlerOnBeingAttacked;
+        PlayerStats.Health.OnCurrentValueZero -= HandlerOnCurrentValueZero;
 
     }
     private void HandlerOnBeingAttacked()
     {
         if (stateMachine.CurrentState != player.BlockState)
         {
-            
+
             stateMachine.ChangeState(player.HurtState);
         }
     }

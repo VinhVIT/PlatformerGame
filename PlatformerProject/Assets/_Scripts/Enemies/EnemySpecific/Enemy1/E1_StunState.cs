@@ -34,11 +34,11 @@ public class E1_StunState : StunState
         {
             if (performCloseRangeAction)
             {
-                stateMachine.ChangeState(enemy.meleeAttackState);
+                stateMachine.ChangeState(enemy.MeleeAttackState);
             }
             else if (isPlayerInMinAgroRange)
             {
-                stateMachine.ChangeState(enemy.chargeState);
+                stateMachine.ChangeState(enemy.ChargeState);
             }
             else
             {

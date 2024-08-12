@@ -39,7 +39,7 @@ public class E2_RangedAttackState : RangedAttackState
         {
             if (isPlayerInMinAgroRange)
             {
-                stateMachine.ChangeState(enemy.playerDetectedState);
+                stateMachine.ChangeState(enemy.PlayerDetectedState);
             }
             else
             {

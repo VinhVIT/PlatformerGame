@@ -32,7 +32,7 @@ public class E2_IdleState : IdleState
 
         if (isPlayerInMinAgroRange)
         {
-            stateMachine.ChangeState(enemy.playerDetectedState);
+            stateMachine.ChangeState(enemy.PlayerDetectedState);
         }
         else if (isIdleTimeOver)
         {

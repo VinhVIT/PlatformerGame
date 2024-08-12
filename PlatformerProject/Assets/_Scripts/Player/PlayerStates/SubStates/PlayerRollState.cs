@@ -18,10 +18,12 @@ public class PlayerRollState : PlayerAbilityState
 
         CanRoll = false;
         rollDirection = Vector2.right * Movement.FacingDirection;
-
+        
         Time.timeScale = .75f;
         startTime = Time.unscaledTime;
         Movement?.SetVelocity(playerData.rollVelocity, rollDirection);
+
+        player.ChangeLayer();
 
         PlayerStats.Stamina.Decrease(playerData.slideStamina);
     }
@@ -50,6 +52,7 @@ public class PlayerRollState : PlayerAbilityState
     {
         base.Exit();
         Movement?.SetVelocityZero();
+        player.ResetLayer();
         lastRollTime = Time.time;
         Time.timeScale = 1f;
     }
