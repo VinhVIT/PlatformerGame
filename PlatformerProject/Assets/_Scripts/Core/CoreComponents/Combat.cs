@@ -17,6 +17,7 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
     private ParticleManager particleManager;
 
     [SerializeField] private GameObject damageParticle;
+    [SerializeField] private bool canBeKnockback = true;
     [SerializeField] private float maxKnockbackTime = 0.2f;
     private bool isKnockbackActive;
     private bool canDamage = true;
@@ -37,10 +38,13 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
     }
     public void Knockback(Vector2 angle, float strength, int direction)
     {   
+        if (canBeKnockback)
+        {
         Movement?.SetVelocity(strength, angle, direction);
         Movement.CanSetVelocity = false;
         isKnockbackActive = true;
         knockbackStartTime = Time.unscaledTime;
+        }
     }
     private void CheckKnockback()
     {

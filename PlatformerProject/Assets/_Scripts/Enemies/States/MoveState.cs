@@ -9,8 +9,8 @@ public class MoveState : State
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
     protected bool isPlayerInMinAgroRange;
-
-    private Movement Movement => movement ?? core.GetCoreComponent(ref movement);
+    protected bool isPlayerInDetectionRange;
+    protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
     private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     private CollisionSenses collisionSenses;
@@ -30,6 +30,8 @@ public class MoveState : State
             isDetectingWall = CollisionSenses.WallFront;
         }
         isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInDetectionRange = entity.CheckPlayerInDetectionRange();
+
     }
 
     public override void Enter()

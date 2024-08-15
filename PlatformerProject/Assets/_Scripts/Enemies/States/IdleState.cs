@@ -10,7 +10,7 @@ public class IdleState : State
     protected bool flipAfterIdle;
     protected bool isIdleTimeOver;
     protected bool isPlayerInMinAgroRange;
-
+    protected bool isPlayerInDetectionRange;
     protected float idleTime;
 
     protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
@@ -25,6 +25,8 @@ public class IdleState : State
     {
         base.DoChecks();
         isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInDetectionRange = entity.CheckPlayerInDetectionRange();
+
     }
 
     public override void Enter()

@@ -8,6 +8,7 @@ public class LookForPlayerState : State
 
     protected bool turnImmediately;
     protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInDetectionRange;
     protected bool isAllTurnsDone;
     protected bool isAllTurnsTimeDone;
 
@@ -28,6 +29,8 @@ public class LookForPlayerState : State
         base.DoChecks();
 
         isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInDetectionRange = entity.CheckPlayerInDetectionRange();
+
     }
 
     public override void Enter()

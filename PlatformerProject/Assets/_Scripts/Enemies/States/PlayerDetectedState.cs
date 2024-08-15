@@ -8,11 +8,12 @@ public class PlayerDetectedState : State
 
     protected bool isPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
+    protected bool isPlayerInDetectionRange;
     protected bool performLongRangeAction;
     protected bool performCloseRangeAction;
     protected bool isDetectingLedge;
 
-    protected  Movement Movement => movement ?? core.GetCoreComponent(ref movement);
+    protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
     private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     private CollisionSenses collisionSenses;
@@ -24,11 +25,13 @@ public class PlayerDetectedState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        
+
         isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
         isDetectingLedge = CollisionSenses.LedgeVertical;
         performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+        isPlayerInDetectionRange = entity.CheckPlayerInDetectionRange();
+
     }
 
     public override void Enter()
@@ -47,7 +50,7 @@ public class PlayerDetectedState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Movement?.SetVelocityX(0f);
+        Movement?.SetVelocityZero();
 
         if (Time.time >= startTime + stateData.longRangeActionTime)
         {
@@ -57,6 +60,6 @@ public class PlayerDetectedState : State
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();        
+        base.PhysicsUpdate();
     }
 }

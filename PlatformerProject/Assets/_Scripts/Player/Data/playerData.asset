@@ -83,11 +83,11 @@ MonoBehaviour:
     type: 3}
   airAttackCounter: 2
   airAttackDetails:
-  - attackDamage: 2
+  - attackDamage: 10
     attackMovementSpeed: 0
     knockbackStrength: 0
     knockbackAngle: {x: 0, y: 0}
-  - attackDamage: 3
+  - attackDamage: 20
     attackMovementSpeed: 0
     knockbackStrength: 0
     knockbackAngle: {x: 0, y: 0}

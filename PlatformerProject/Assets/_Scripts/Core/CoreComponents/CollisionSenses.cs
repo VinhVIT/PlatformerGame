@@ -48,6 +48,7 @@ public class CollisionSenses : CoreComponent
 	[SerializeField] private Transform enemyCheck;
 	[SerializeField] private float groundCheckRadius;
 	[SerializeField] private float wallCheckDistance;
+	[SerializeField] private float ledgeCheckDistance;
 	[SerializeField] private float enemyCheckDistance;
 	[SerializeField] private LayerMask whatIsGround;
 	[SerializeField] private LayerMask whatCanDetected;
@@ -75,7 +76,7 @@ public class CollisionSenses : CoreComponent
 
 	public bool LedgeVertical
 	{
-		get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
+		get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, ledgeCheckDistance, whatIsGround);
 	}
 
 	public bool WallBack

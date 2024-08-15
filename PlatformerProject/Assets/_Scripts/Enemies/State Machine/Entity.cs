@@ -15,12 +15,11 @@ public class Entity : MonoBehaviour
 	public AnimationToStatemachine atsm { get; private set; }
 	public int lastDamageDirection { get; private set; }
 	public Core Core { get; private set; }
-
+	public Vector2 TargetPosition { get; private set; }
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private Transform ledgeCheck;
 	[SerializeField] private Transform playerCheck;
 	[SerializeField] private Transform groundCheck;
-
 	private float currentHealth;
 	private float currentStunResistance;
 	private float lastDamageTime;
@@ -60,6 +59,25 @@ public class Entity : MonoBehaviour
 	{
 		stateMachine.currentState.PhysicsUpdate();
 	}
+	public virtual bool CheckPlayerInDetectionRange()
+	{
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, entityData.detectionRadius, entityData.whatIsPlayer);
+
+		foreach (Collider2D collider in colliders)
+		{
+			Vector2 directionToCollider = collider.transform.position - transform.position;
+			float angle = Vector2.Angle(transform.right, directionToCollider);
+
+			//detect when first half circle range
+			if (angle <= 90f)
+			{
+				TargetPosition = collider.transform.position;
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	public virtual bool CheckPlayerInMinAgroRange()
 	{
@@ -92,12 +110,15 @@ public class Entity : MonoBehaviour
 	{
 		if (Core != null)
 		{
-			Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Movement.FacingDirection * entityData.wallCheckDistance));
+			Gizmos.DrawLine(wallCheck.position, wallCheck.position + (transform.right * Movement.FacingDirection * entityData.wallCheckDistance));
 			Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
-			Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
-			Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
-			Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
+			Gizmos.DrawWireSphere(playerCheck.position + (transform.right * entityData.closeRangeActionDistance), 0.2f);
+			Gizmos.DrawWireSphere(playerCheck.position + (transform.right * entityData.minAgroDistance), 0.2f);
+			Gizmos.DrawWireSphere(playerCheck.position + (transform.right * entityData.maxAgroDistance), 0.2f);
+
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireSphere(transform.position, entityData.detectionRadius);
 		}
 	}
 }

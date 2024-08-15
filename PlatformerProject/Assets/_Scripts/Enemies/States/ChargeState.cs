@@ -11,10 +11,10 @@ public class ChargeState : State
     protected bool isDetectingWall;
     protected bool isChargeTimeOver;
     protected bool performCloseRangeAction;
-
-    private  Movement Movement => movement ?? core.GetCoreComponent(ref movement);
+    protected bool isPlayerInDetectionRange;
+    protected Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
-    private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
+    protected CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     private CollisionSenses collisionSenses;
 
     public ChargeState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_ChargeState stateData) : base(etity, stateMachine, animBoolName)
@@ -31,6 +31,7 @@ public class ChargeState : State
         isDetectingWall = CollisionSenses.WallFront;
 
         performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+        isPlayerInDetectionRange = entity.CheckPlayerInDetectionRange();
     }
 
     public override void Enter()
@@ -51,7 +52,7 @@ public class ChargeState : State
         base.LogicUpdate();
         Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
 
-        if(Time.time >= startTime + stateData.chargeTime)
+        if (Time.time >= startTime + stateData.chargeTime)
         {
             isChargeTimeOver = true;
         }
