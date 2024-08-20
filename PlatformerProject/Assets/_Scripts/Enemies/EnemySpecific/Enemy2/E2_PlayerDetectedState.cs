@@ -33,9 +33,9 @@ public class E2_PlayerDetectedState : PlayerDetectedState
 
         if (performCloseRangeAction)
         {
-            if(Time.time >= enemy.dodgeState.startTime + enemy.dodgeStateData.dodgeCooldown)
+            if(Time.time >= enemy.DodgeState.startTime + enemy.dodgeStateData.dodgeCooldown)
             {
-                stateMachine.ChangeState(enemy.dodgeState);
+                stateMachine.ChangeState(enemy.DodgeState);
             }
             else
             {

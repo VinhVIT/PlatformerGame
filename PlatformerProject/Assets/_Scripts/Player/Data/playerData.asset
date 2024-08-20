@@ -41,7 +41,7 @@ MonoBehaviour:
   drag: 10
   dashEndYMultiplier: 0.2
   distBetweenAfterImages: 0.5
-  rollCooldown: 0
+  rollCooldown: 1
   rollTime: 0.5
   rollVelocity: 14
   crouchMovementVelocity: 5

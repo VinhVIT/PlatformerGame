@@ -6,14 +6,34 @@ using UnityEngine;
 public class BaseProjectTile : MonoBehaviour
 {
     [SerializeField] private AttackDetails attackDetails;
+    protected Animator anim;
+    protected Rigidbody2D rb;
     private List<IDamageable> detectedDamageables = new List<IDamageable>();
     private List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
-    void OnTriggerEnter2D(Collider2D collision)
+    private bool hasDealtDamage = false;
+    protected virtual void Awake()
+    {
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+    protected virtual void Start()
+    {
+        rb.velocity = transform.right * attackDetails.attackMovementSpeed;
+    }
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         AddToDetected(collision);
         CheckAttack();
     }
-    void OnTriggerExit2D(Collider2D collision)
+    protected virtual void Update()
+    {
+
+    }
+    protected virtual void FixedUpdate()
+    {
+        
+    }
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         RemoveFromDetected(collision);
     }
@@ -33,6 +53,7 @@ public class BaseProjectTile : MonoBehaviour
     }
     private void RemoveFromDetected(Collider2D collision)
     {
+
         IDamageable damageable = collision.GetComponent<IDamageable>();
         if (damageable != null)
         {
@@ -50,8 +71,11 @@ public class BaseProjectTile : MonoBehaviour
 
         foreach (IDamageable item in detectedDamageables.ToList())
         {
-            item.Damage(attackDetails.attackDamage);
-
+            if (!hasDealtDamage)
+            {
+                item.Damage(attackDetails.attackDamage);
+                hasDealtDamage = true;
+            }
         }
         foreach (IKnockbackable item in detectedKnockbackables.ToList())
         {

@@ -60,9 +60,7 @@ public class PlayerLightCutAttackState : PlayerAttackState
     private IEnumerator SpawnProjectTile()
     {
         yield return new WaitForSeconds(0.1f);
-        float projectileVelocity = 20f;
+
         GameObject projectile = GameObject.Instantiate(playerData.projectTile, player.transform.position + player.transform.right * 1.5f, player.transform.rotation);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = player.transform.right * projectileVelocity;
     }
 }

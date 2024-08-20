@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8028105860886730601}
   - component: {fileID: 7392649484905285502}
   - component: {fileID: 6260958877165081234}
-  - component: {fileID: 8963607360187238404}
   - component: {fileID: -5578753490750987233}
-  m_Layer: 0
+  - component: {fileID: 2155234291273232153}
+  m_Layer: 11
   m_Name: HollyWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,23 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a80112fba72c3c4eb8921339761dd43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8963607360187238404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520525365201432645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef0be5410cdf65442968adb1bdcb9e9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDetails:
-    attackDamage: 5
-    attackMovementSpeed: 0
-    knockbackStrength: 0
-    knockbackAngle: {x: 0, y: 0}
 --- !u!61 &-5578753490750987233
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210,3 +193,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1228263, y: 0.32204664}
   m_EdgeRadius: 0
+--- !u!114 &2155234291273232153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520525365201432645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878edaa7f1724d045aa3a23536558291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDetails:
+    attackDamage: 5
+    attackMovementSpeed: 20
+    knockbackStrength: 0
+    knockbackAngle: {x: 0, y: 0}

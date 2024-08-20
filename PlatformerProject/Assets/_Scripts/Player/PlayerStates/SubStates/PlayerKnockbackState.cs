@@ -10,7 +10,9 @@ public class PlayerKnockbackState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
+        player.ChangeLayer();
         Combat?.Knockback(playerData.knockbackAngle, playerData.knockbackStrength, -Movement.FacingDirection);
+
     }
     public override void Exit()
     {
@@ -31,6 +33,7 @@ public class PlayerKnockbackState : PlayerAbilityState
     {
         base.AnimationFinishTrigger();
         isAbilityDone = true;
+        player.ResetLayer();
     }
     private IEnumerator ResetKnockbackOnGround()
     {

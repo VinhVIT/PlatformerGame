@@ -11,7 +11,7 @@ public class Enemy2 : Entity
     public E2_LookForPlayerState lookForPlayerState { get; private set; }
     public E2_StunState StunState { get; private set; }
     public E2_DeadState DeadState { get; private set; }
-    public E2_DodgeState dodgeState { get; private set; }
+    public E2_DodgeState DodgeState { get; private set; }
     public E2_RangedAttackState rangedAttackState { get; private set; }
 
     [SerializeField] private D_MoveState moveStateData;
@@ -38,7 +38,7 @@ public class Enemy2 : Entity
         lookForPlayerState = new E2_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
         StunState = new E2_StunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new E2_DeadState(this, stateMachine, "dead", deadStateData, this);
-        dodgeState = new E2_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
+        DodgeState = new E2_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
         rangedAttackState = new E2_RangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
 
     }
