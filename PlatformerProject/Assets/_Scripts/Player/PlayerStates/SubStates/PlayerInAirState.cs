@@ -253,7 +253,7 @@ public class PlayerInAirState : PlayerState
     }
     private void ResetSprintJump()
     {
-        if (dashInput || attackInput || CollisionSenses.Ground)
+        if (dashInput || attackInput )
         {
             player.Anim.SetBool("resetSprintJump", true);
             player.Anim.SetBool("sprintJump", false);

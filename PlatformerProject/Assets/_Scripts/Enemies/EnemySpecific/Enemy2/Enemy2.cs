@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy2 : Entity
 {
@@ -40,14 +38,13 @@ public class Enemy2 : Entity
         DeadState = new E2_DeadState(this, stateMachine, "dead", deadStateData, this);
         DodgeState = new E2_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
         rangedAttackState = new E2_RangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
-
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         stateMachine.Initialize(moveState);
     }
-
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

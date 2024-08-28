@@ -22,7 +22,20 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
     private bool isKnockbackActive;
     private bool canDamage = true;
     private float knockbackStartTime;
-
+    [Space]
+    [Header("Damage Flash")]
+    [ColorUsage(true, true)]
+    [SerializeField] private Color flashColor = Color.white;
+    [SerializeField] private float flashDuration = .25f;
+    [SerializeField] private AnimationCurve flashSpeedCurve;
+    private SpriteRenderer sr;
+    private Material material;
+    protected override void Awake()
+    {
+        base.Awake();
+        sr = transform.parent.parent.GetComponent<SpriteRenderer>();
+        material = sr.material;
+    }
     public override void LogicUpdate()
     {
         CheckKnockback();
@@ -32,18 +45,23 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
         if (canDamage)
         {
             Stats?.Health.Decrease(amount);
+            Debug.Log(amount);
+            ParticleManager?.StartParicleWithRandomRotation(damageParticle);
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(DamageFlasher());
+            }
         }
         OnBeingAttacked?.Invoke();
-        // ParticleManager?.StartParicleWithRandomRotation(damageParticle);
     }
     public void Knockback(Vector2 angle, float strength, int direction)
-    {   
+    {
         if (canBeKnockback)
         {
-        Movement?.SetVelocity(strength, angle, direction);
-        Movement.CanSetVelocity = false;
-        isKnockbackActive = true;
-        knockbackStartTime = Time.unscaledTime;
+            Movement?.SetVelocity(strength, angle, direction);
+            Movement.CanSetVelocity = false;
+            isKnockbackActive = true;
+            knockbackStartTime = Time.unscaledTime;
         }
     }
     private void CheckKnockback()
@@ -62,5 +80,18 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
     public void SetCanDamage(bool value)
     {
         canDamage = value;
+    }
+    private IEnumerator DamageFlasher()
+    {
+        material.SetColor("_FlashColor", flashColor);
+        float elapsedTime = 0f;
+        while (elapsedTime < flashDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float currentFlashAmount = Mathf.Lerp(1f, flashSpeedCurve.Evaluate(elapsedTime), (elapsedTime / flashDuration));
+            material.SetFloat("_FlashAmount", currentFlashAmount);
+
+            yield return null;
+        }
     }
 }

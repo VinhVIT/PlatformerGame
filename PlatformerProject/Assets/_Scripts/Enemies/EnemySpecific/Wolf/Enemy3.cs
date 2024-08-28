@@ -40,8 +40,9 @@ public class Enemy3 : Entity
 
 
     }
-    private void Start()
-    {
+    public override void Start()
+    {   
+        base.Start();
         stateMachine.Initialize(MoveState);
     }
 

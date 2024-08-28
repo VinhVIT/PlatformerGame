@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OakWoodScene.unity
     guid: 581c786d187e4fe42a90ccf5fee87df3
+  - enabled: 1
+    path: Assets/Scenes/BeginingMineScene.unity
+    guid: 779f6091c00e24a469e687c21d0c668f
   m_configObjects: {}

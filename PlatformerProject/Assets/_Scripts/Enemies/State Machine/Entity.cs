@@ -1,31 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
 	private Movement Movement => movement ?? Core.GetCoreComponent(ref movement);
 	private Movement movement;
+	protected Combat Combat => combat ?? Core.GetCoreComponent(ref combat);
+	private Combat combat;
 
 	public FiniteStateMachine stateMachine;
-
 	public D_Entity entityData;
-
 	public Animator anim { get; private set; }
 	public AnimationToStatemachine atsm { get; private set; }
 	public int lastDamageDirection { get; private set; }
 	public Core Core { get; private set; }
 	public Vector2 TargetPosition { get; private set; }
+
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private Transform ledgeCheck;
 	[SerializeField] private Transform playerCheck;
 	[SerializeField] private Transform groundCheck;
-	private float currentHealth;
 	private float currentStunResistance;
 	private float lastDamageTime;
-
 	private Vector2 velocityWorkspace;
-
 	protected bool isStunned;
 	protected bool isDead;
 
@@ -33,7 +32,6 @@ public class Entity : MonoBehaviour
 	{
 		Core = GetComponentInChildren<Core>();
 
-		currentHealth = entityData.maxHealth;
 		currentStunResistance = entityData.stunResistance;
 
 		anim = GetComponent<Animator>();
@@ -41,7 +39,17 @@ public class Entity : MonoBehaviour
 
 		stateMachine = new FiniteStateMachine();
 	}
+	public virtual void Start()
+	{
+		Combat.OnBeingAttacked += OnBeingAttackHandler;
+	}
+	private void OnBeingAttackHandler()
+	{
+		CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
+		if (impulseSource == null) return;
 
+		CameraManager.instance.Shake(impulseSource, transform.position);
+	}
 	public virtual void Update()
 	{
 		Core.LogicUpdate();
@@ -78,15 +86,22 @@ public class Entity : MonoBehaviour
 
 		return false;
 	}
-
 	public virtual bool CheckPlayerInMinAgroRange()
 	{
-		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+		Vector2 boxSize = new Vector2(entityData.minAgroDistance, entityData.agroSize);
+
+		Vector2 boxCenter = (Vector2)playerCheck.position + (Vector2)transform.right * (entityData.minAgroDistance / 2);
+
+		return Physics2D.OverlapBox(boxCenter, boxSize, 0f, entityData.whatIsPlayer);
 	}
 
 	public virtual bool CheckPlayerInMaxAgroRange()
 	{
-		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
+		Vector2 boxSize = new Vector2(entityData.maxAgroDistance, entityData.agroSize);
+
+		Vector2 boxCenter = (Vector2)playerCheck.position + (Vector2)transform.right * (entityData.maxAgroDistance / 2);
+
+		return Physics2D.OverlapBox(boxCenter, boxSize, 0f, entityData.whatIsPlayer);
 	}
 
 	public virtual bool CheckPlayerInCloseRangeAction()
@@ -113,11 +128,13 @@ public class Entity : MonoBehaviour
 			Gizmos.DrawLine(wallCheck.position, wallCheck.position + (transform.right * Movement.FacingDirection * entityData.wallCheckDistance));
 			Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
-			Gizmos.DrawWireSphere(playerCheck.position + (transform.right * entityData.closeRangeActionDistance), 0.2f);
-			Gizmos.DrawWireSphere(playerCheck.position + (transform.right * entityData.minAgroDistance), 0.2f);
-			Gizmos.DrawWireSphere(playerCheck.position + (transform.right * entityData.maxAgroDistance), 0.2f);
+			Vector2 minAgroBoxCenter = (Vector2)playerCheck.position + (Vector2)transform.right * (entityData.minAgroDistance / 2);
+			Vector2 minAgroBoxSize = new Vector2(entityData.minAgroDistance, entityData.agroSize); 
+			Gizmos.DrawWireCube(minAgroBoxCenter, minAgroBoxSize);
 
-			Gizmos.DrawWireSphere(transform.position, entityData.detectionRadius);
+			Vector2 maxAgroBoxCenter = (Vector2)playerCheck.position + (Vector2)transform.right * (entityData.maxAgroDistance / 2);
+			Vector2 maxAgroBoxSize = new Vector2(entityData.maxAgroDistance, entityData.agroSize);
+			Gizmos.DrawWireCube(maxAgroBoxCenter, maxAgroBoxSize);
 		}
 	}
 }

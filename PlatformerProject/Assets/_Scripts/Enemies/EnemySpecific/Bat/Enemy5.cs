@@ -39,8 +39,9 @@ public class Enemy5 : Entity
 
 
     }
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         stateMachine.Initialize(MoveState);
     }
 
@@ -48,6 +49,7 @@ public class Enemy5 : Entity
     {
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+        Gizmos.DrawWireSphere(transform.position, entityData.detectionRadius);
     }
 
 }

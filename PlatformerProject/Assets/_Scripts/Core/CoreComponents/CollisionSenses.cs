@@ -46,9 +46,9 @@ public class CollisionSenses : CoreComponent
 	[SerializeField] private Transform ledgeCheckVertical;
 	[SerializeField] private Transform ceilingCheck;
 	[SerializeField] private Transform enemyCheck;
-	[SerializeField] private float groundCheckRadius;
-	[SerializeField] private float wallCheckDistance;
-	[SerializeField] private float ledgeCheckDistance;
+	[SerializeField] private float groundCheckRadius = .3f;
+	[SerializeField] private float wallCheckDistance = .3f;
+	[SerializeField] private float ledgeCheckDistance = .3f;
 	[SerializeField] private float enemyCheckDistance;
 	[SerializeField] private LayerMask whatIsGround;
 	[SerializeField] private LayerMask whatCanDetected;

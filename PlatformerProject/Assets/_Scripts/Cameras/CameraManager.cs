@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager instance;
-    [SerializeField] private CinemachineVirtualCamera[] allVirtualCameras;
+    private List<CinemachineVirtualCamera> allVirtualCameras = new List<CinemachineVirtualCamera>();
     [Header("Controls for lerping the Y Damping during player jump/fall")]
     [SerializeField] private float _fallPanAmount = 0.25f;
     [SerializeField] private float _fallYPanTime = 0.35f;
@@ -21,28 +21,39 @@ public class CameraManager : MonoBehaviour
     private float _normYPanAmount;
     private Vector2 _startingTrackedObjectOffset;
     private CinemachineConfiner2D _confiner;
+
+    [Space]
+    [Header("Screen Shake")]
+    [SerializeField] private float shakeForce = 1f;
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
-        for (int i = 0; i < allVirtualCameras.Length; i++)
-        {
-            if (allVirtualCameras[i].enabled)
-            {
-                // set the current active camera
-                _currentCamera = allVirtualCameras[i];
-                // set the framing transposer
-                _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-                _confiner = _currentCamera.GetComponent<CinemachineConfiner2D>();
-            }
-        }
+        FindAllCamerasInScene();
         //set YDaming so it base on Inspector value
         _normYPanAmount = _framingTransposer.m_YDamping;
 
         //set starting pos of the tracked object offset
         _startingTrackedObjectOffset = _framingTransposer.m_TrackedObjectOffset;
+    }
+    private void FindAllCamerasInScene()
+    {
+        // Find all virtual cameras in the current scene and add them to the list
+        allVirtualCameras.AddRange(FindObjectsOfType<CinemachineVirtualCamera>());
+
+        // Set the initial current camera, framing transposer, and confiner
+        foreach (CinemachineVirtualCamera vcam in allVirtualCameras)
+        {
+            if (vcam.enabled)
+            {
+                _currentCamera = vcam;
+                _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+                _confiner = _currentCamera.GetComponent<CinemachineConfiner2D>();
+                break;
+            }
+        }
     }
     private void Start()
     {
@@ -52,7 +63,7 @@ public class CameraManager : MonoBehaviour
 
     private void AreaTrigger_OnMapChange(Collider2D mapBound)
     {
-         _confiner.m_BoundingShape2D = mapBound;
+        _confiner.m_BoundingShape2D = mapBound;
     }
 
     #region Lerp the Y Damping
@@ -169,7 +180,14 @@ public class CameraManager : MonoBehaviour
         }
     }
     #endregion
-    void OnDestroy()
+    #region Shake Camera
+    public void Shake(CinemachineImpulseSource impulseSource, Vector2 direction)
     {
+        if (impulseSource == null)
+        {
+            Debug.Log("null");
+        }
+        impulseSource.GenerateImpulseWithVelocity(-direction * shakeForce);
     }
+    #endregion
 }

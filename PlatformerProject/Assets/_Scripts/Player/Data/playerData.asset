@@ -110,7 +110,7 @@ MonoBehaviour:
   knockbackStrength: 15
   knockbackAngle: {x: 3, y: 4}
   blockStamina: 40
-  runStamina: 5
+  runStamina: 0
   slideStamina: 50
   dashStamina: 60
   airAttackStamina: 25

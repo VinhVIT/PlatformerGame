@@ -24,7 +24,7 @@ public class PlayerRunState : PlayerGroundedState
         base.LogicUpdate();
         runningTime += Time.deltaTime;
 
-        PlayerStats.Stamina.ContinuousDecrease(5, .1f);
+        PlayerStats.Stamina.ContinuousDecrease(playerData.runStamina, .1f);
 
         if (!runInput || PlayerStats.Stamina.CurrentValue <= 0)
         {

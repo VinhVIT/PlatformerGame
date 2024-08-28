@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollowObject : MonoBehaviour
-{   
+{
     public static CameraFollowObject Instance;
     [Header("References")]
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [Header("Flip Rotation Stats")]
     [SerializeField] private float flipRotationTime = 8.0f;
     private Coroutine turnCoroutine;
@@ -14,9 +14,11 @@ public class CameraFollowObject : MonoBehaviour
     private bool isFacingRight;
 
     private void Awake()
-    {   
+    {
         Instance = this;
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Movement>();
+
+        player = GameObject.Find("Player");
+        playerMovement = player.GetComponentInChildren<Movement>();
         isFacingRight = playerMovement.FacingDirection != 1;
     }
 
