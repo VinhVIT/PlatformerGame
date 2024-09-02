@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Enemy2 : Entity
 {
+    private Stats Stats => stats ?? Core.GetCoreComponent(ref stats);
+    private Stats stats;
+
     public E2_MoveState moveState { get; private set; }
     public E2_IdleState idleState { get; private set; }
     public E2_PlayerDetectedState PlayerDetectedState { get; private set; }
@@ -44,7 +48,15 @@ public class Enemy2 : Entity
     {
         base.Start();
         stateMachine.Initialize(moveState);
+        Stats.Health.OnCurrentValueZero += OnHealthZero;
     }
+
+    private void OnHealthZero()
+    {
+        stateMachine.ChangeState(DeadState);
+    }
+
+
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

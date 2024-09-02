@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy1 : Entity
-{
+{   
+    private Stats Stats => stats ?? Core.GetCoreComponent(ref stats);
+    private Stats stats;
+
     public E1_IdleState idleState { get; private set; }
     public E1_MoveState moveState { get; private set; }
     public E1_PlayerDetectedState PlayerDetectedState { get; private set; }
@@ -22,7 +25,6 @@ public class Enemy1 : Entity
     [SerializeField]private D_StunState stunStateData;
     [SerializeField]private D_DeadState deadStateData;
 
-
     [SerializeField]
     private Transform meleeAttackPosition;
 
@@ -39,12 +41,18 @@ public class Enemy1 : Entity
         StunState = new E1_StunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new E1_DeadState(this, stateMachine, "dead", deadStateData, this);
 
-
     }
+
     public override void Start()
-    {   
+    {
         base.Start();
         stateMachine.Initialize(moveState);
+        Stats.Health.OnCurrentValueZero += OnHealthZero;
+    }
+
+    private void OnHealthZero()
+    {
+        stateMachine.ChangeState(DeadState);
     }
 
     public override void OnDrawGizmos()

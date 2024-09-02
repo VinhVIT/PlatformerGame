@@ -23,6 +23,8 @@ public class PlayerData : ScriptableObject
     public float coyoteTime = 0.2f;
     public float minFallSpeed = -20f;
     public float fallSpeedDampingFactor = 0.75f;
+    public float fallGravity = 8f;
+    public float highFallTimeThreshold = 1f;
     public float variableJumpHeightMultiplier = 0.5f;
     [Header("Wall Slide State")]
     public float wallSlideVelocity = 2f;
@@ -122,6 +124,10 @@ public class PlayerData : ScriptableObject
     public int slideStamina = 50;
     public int dashStamina = 60;
     public int airAttackStamina = 25;
+    [Header("Energy Consume Amount")]
+    public int holySlashEnergy = 10;
+    public int lightCutEnergy = 5;
+    public int healEnergy = 20;
     [Header("Particle Prefabs")]
     public GameObject dustJumpParticle;
     public GameObject dustFallParticle;

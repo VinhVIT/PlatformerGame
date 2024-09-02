@@ -129,12 +129,14 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.GroundAttackState);
             return true;
         }
-        else if (yInput > 0 && attackInput && !isTouchingCeiling)
+        else if (yInput > 0 && attackInput && !isTouchingCeiling
+        && PlayerStats.Energy.EnoughToUse(playerData.holySlashEnergy))
         {
             stateMachine.ChangeState(player.HolySlashState);
             return true;
         }
-        else if (yInput < 0 && attackInput && !isTouchingCeiling)
+        else if (yInput < 0 && attackInput && !isTouchingCeiling
+         && PlayerStats.Energy.EnoughToUse(playerData.lightCutEnergy))
         {
             stateMachine.ChangeState(player.LightCutAttackState);
             return true;
@@ -144,7 +146,7 @@ public class PlayerGroundedState : PlayerState
 
     private bool HandleHeal()
     {
-        if (healInput)
+        if (healInput && PlayerStats.Energy.EnoughToUse(playerData.healEnergy))
         {
             stateMachine.ChangeState(player.HealState);
             return true;

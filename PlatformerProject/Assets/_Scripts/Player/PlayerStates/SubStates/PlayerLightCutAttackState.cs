@@ -52,6 +52,11 @@ public class PlayerLightCutAttackState : PlayerAttackState
         base.AnimationTrigger();
         player.StartCoroutine(SpawnProjectTile());
     }
+    public override void AnimationFinishTrigger()
+    {
+        base.AnimationFinishTrigger();
+        PlayerStats.Energy.Decrease(playerData.lightCutEnergy);
+    }
     private IEnumerator StoppushAfterDuration()
     {
         yield return new WaitForSeconds(playerData.pushDuration);
@@ -60,7 +65,6 @@ public class PlayerLightCutAttackState : PlayerAttackState
     private IEnumerator SpawnProjectTile()
     {
         yield return new WaitForSeconds(0.1f);
-
-        GameObject projectile = GameObject.Instantiate(playerData.projectTile, player.transform.position + player.transform.right * 1.5f, player.transform.rotation);
+        Object.Instantiate(playerData.projectTile, player.transform.position + player.transform.right * 1.5f, player.transform.rotation);
     }
 }

@@ -381,7 +381,7 @@ Transform:
   - {fileID: 1256898194}
   - {fileID: 2081268296}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &102671457
 MonoBehaviour:
@@ -1155,7 +1155,7 @@ Transform:
   - {fileID: 169812842}
   - {fileID: 420384461}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &218347856
 MonoBehaviour:
@@ -1577,7 +1577,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &256375644
 GameObject:
@@ -1936,7 +1936,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2090695731
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 1.0208334, y: 1.4, z: 0}
@@ -3342,7 +3342,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1667960627
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3588,6 +3588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
+    currentValue: 0
 --- !u!1 &455325588
 GameObject:
   m_ObjectHideFlags: 0
@@ -3904,7 +3905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &525037472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4107,7 +4108,7 @@ Transform:
   - {fileID: 1994964300}
   - {fileID: 1249420638}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &525037479
 MonoBehaviour:
@@ -4208,7 +4209,7 @@ Transform:
   - {fileID: 430065877}
   - {fileID: 1002521255}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &595850049
 GameObject:
@@ -4518,7 +4519,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &667627521
 GameObject:
@@ -4843,7 +4844,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &711244780
 GameObject:
@@ -5132,7 +5133,7 @@ Transform:
   - {fileID: 941194292}
   - {fileID: 2092184072}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &749301152
 MonoBehaviour:
@@ -5244,7 +5245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755724524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6123447, y: 13.58494, z: -10}
+  m_LocalPosition: {x: -19.987667, y: 14.59, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5332,7 +5333,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16311
+    m_Bits: 32695
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5521,7 +5522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &807175655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5686,7 +5687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807175653}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.3, y: 19.08, z: 0}
+  m_LocalPosition: {x: -15.24, y: 19.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5695,7 +5696,7 @@ Transform:
   - {fileID: 1517657067}
   - {fileID: 668579327}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &807175661
 MonoBehaviour:
@@ -5974,7 +5975,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &889028972
 GameObject:
@@ -6022,8 +6023,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 100
+    currentValue: 0
   <Stamina>k__BackingField:
     <MaxValue>k__BackingField: 100
+    currentValue: 0
+  <Energy>k__BackingField:
+    <MaxValue>k__BackingField: 100
+    currentValue: 0
   staminaRecoveryRate: 2
   staminaRecoveryDelay: 1
 --- !u!1 &902706438
@@ -6060,7 +6066,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &902706440
 MonoBehaviour:
@@ -6753,7 +6759,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1667960627
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -7531,7 +7537,7 @@ Transform:
   - {fileID: 1596930988}
   - {fileID: 267769248}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1182100965
 MonoBehaviour:
@@ -7866,10 +7872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d2b71582c272c48ad4abe39b61957d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allVirtualCameras:
-  - {fileID: 942756212}
-  - {fileID: 595850052}
-  - {fileID: 2141024434}
   _fallPanAmount: 0.25
   _fallYPanTime: 0.35
   fallSpeedYDampingChangeThreshold: -10
@@ -7982,6 +7984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
+    currentValue: 0
 --- !u!1 &1288557159
 GameObject:
   m_ObjectHideFlags: 0
@@ -8734,6 +8737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
+    currentValue: 0
 --- !u!1 &1688050427
 GameObject:
   m_ObjectHideFlags: 0
@@ -9052,6 +9056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
+    currentValue: 0
 --- !u!1 &1782449055
 GameObject:
   m_ObjectHideFlags: 0
@@ -9098,6 +9103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
+    currentValue: 0
 --- !u!1 &1851499650
 GameObject:
   m_ObjectHideFlags: 0
@@ -9188,6 +9194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 100
+    currentValue: 0
 --- !u!1 &1872660487
 GameObject:
   m_ObjectHideFlags: 0
@@ -9510,7 +9517,7 @@ Transform:
   - {fileID: 1068465724}
   - {fileID: 1376620935}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1894853405
 MonoBehaviour:
@@ -9958,7 +9965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c3a6a04f3e453419ded26427258342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 218347852}
   flipRotationTime: 0.5
 --- !u!4 &2018961521
 Transform:
@@ -9973,7 +9979,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2053908760
 GameObject:
@@ -10261,7 +10267,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2136538135
 GameObject:
@@ -10502,7 +10508,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1667960627
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

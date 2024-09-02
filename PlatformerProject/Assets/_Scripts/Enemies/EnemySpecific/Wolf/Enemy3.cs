@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy3 : Entity
-{
+{   
+    private Stats Stats => stats ?? Core.GetCoreComponent(ref stats);
+    private Stats stats;
     public E3_IdleState IdleState { get; private set; }
     public E3_MoveState MoveState { get; private set; }
     public E3_PlayerDetectedState PlayerDetectedState { get; private set; }
@@ -38,14 +41,18 @@ public class Enemy3 : Entity
         StunState = new E3_StunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new E3_DeadState(this, stateMachine, "dead", deadStateData, this);
 
-
     }
     public override void Start()
-    {   
+    {
         base.Start();
         stateMachine.Initialize(MoveState);
+        Stats.Health.OnCurrentValueZero += OnHealthZero;
     }
 
+    private void OnHealthZero()
+    {
+        stateMachine.ChangeState(DeadState);
+    }
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

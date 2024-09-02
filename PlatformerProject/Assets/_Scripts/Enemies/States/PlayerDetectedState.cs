@@ -50,7 +50,7 @@ public class PlayerDetectedState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Movement?.SetVelocityZero();
+        Movement?.SetVelocityX(0);
 
         if (Time.time >= startTime + stateData.longRangeActionTime)
         {

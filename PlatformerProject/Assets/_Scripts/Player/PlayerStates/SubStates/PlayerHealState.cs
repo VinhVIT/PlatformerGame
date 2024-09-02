@@ -34,6 +34,7 @@ public class PlayerHealState : PlayerGroundedState
     {
         base.AnimationFinishTrigger();
         PlayerStats.Health.Increase(playerData.healingAmount);
+        PlayerStats.Energy.Decrease(playerData.healEnergy);
         stateMachine.ChangeState(player.IdleState);
     }
 }

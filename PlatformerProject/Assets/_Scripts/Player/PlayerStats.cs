@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStats : Stats
 {
     [field: SerializeField] public Stat Stamina { get; private set; }
+    [field: SerializeField] public Stat Energy { get; private set; }
     [SerializeField] private int staminaRecoveryRate = 5;
     [SerializeField] private float staminaRecoveryDelay = 2f;
 
@@ -13,6 +14,7 @@ public class PlayerStats : Stats
     {
         base.Awake();
         Stamina.Init();
+        Energy.InitZero();
     }
 
     private void Update()

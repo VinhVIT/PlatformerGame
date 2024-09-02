@@ -25,6 +25,7 @@ public class PlayerHolySlashState : PlayerAttackState
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
+        PlayerStats.Energy.Decrease(playerData.holySlashEnergy);
         stateMachine.ChangeState(player.IdleState);
     }
 }

@@ -59,6 +59,7 @@ public class PlayerLandState : PlayerGroundedState
         base.AnimationFinishTrigger();
         canMove = true;
         player.Anim.SetBool("sprintJump", false);
+        player.Anim.SetBool("landHard", false);
         stateMachine.ChangeState(player.IdleState);
     }
 }

@@ -18,12 +18,14 @@ MonoBehaviour:
   fullFriction: {fileID: 6200000, guid: d0b3fefc04fc6c844ade74311199c236, type: 2}
   runVelocity: 13
   maxRunningTime: 1
-  jumpVelocity: 16
+  jumpVelocity: 18
   amountOfJumps: 1
   coyoteTime: 0.2
   minFallSpeed: -20
   fallSpeedDampingFactor: 0.75
-  variableJumpHeightMultiplier: 0.1
+  fallGravity: 7
+  highFallTimeThreshold: 0.4
+  variableJumpHeightMultiplier: 0.2
   wallSlideVelocity: 2
   wallClimbVelocity: 3
   wallJumpVelocity: 17
@@ -114,6 +116,9 @@ MonoBehaviour:
   slideStamina: 50
   dashStamina: 60
   airAttackStamina: 25
+  holySlashEnergy: 10
+  lightCutEnergy: 5
+  healEnergy: 20
   dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
     type: 3}
   dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,

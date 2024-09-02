@@ -6,7 +6,7 @@ public class DeadState : State
 {
     protected D_DeadState stateData;
 
-    public DeadState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_DeadState stateData) : base(etity, stateMachine, animBoolName)
+    public DeadState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_DeadState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -23,7 +23,28 @@ public class DeadState : State
         GameObject.Instantiate(stateData.deathBloodParticle, entity.transform.position, stateData.deathBloodParticle.transform.rotation);
         GameObject.Instantiate(stateData.deathChunkParticle, entity.transform.position, stateData.deathChunkParticle.transform.rotation);
 
+        SpawnEnergy();
+
         entity.gameObject.SetActive(false);
+    }
+
+    private void SpawnEnergy()
+    {   
+        for (int i = 0; i < stateData.energyCount; i++)
+        {
+            GameObject energy = GameObject.Instantiate(stateData.energyPrefab, entity.transform.position, Quaternion.identity);
+            
+            // Tính toán hướng phun trào ngẫu nhiên
+            float angle = Random.Range(-stateData.spreadAngle / 2, stateData.spreadAngle / 2);
+            Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up;
+            
+            Rigidbody2D rb = energy.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                // Áp dụng lực phun trào
+                rb.AddForce(direction * stateData.eruptionForce, ForceMode2D.Impulse);
+            }
+        }
     }
 
     public override void Exit()
@@ -41,3 +62,4 @@ public class DeadState : State
         base.PhysicsUpdate();
     }
 }
+

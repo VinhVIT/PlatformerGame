@@ -33,6 +33,7 @@ public class PlayerInAirState : PlayerState
     private bool isJumping;
     private bool isTouchingLedge;
     private float fallSpeedYDampingChangeThreshold;
+    private float fallTime;
 
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -70,6 +71,8 @@ public class PlayerInAirState : PlayerState
         player.RunState.CheckIfShouldSprintJump();
 
         Combat.OnBeingAttacked += HandlerOnBeingAttacked;
+
+        fallTime = 0f;
     }
     public override void Exit()
     {
@@ -81,7 +84,7 @@ public class PlayerInAirState : PlayerState
         isTouchingWallBack = false;
         player.Anim.ResetTrigger("resetSprintJump");
         Combat.OnBeingAttacked -= HandlerOnBeingAttacked;
-
+        player.ResetGravity();
     }
 
     private void HandlerOnBeingAttacked()
@@ -96,9 +99,11 @@ public class PlayerInAirState : PlayerState
 
         CheckCoyoteTime();
         CheckWallJumpCoyoteTime();
-        LimitFallSpeed();
-
         CheckJumpMultiplier();
+        CheckHighFall();
+
+        LimitFallSpeed();
+        ApplyFallGravity();
         ResetSprintJump();
 
         if (HandleAttackInput()) return;
@@ -109,6 +114,7 @@ public class PlayerInAirState : PlayerState
 
         HandleMovement();
         HandleCamera();
+
     }
     #region Handler Func
     private void GetInput()
@@ -253,7 +259,7 @@ public class PlayerInAirState : PlayerState
     }
     private void ResetSprintJump()
     {
-        if (dashInput || attackInput )
+        if (dashInput || attackInput)
         {
             player.Anim.SetBool("resetSprintJump", true);
             player.Anim.SetBool("sprintJump", false);
@@ -273,8 +279,30 @@ public class PlayerInAirState : PlayerState
             Movement.SetVelocityY(Movement.CurrentVelocity.y * playerData.fallSpeedDampingFactor);
         }
     }
+    private void ApplyFallGravity()
+    {
+        if (Movement.CurrentVelocity.y < 0)
+        {
+            player.SetGravity(playerData.fallGravity);
+        }
+    }
     public void StopWallJumpCoyoteTime() => wallJumpCoyoteTime = false;
 
     public void SetIsJumping() => isJumping = true;
+
+    private void CheckHighFall()
+    {
+        if (Movement.CurrentVelocity.y < 0)
+        {
+            fallTime += Time.deltaTime;
+
+            if (fallTime > playerData.highFallTimeThreshold)
+            {
+                player.Anim.SetBool("landHard", true);
+            }
+        }
+    }
+
+
     #endregion
 }

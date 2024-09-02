@@ -10,6 +10,7 @@ public class Stat
 
     [field: SerializeField] public int MaxValue { get; private set; }
 
+    
     public int CurrentValue
     {
         get => currentValue;
@@ -24,11 +25,12 @@ public class Stat
         }
     }
 
-    private int currentValue;
+    [SerializeField]private int currentValue;
     public float LastDecreaseTime { get; private set; }
     public float LastIncreaseTime { get; private set; }
 
     public void Init() => CurrentValue = MaxValue;
+    public void InitZero() => CurrentValue = 0;
 
     public void Increase(int amount) => CurrentValue += amount;
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy4 : Entity
 {
+    private Stats Stats => stats ?? Core.GetCoreComponent(ref stats);
+    private Stats stats;
     public E4_MoveState moveState { get; private set; }
     public E4_IdleState idleState { get; private set; }
     public E4_PlayerDetectedState PlayerDetectedState { get; private set; }
@@ -43,6 +45,12 @@ public class Enemy4 : Entity
     {   
         base.Start();
         stateMachine.Initialize(moveState);
+        Stats.Health.OnCurrentValueZero += OnHealthZero;
+    }
+
+    private void OnHealthZero()
+    {
+        stateMachine.ChangeState(DeadState);
     }
 
     public override void OnDrawGizmos()

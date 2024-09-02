@@ -18,7 +18,7 @@ public class E1_DeadState : DeadState
 
     public override void Enter()
     {
-        
+        base.Enter();
     }
 
     public override void Exit()
