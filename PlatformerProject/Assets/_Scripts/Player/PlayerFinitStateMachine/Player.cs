@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -31,7 +32,6 @@ public class Player : MonoBehaviour
     public PlayerGroundAttackState GroundAttackState { get; private set; }
     public PlayerAirAttackState AirAttackState { get; private set; }
     public PlayerBlockCounterState BlockCounterState { get; private set; }
-    public PlayerSpellCastState SpellCastState { get; private set; }
     public PlayerHolySlashState HolySlashState { get; private set; }
     public PlayerLightCutAttackState LightCutAttackState { get; private set; }
     //Abilities
@@ -105,6 +105,7 @@ public class Player : MonoBehaviour
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody2D>();
         DashDirectionIndicator = transform.Find("DashDirectionIndicator");
+
         MovementCollider = GetComponent<BoxCollider2D>();
 
         originGravity = RB.gravityScale;
@@ -157,7 +158,7 @@ public class Player : MonoBehaviour
             }
             else
                 StateMachine.ChangeState(HurtState);
-            Combat.Damage(10);
+            Combat.Damage(1);
         }
     }
 }

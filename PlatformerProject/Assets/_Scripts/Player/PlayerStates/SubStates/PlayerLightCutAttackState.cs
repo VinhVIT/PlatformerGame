@@ -18,7 +18,14 @@ public class PlayerLightCutAttackState : PlayerAttackState
         base.Enter();
         Movement?.SetVelocityZero();
         canSetLightCutAttack = true;
-        player.ChangeLayer();
+
+        Combat.OnBeingAttacked += Combat_OnBeingAttacked;
+
+    }
+
+    private void Combat_OnBeingAttacked()
+    {
+        stateMachine.ChangeState(player.HurtState);
     }
 
     public override void LogicUpdate()
@@ -26,6 +33,7 @@ public class PlayerLightCutAttackState : PlayerAttackState
         base.LogicUpdate();
         if (player.InputHandler.AttackInputStop && canSetLightCutAttack)
         {
+            player.ChangeLayer();
             player.Anim.SetBool("lightCutAttack", true);
             canSetLightCutAttack = false;
         }
@@ -44,6 +52,7 @@ public class PlayerLightCutAttackState : PlayerAttackState
         base.Exit();
         player.Anim.SetBool("lightCutAttack", false);
         player.ResetLayer();
+        Combat.OnBeingAttacked -= Combat_OnBeingAttacked;
     }
 
     public override void AnimationTrigger()

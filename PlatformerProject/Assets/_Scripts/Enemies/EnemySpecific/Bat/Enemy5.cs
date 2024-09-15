@@ -12,7 +12,6 @@ public class Enemy5 : Entity
     public E5_ChargeState ChargeState { get; private set; }
     public E5_LookForPlayerState lookForPlayerState { get; private set; }
     public E5_MeleeAttackState MeleeAttackState { get; private set; }
-    public E5_StunState StunState { get; private set; }
     public E5_DeadState DeadState { get; private set; }
 
     [SerializeField] private D_IdleState idleStateData;
@@ -36,7 +35,6 @@ public class Enemy5 : Entity
         ChargeState = new E5_ChargeState(this, stateMachine, "charge", chargeStateData, this);
         lookForPlayerState = new E5_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
         MeleeAttackState = new E5_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
-        StunState = new E5_StunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new E5_DeadState(this, stateMachine, "dead", deadStateData, this);
 
 

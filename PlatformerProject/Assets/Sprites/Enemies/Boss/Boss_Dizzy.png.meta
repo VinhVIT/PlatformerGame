@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 138d8b7bdfdf6a647ae5ddc291623087
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 112
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boss_Dizzy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1370
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5db46a427853f54ebd1673c115d5c67
+      internalID: 987574502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_1
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 1370
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b04c3a90dee9e140ac8898fe91469aa
+      internalID: 2134321002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_2
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 1370
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86ce9339162c62248b37ec69ee2285ac
+      internalID: 1850150951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_3
+      rect:
+        serializedVersion: 2
+        x: 2085
+        y: 1370
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d36c938ca7cd934dbc47042258f8eeb
+      internalID: 1093895331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_4
+      rect:
+        serializedVersion: 2
+        x: 2780
+        y: 1370
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a520fa04ffaac649a4f99ef93e09ba4
+      internalID: 1717358561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_5
+      rect:
+        serializedVersion: 2
+        x: 3475
+        y: 1370
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd379f948ed23564cb46192e5f37a508
+      internalID: 2142409662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_6
+      rect:
+        serializedVersion: 2
+        x: 4170
+        y: 1370
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 973f87f932952cc459bad8d03cb17b81
+      internalID: 2079499740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 685
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a17f38ca48e212347bf8b8cd65b0eeb7
+      internalID: 733706883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_8
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 685
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22d5826f493cf0749bb6b941e58be949
+      internalID: -1251161859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_9
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 685
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d5e40d39aede334daa5123e3c04a609
+      internalID: 2026963442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_10
+      rect:
+        serializedVersion: 2
+        x: 2085
+        y: 685
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ab785ace4ba22409564b7826174640
+      internalID: 1994534717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_11
+      rect:
+        serializedVersion: 2
+        x: 2780
+        y: 685
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d206972c6a5e37a418f11db7dbbe630e
+      internalID: 501201287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_12
+      rect:
+        serializedVersion: 2
+        x: 3475
+        y: 685
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f898e60ab912e9419db5f82d8c77489
+      internalID: -1688900043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_13
+      rect:
+        serializedVersion: 2
+        x: 4170
+        y: 685
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a24d81898dffab43a9a83ba7b8f37ae
+      internalID: -1417675166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5774e816e5c02cc459ad0d192c1b989d
+      internalID: -414433988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_15
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 0
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92da676006df47b49977f9e9b7e7cfb0
+      internalID: 1759804979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_16
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 0
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a564622ac79aa5f4b826278b5ad32fd9
+      internalID: -696473636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_17
+      rect:
+        serializedVersion: 2
+        x: 2085
+        y: 0
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ebc923816c8f24418529e8e04121618
+      internalID: -175673821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_18
+      rect:
+        serializedVersion: 2
+        x: 2780
+        y: 0
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2ed07954d078c448dde3c0a458e609
+      internalID: -244683222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_19
+      rect:
+        serializedVersion: 2
+        x: 3475
+        y: 0
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7b66628ab10ee04a893886672f37c06
+      internalID: 224050452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Dizzy_20
+      rect:
+        serializedVersion: 2
+        x: 4170
+        y: 0
+        width: 695
+        height: 685
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d227aca828015944aea3406a2ce083d
+      internalID: 936072760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Boss_Dizzy_1: 2134321002
+      Boss_Dizzy_6: 2079499740
+      Boss_Dizzy_17: -175673821
+      Boss_Dizzy_7: 733706883
+      Boss_Dizzy_10: 1994534717
+      Boss_Dizzy_13: -1417675166
+      Boss_Dizzy_3: 1093895331
+      Boss_Dizzy_18: -244683222
+      Boss_Dizzy_16: -696473636
+      Boss_Dizzy_4: 1717358561
+      Boss_Dizzy_9: 2026963442
+      Boss_Dizzy_15: 1759804979
+      Boss_Dizzy_2: 1850150951
+      Boss_Dizzy_14: -414433988
+      Boss_Dizzy_5: 2142409662
+      Boss_Dizzy_8: -1251161859
+      Boss_Dizzy_20: 936072760
+      Boss_Dizzy_12: -1688900043
+      Boss_Dizzy_0: 987574502
+      Boss_Dizzy_11: 501201287
+      Boss_Dizzy_19: 224050452
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

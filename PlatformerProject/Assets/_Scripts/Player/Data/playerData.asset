@@ -50,6 +50,7 @@ MonoBehaviour:
   crouchColliderHeight: 0.8
   standColliderHeight: 1.6
   attackResetCooldown: 0.2
+  energyGain: 5
   groundAttackCounter: 3
   groundAttackDetails:
   - attackDamage: 10
@@ -100,15 +101,17 @@ MonoBehaviour:
     knockbackAngle: {x: 1, y: 0}
   turnSlideSpeed: 3
   turnSlideDeceleration: 1
-  perfectBlockTime: 0.5
+  perfectBlockTime: 0.1
   blockRecoveryTime: 2
+  blockKnockbackForce: 2
+  blockKnockbackTime: 0.1
   blockCounterAttackDetails:
   - attackDamage: 5
     attackMovementSpeed: 0
     knockbackStrength: 20
     knockbackAngle: {x: 1, y: 1}
   sprintSlideVelocity: 12
-  healingAmount: 20
+  healingAmount: 1
   knockbackStrength: 15
   knockbackAngle: {x: 3, y: 4}
   blockStamina: 40
@@ -119,14 +122,4 @@ MonoBehaviour:
   holySlashEnergy: 10
   lightCutEnergy: 5
   healEnergy: 20
-  dustJumpParticle: {fileID: 2890970347465934606, guid: 6a1b8378980340944be35c745f411220,
-    type: 3}
-  dustFallParticle: {fileID: 2488233232468489022, guid: b08259ad4a10c9449911c4cfc26661a0,
-    type: 3}
   blockFX: {fileID: 6240072112886026631, guid: 0a346589ff39d004c98b333d5bbfd41d, type: 3}
-  spellDatas:
-  - {fileID: 11400000, guid: 068a41cedb6a56e4db3ec98e737e356d, type: 2}
-  - {fileID: 11400000, guid: da4db3bc817d6ad4e9898079823837f4, type: 2}
-  - {fileID: 11400000, guid: 799b95dc790bfa846a7be6c8aa9a24b0, type: 2}
-  - {fileID: 11400000, guid: f8b833b41c84f3140aaac03ffaf18b99, type: 2}
-  - {fileID: 11400000, guid: d6b9ed52d53edf04bad2cc9b3f5e2d84, type: 2}

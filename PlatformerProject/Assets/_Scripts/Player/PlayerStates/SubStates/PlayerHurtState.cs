@@ -19,5 +19,9 @@ public class PlayerHurtState : PlayerAbilityState
     {
         base.AnimationFinishTrigger();
         isAbilityDone = true;
+        if(PlayerStats.Health.CurrentValue <= 0)
+        {
+            stateMachine.ChangeState(player.DeathState);
+        }
     }
 }

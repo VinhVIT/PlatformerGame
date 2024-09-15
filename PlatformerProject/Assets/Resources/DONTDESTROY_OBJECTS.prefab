@@ -46,8 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 100
+    currentValue: 0
   <Stamina>k__BackingField:
     <MaxValue>k__BackingField: 100
+    currentValue: 0
+  <Energy>k__BackingField:
+    <MaxValue>k__BackingField: 0
+    currentValue: 0
   staminaRecoveryRate: 2
   staminaRecoveryDelay: 1
 --- !u!1 &1732685477347507660
@@ -1509,7 +1514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d2b71582c272c48ad4abe39b61957d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allVirtualCameras: []
   _fallPanAmount: 0.25
   _fallYPanTime: 0.35
   fallSpeedYDampingChangeThreshold: -10
@@ -1955,7 +1959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7805445360906379709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6123219, y: -4.9456797, z: -10}
+  m_LocalPosition: {x: -19.987667, y: 14.59, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

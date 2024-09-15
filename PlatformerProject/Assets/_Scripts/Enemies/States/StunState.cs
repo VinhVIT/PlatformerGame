@@ -6,65 +6,21 @@ public class StunState : State
 {
     protected D_StunState stateData;
 
-    protected bool isStunTimeOver;
-    protected bool isGrounded;
-    protected bool isMovementStopped;
-    protected bool performCloseRangeAction;
-    protected bool isPlayerInMinAgroRange;
-
-
-    private  Movement Movement => movement ?? core.GetCoreComponent(ref movement);
+    private Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
-    private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
-    private CollisionSenses collisionSenses;
     public StunState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_StunState stateData) : base(etity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-
-        isGrounded = CollisionSenses.Ground;
-        performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-
-        isStunTimeOver = false;
-        isMovementStopped = false;
-        Movement?.SetVelocity(stateData.stunKnockbackSpeed, stateData.stunKnockbackAngle, entity.lastDamageDirection);
-        
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-        entity.ResetStunResistance();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if(Time.time >= startTime + stateData.stunTime)
-        {
-            isStunTimeOver = true;
-        }
-
-        if(isGrounded && Time.time >= startTime + stateData.stunKnockbackTime && !isMovementStopped)
-        {
-            isMovementStopped = true;
-            Movement?.SetVelocityX(0f);
-        }
+        Movement.SetVelocityZero();
+        Movement.CanSetVelocity = false;
     }
-
-    public override void PhysicsUpdate()
+    public override void Exit()
     {
-        base.PhysicsUpdate();
+        base.Exit();
+        Movement.CanSetVelocity = true;
     }
 }

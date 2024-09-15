@@ -25,6 +25,8 @@ public class CameraManager : MonoBehaviour
     [Space]
     [Header("Screen Shake")]
     [SerializeField] private float shakeForce = 1f;
+    private CinemachineImpulseDefinition impulseDefinition;
+    private CinemachineImpulseListener impulseListener;
     private void Awake()
     {
         if (instance == null)
@@ -181,13 +183,33 @@ public class CameraManager : MonoBehaviour
     }
     #endregion
     #region Shake Camera
-    public void Shake(CinemachineImpulseSource impulseSource, Vector2 direction)
+    public void Shake(CinemachineImpulseSource impulseSource)
     {
         if (impulseSource == null)
         {
-            Debug.Log("null");
+            Debug.Log("impulseSource null");
         }
-        impulseSource.GenerateImpulseWithVelocity(-direction * shakeForce);
+        impulseSource.GenerateImpulseWithForce(shakeForce);
+    }
+    public void ShakeWithProfile(ScreenShakeProfile profile,CinemachineImpulseSource impulseSource)
+    {
+        if (impulseSource == null)
+        {
+            Debug.Log("impulseSource null");
+        }
+        impulseDefinition = impulseSource.m_ImpulseDefinition;
+
+        impulseSource.m_ImpulseDefinition.m_ImpulseShape = profile.impulseShape;
+        impulseDefinition.m_ImpulseDuration = profile.impactTime;
+        impulseSource.m_DefaultVelocity = profile.defaultVelocity;
+
+        impulseListener = _currentCamera.GetComponent<CinemachineImpulseListener>();
+        impulseListener.m_ReactionSettings.m_AmplitudeGain = profile.listenerAmplitude;
+        impulseListener.m_ReactionSettings.m_FrequencyGain = profile.listenerFrequency;
+        impulseListener.m_ReactionSettings.m_Duration = profile.listenerDuration;
+
+
+        impulseSource.GenerateImpulseWithForce(profile.impactForce);
     }
     #endregion
 }

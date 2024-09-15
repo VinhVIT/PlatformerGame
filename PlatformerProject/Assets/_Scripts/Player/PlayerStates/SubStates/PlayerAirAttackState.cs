@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,28 @@ public class PlayerAirAttackState : PlayerAttackState
         {
             PerformDownWardAttack();
         }
+
+        Combat.OnBeingAttacked += Combat_OnBeingAttacked;
+
     }
+
+    private void Combat_OnBeingAttacked()
+    {
+        stateMachine.ChangeState(player.KnockbackState);
+    }
+
     protected override void CheckAttack()
     {
-        base.CheckAttack();
+        foreach (IDamageable item in detectedDamageables.ToList())
+        {
+            item.Damage(AttackDetails.attackDamage);
+            PlayerStats.Energy.Increase(playerData.energyGain);
+
+        }
+        foreach (IKnockbackable item in detectedKnockbackables.ToList())
+        {
+            item.Knockback(AttackDetails.knockbackAngle, AttackDetails.knockbackStrength, Movement.FacingDirection);
+        }
     }
     public override void Exit()
     {
@@ -37,6 +56,9 @@ public class PlayerAirAttackState : PlayerAttackState
         Movement.CanSetVelocity = true;
         player.Anim.SetBool("isDownWardAttack", false);
         player.Anim.SetBool("downWardAttackHit", false);
+
+        Combat.OnBeingAttacked -= Combat_OnBeingAttacked;
+
     }
     public override void LogicUpdate()
     {

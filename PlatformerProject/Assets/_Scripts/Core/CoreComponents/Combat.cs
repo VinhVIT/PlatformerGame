@@ -6,7 +6,7 @@ using UnityEngine;
 public class Combat : CoreComponent, IDamageable, IKnockbackable
 {
     public event Action OnBeingAttacked;
-
+    public event Action<int> OnGotDamaged;
     private Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
     private CollisionSenses CollisionSenses => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
@@ -46,6 +46,7 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable
         {
             Stats?.Health.Decrease(amount);
             Debug.Log(amount);
+            OnGotDamaged?.Invoke(amount);
             ParticleManager?.StartParicleWithRandomRotation(damageParticle);
             if (gameObject.activeInHierarchy)
             {

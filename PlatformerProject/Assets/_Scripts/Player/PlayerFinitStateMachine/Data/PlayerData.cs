@@ -61,6 +61,7 @@ public class PlayerData : ScriptableObject
     public float standColliderHeight = 1.6f;
     [Header("Attack States")]
     public float attackResetCooldown = 2f;
+    public int energyGain = 5;
     [Header("Ground Attack States")]
     public int groundAttackCounter = 3;
     public AttackDetails[] groundAttackDetails;
@@ -108,11 +109,13 @@ public class PlayerData : ScriptableObject
     [Header("Block State")]
     public float perfectBlockTime = .5f;
     public float blockRecoveryTime = 2f;
+    public float blockKnockbackForce = 2f;
+    public float blockKnockbackTime = 0.1f;
     public AttackDetails[] blockCounterAttackDetails;
     [Header("Land State")]
     public float sprintSlideVelocity = 15f;
     [Header("Heal State")]
-    public int healingAmount = 20;
+    public int healingAmount = 1;
     [Header("Knockback State")]
     public float knockbackStrength = 10f;
     public Vector2 knockbackAngle = Vector2.one;
@@ -129,9 +132,5 @@ public class PlayerData : ScriptableObject
     public int lightCutEnergy = 5;
     public int healEnergy = 20;
     [Header("Particle Prefabs")]
-    public GameObject dustJumpParticle;
-    public GameObject dustFallParticle;
     public GameObject blockFX;
-    [Header("Spell SO")]
-    public SpellData[] spellDatas;
 }

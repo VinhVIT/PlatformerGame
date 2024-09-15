@@ -14,6 +14,8 @@ public class PlayerBlockState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+        Movement?.SetVelocityZero();
+
         CanBlock = false;
         Combat.SetCanDamage(false);
         isPerfectBlock = true;
@@ -30,13 +32,20 @@ public class PlayerBlockState : PlayerGroundedState
         else
         {
             player.Anim.SetTrigger("gotHit");
+            player.StartCoroutine(BlockingForce());
+
         }
     }
-
+    private IEnumerator BlockingForce()
+    {
+        Movement?.SetVelocityX(playerData.blockKnockbackForce * Movement.FacingDirection);
+        yield return new WaitForSeconds(playerData.blockKnockbackTime);
+        Movement?.SetVelocityZero();
+    }
     public override void Exit()
     {
         base.Exit();
-        Movement.CanSetVelocity = true;
+        // Movement.CanSetVelocity = true;
         Combat.SetCanDamage(true);
 
         Combat.OnBeingAttacked -= Combat_OnBeingAttacked;
@@ -44,8 +53,7 @@ public class PlayerBlockState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Movement?.SetVelocityZero();
-        Movement.CanSetVelocity = false;
+        // Movement.CanSetVelocity = false;
 
         if (Time.time >= startTime + playerData.perfectBlockTime)
         {

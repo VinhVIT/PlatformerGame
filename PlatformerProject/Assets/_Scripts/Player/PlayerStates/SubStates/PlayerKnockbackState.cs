@@ -34,6 +34,10 @@ public class PlayerKnockbackState : PlayerAbilityState
         base.AnimationFinishTrigger();
         isAbilityDone = true;
         player.ResetLayer();
+        if(PlayerStats.Health.CurrentValue <= 0)
+        {
+            stateMachine.ChangeState(player.DeathState);
+        }
     }
     private IEnumerator ResetKnockbackOnGround()
     {

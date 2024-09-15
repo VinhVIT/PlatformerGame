@@ -21,4 +21,5 @@ public class D_Entity : ScriptableObject
 
     public GameObject hitParticle;
     public LayerMask whatIsPlayer;
+    public ScreenShakeProfile profile;
 }

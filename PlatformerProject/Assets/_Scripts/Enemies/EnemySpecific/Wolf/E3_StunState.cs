@@ -30,22 +30,6 @@ public class E3_StunState : StunState
     {
         base.LogicUpdate();
 
-        if (isStunTimeOver)
-        {
-            if (performCloseRangeAction)
-            {
-                stateMachine.ChangeState(enemy.MeleeAttackState);
-            }
-            else if (isPlayerInMinAgroRange)
-            {
-                stateMachine.ChangeState(enemy.ChargeState);
-            }
-            else
-            {
-                enemy.lookForPlayerState.SetTurnImmediately(true);
-                stateMachine.ChangeState(enemy.lookForPlayerState);
-            }
-        }
     }
 
     public override void PhysicsUpdate()

@@ -30,17 +30,6 @@ public class E4_StunState : StunState
     {
         base.LogicUpdate();
 
-        if (isStunTimeOver)
-        {
-            if (isPlayerInMinAgroRange)
-            {
-                stateMachine.ChangeState(enemy.PlayerDetectedState);
-            }
-            else
-            {
-                stateMachine.ChangeState(enemy.lookForPlayerState);
-            }
-        }
     }
 
     public override void PhysicsUpdate()

@@ -83,7 +83,6 @@ public class PlayerGroundedState : PlayerState
     {
         if (stateMachine.CurrentState != player.BlockState)
         {
-
             stateMachine.ChangeState(player.HurtState);
         }
     }

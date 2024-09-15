@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerHealState : PlayerGroundedState
 {
-
     public PlayerHealState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
@@ -14,10 +13,15 @@ public class PlayerHealState : PlayerGroundedState
         base.Enter();
         Combat.OnBeingAttacked += Combat_OnBeingAttacked;
     }
+    public override void Exit()
+    {
+        base.Exit();
+        Combat.OnBeingAttacked -= Combat_OnBeingAttacked;
 
+    }
     private void Combat_OnBeingAttacked()
     {
-        stateMachine.ChangeState(player.InAirState);
+        stateMachine.ChangeState(player.HurtState);
     }
 
     public override void LogicUpdate()

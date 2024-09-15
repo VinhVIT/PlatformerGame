@@ -30,7 +30,7 @@ public class RangedAttackState : AttackState
 
     public override void FinishAttack()
     {
-        base.FinishAttack();
+        base.AnimationFinishTrigger();
     }
 
     public override void LogicUpdate()

@@ -10,4 +10,5 @@ public class D_MeleeAttack : ScriptableObject
     public float knockbackStrength = 10f;
     public Vector2 knockbackAngle = Vector2.one;
     public LayerMask whatIsPlayer;
+    public ScreenShakeProfile[] profile;
 }

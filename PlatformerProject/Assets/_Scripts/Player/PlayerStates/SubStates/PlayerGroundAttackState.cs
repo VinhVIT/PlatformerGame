@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerGroundAttackState : PlayerAttackState
@@ -33,6 +34,19 @@ public class PlayerGroundAttackState : PlayerAttackState
     public void CheckIsSprintAttack(bool runInput)
     {
         if (runInput) isSprintAttack = true;
+    }
+    protected override void CheckAttack()
+    {
+        foreach (IDamageable item in detectedDamageables.ToList())
+        {   
+            item.Damage(AttackDetails.attackDamage);
+            PlayerStats.Energy.Increase(playerData.energyGain);
+
+        }
+        foreach (IKnockbackable item in detectedKnockbackables.ToList())
+        {
+            item.Knockback(AttackDetails.knockbackAngle, AttackDetails.knockbackStrength, Movement.FacingDirection);
+        }
     }
     public override void AnimationTrigger()
     {

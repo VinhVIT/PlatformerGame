@@ -17,9 +17,4 @@ public class PlayerDeathState : PlayerAbilityState
         base.LogicUpdate();
         Movement?.SetVelocityZero();
     }
-    public override void AnimationFinishTrigger()
-    {
-        base.AnimationFinishTrigger();
-        // player.gameObject.SetActive(false);
-    }
 }

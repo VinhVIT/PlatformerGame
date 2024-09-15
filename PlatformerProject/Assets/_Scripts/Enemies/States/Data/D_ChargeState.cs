@@ -8,4 +8,6 @@ public class D_ChargeState : ScriptableObject
     public float chargeSpeed = 6f;
 
     public float chargeTime = 2f;
+    public float shakeTime = 0.3f;
+    public ScreenShakeProfile profile;
 }

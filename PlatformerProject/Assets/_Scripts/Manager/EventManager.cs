@@ -10,7 +10,7 @@ public static class EventManager
     public class PlayerEvents
     {
         public UnityAction OnSpellCastDone;
-        public UnityAction OnZeroHealth;
+        public UnityAction OnCounterSuccess;
     }
     public class TriggerEvents
     {

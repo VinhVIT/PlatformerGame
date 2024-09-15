@@ -30,7 +30,7 @@ public class MeleeAttackState : AttackState
 
     public override void FinishAttack()
     {
-        base.FinishAttack();
+        base.AnimationFinishTrigger();
     }
 
     public override void LogicUpdate()
@@ -42,7 +42,7 @@ public class MeleeAttackState : AttackState
     {
         base.PhysicsUpdate();
     }
-
+    
     public override void TriggerAttack()
     {
         base.TriggerAttack();

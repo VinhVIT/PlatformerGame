@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-	private Movement Movement => movement ?? Core.GetCoreComponent(ref movement);
+	protected Movement Movement => movement ?? Core.GetCoreComponent(ref movement);
 	private Movement movement;
 	protected Combat Combat => combat ?? Core.GetCoreComponent(ref combat);
 	private Combat combat;
@@ -14,10 +14,10 @@ public class Entity : MonoBehaviour
 	public D_Entity entityData;
 	public Animator anim { get; private set; }
 	public AnimationToStatemachine atsm { get; private set; }
+	public CinemachineImpulseSource ImpulseSource { get; private set; }
 	public int lastDamageDirection { get; private set; }
 	public Core Core { get; private set; }
 	public Vector2 TargetPosition { get; private set; }
-
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private Transform ledgeCheck;
 	[SerializeField] private Transform playerCheck;
@@ -36,6 +36,7 @@ public class Entity : MonoBehaviour
 
 		anim = GetComponent<Animator>();
 		atsm = GetComponent<AnimationToStatemachine>();
+		ImpulseSource = GetComponent<CinemachineImpulseSource>();
 
 		stateMachine = new FiniteStateMachine();
 	}
@@ -45,10 +46,9 @@ public class Entity : MonoBehaviour
 	}
 	private void OnBeingAttackHandler()
 	{
-		CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
-		if (impulseSource == null) return;
+		if (ImpulseSource == null) return;
 
-		CameraManager.instance.Shake(impulseSource, transform.position);
+		CameraManager.instance.ShakeWithProfile(entityData.profile, ImpulseSource);
 	}
 	public virtual void Update()
 	{
@@ -120,6 +120,8 @@ public class Entity : MonoBehaviour
 		isStunned = false;
 		currentStunResistance = entityData.stunResistance;
 	}
+	private void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
+	private void AnimtionFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
 	public virtual void OnDrawGizmos()
 	{
@@ -129,7 +131,7 @@ public class Entity : MonoBehaviour
 			Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
 			Vector2 minAgroBoxCenter = (Vector2)playerCheck.position + (Vector2)transform.right * (entityData.minAgroDistance / 2);
-			Vector2 minAgroBoxSize = new Vector2(entityData.minAgroDistance, entityData.agroSize); 
+			Vector2 minAgroBoxSize = new Vector2(entityData.minAgroDistance, entityData.agroSize);
 			Gizmos.DrawWireCube(minAgroBoxCenter, minAgroBoxSize);
 
 			Vector2 maxAgroBoxCenter = (Vector2)playerCheck.position + (Vector2)transform.right * (entityData.maxAgroDistance / 2);
