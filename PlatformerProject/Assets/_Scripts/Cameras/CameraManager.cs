@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public static CameraManager instance;
+    public static CameraManager Instance;
     private List<CinemachineVirtualCamera> allVirtualCameras = new List<CinemachineVirtualCamera>();
     [Header("Controls for lerping the Y Damping during player jump/fall")]
     [SerializeField] private float _fallPanAmount = 0.25f;
@@ -29,9 +29,9 @@ public class CameraManager : MonoBehaviour
     private CinemachineImpulseListener impulseListener;
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         FindAllCamerasInScene();
         //set YDaming so it base on Inspector value

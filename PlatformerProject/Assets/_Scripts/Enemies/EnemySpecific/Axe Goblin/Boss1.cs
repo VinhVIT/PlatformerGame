@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Boss1 : Entity
 {
-    private Stats Stats => stats ?? Core.GetCoreComponent(ref stats);
-    private Stats stats;
     public B1_BossLandState BossLandState { get; private set; }
     public B1_BossLaughState BossLaughState { get; private set; }
     public B1_BossEngageState BossEngageState { get; private set; }
@@ -40,7 +38,7 @@ public class Boss1 : Entity
         base.Awake();
 
         BossLandState = new B1_BossLandState(this, stateMachine, "land", bossLandStateData, this);
-        BossLaughState = new B1_BossLaughState(this, stateMachine, "laugh",bossLaughStateData, this);
+        BossLaughState = new B1_BossLaughState(this, stateMachine, "laugh", bossLaughStateData, this);
         BossEngageState = new B1_BossEngageState(this, stateMachine, "engage", bossEngageStateData, this);
         BossDashState = new B1_BossDashState(this, stateMachine, "dash", bossDashStateData, this);
         // moveState = new B1_MoveState(this, stateMachine, "move", moveStateData, this);
@@ -59,16 +57,13 @@ public class Boss1 : Entity
         base.Start();
         Movement?.Flip();
         stateMachine.Initialize(BossLandState);
-        Stats.Health.OnCurrentValueZero += OnHealthZero;
-        EventManager.Player.OnCounterSuccess += OnCounterSuccessHandler;
     }
-
-    private void OnCounterSuccessHandler()
+    
+    protected override void OnCounterSuccessHandler()
     {
         stateMachine.ChangeState(StunState);
     }
-
-    private void OnHealthZero()
+    protected override void OnHealthZero()
     {
         stateMachine.ChangeState(DeadState);
     }

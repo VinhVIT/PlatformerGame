@@ -41,14 +41,14 @@ public class B1_MeleeAttackState : MeleeAttackState
         base.TriggerAttack();
         if (boss.IsEngaged)
         {
-            CameraManager.instance.ShakeWithProfile(stateData.profile[1], entity.ImpulseSource);
+            CameraManager.Instance.ShakeWithProfile(stateData.profile[1], entity.ImpulseSource);
 
         }
     }
     public override void AnimationTrigger()
     {
         base.AnimationTrigger();
-        CameraManager.instance.ShakeWithProfile(stateData.profile[0], entity.ImpulseSource);
+        CameraManager.Instance.ShakeWithProfile(stateData.profile[0], entity.ImpulseSource);
 
     }
 }

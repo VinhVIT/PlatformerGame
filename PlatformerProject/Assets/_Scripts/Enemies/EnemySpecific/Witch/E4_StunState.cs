@@ -10,30 +10,16 @@ public class E4_StunState : StunState
     {
         this.enemy = enemy;
     }
-
-    public override void DoChecks()
+    public override void AnimationFinishTrigger()
     {
-        base.DoChecks();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
+        base.AnimationFinishTrigger();
+        if (isPlayerInMaxAgroRange)
+        {
+            stateMachine.ChangeState(enemy.rangedAttackState);
+        }
+        else if (!isPlayerInMaxAgroRange)
+        {
+            stateMachine.ChangeState(enemy.lookForPlayerState);
+        }
     }
 }

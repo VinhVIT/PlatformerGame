@@ -8,9 +8,19 @@ public class StunState : State
 
     private Movement Movement => movement ?? core.GetCoreComponent(ref movement);
     private Movement movement;
+    protected bool isPlayerInMinAgroRange;
+    protected bool performCloseRangeAction;
+    protected bool isPlayerInMaxAgroRange;
     public StunState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_StunState stateData) : base(etity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
+    }
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
+        performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     }
     public override void LogicUpdate()
     {

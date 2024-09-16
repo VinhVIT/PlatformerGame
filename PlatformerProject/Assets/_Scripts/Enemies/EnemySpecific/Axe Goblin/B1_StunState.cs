@@ -26,7 +26,7 @@ public class B1_StunState : StunState
     public override void AnimationTrigger()
     {
         base.AnimationTrigger();
-        CameraManager.instance.ShakeWithProfile(stateData.profile, boss.ImpulseSource);
+        CameraManager.Instance.ShakeWithProfile(stateData.profile, boss.ImpulseSource);
     }
 
 }

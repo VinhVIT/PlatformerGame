@@ -17,8 +17,8 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
         Movement?.SetVelocityX(0f);
-        CameraManager.instance.LerpedFromPlayerFalling = false;
-        CameraManager.instance.LerpYDamping(false);
+        CameraManager.Instance.LerpedFromPlayerFalling = false;
+        CameraManager.Instance.LerpYDamping(false);
 
         Movement.RB.sharedMaterial = playerData.fullFriction;
 

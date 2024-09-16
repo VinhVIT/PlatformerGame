@@ -9,7 +9,8 @@ public class Entity : MonoBehaviour
 	private Movement movement;
 	protected Combat Combat => combat ?? Core.GetCoreComponent(ref combat);
 	private Combat combat;
-
+	protected Stats Stats => stats ?? Core.GetCoreComponent(ref stats);
+	private Stats stats;
 	public FiniteStateMachine stateMachine;
 	public D_Entity entityData;
 	public Animator anim { get; private set; }
@@ -22,7 +23,6 @@ public class Entity : MonoBehaviour
 	[SerializeField] private Transform ledgeCheck;
 	[SerializeField] private Transform playerCheck;
 	[SerializeField] private Transform groundCheck;
-	private float currentStunResistance;
 	private float lastDamageTime;
 	private Vector2 velocityWorkspace;
 	protected bool isStunned;
@@ -32,7 +32,6 @@ public class Entity : MonoBehaviour
 	{
 		Core = GetComponentInChildren<Core>();
 
-		currentStunResistance = entityData.stunResistance;
 
 		anim = GetComponent<Animator>();
 		atsm = GetComponent<AnimationToStatemachine>();
@@ -43,12 +42,29 @@ public class Entity : MonoBehaviour
 	public virtual void Start()
 	{
 		Combat.OnBeingAttacked += OnBeingAttackHandler;
+		Stats.Health.OnCurrentValueZero += OnHealthZero;
+		EventManager.Player.OnCounterSuccess += OnCounterSuccessHandler;
 	}
-	private void OnBeingAttackHandler()
+	public virtual void OnDestroy()
+	{	
+		Combat.OnBeingAttacked -= OnBeingAttackHandler;
+		Stats.Health.OnCurrentValueZero -= OnHealthZero;
+		EventManager.Player.OnCounterSuccess -= OnCounterSuccessHandler;
+	}
+	protected virtual void OnBeingAttackHandler()
 	{
 		if (ImpulseSource == null) return;
 
-		CameraManager.instance.ShakeWithProfile(entityData.profile, ImpulseSource);
+		CameraManager.Instance.ShakeWithProfile(entityData.profile, ImpulseSource);
+	}
+	protected virtual void OnCounterSuccessHandler()
+	{
+		// stateMachine.ChangeState(StunState);
+	}
+
+	protected virtual void OnHealthZero()
+	{
+		// stateMachine.ChangeState(DeadState);
 	}
 	public virtual void Update()
 	{
@@ -56,11 +72,6 @@ public class Entity : MonoBehaviour
 		stateMachine.currentState.LogicUpdate();
 
 		anim.SetFloat("yVelocity", Movement.RB.velocity.y);
-
-		if (Time.time >= lastDamageTime + entityData.stunRecoveryTime)
-		{
-			ResetStunResistance();
-		}
 	}
 
 	public virtual void FixedUpdate()
@@ -115,11 +126,6 @@ public class Entity : MonoBehaviour
 		Movement.RB.velocity = velocityWorkspace;
 	}
 
-	public virtual void ResetStunResistance()
-	{
-		isStunned = false;
-		currentStunResistance = entityData.stunResistance;
-	}
 	private void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
 	private void AnimtionFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 

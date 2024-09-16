@@ -16,8 +16,8 @@ MonoBehaviour:
     type: 3}
   deathBloodParticle: {fileID: 5096148057906189823, guid: 4a122dcc68153794295f6953dd91521e,
     type: 3}
-  energyPrefab: {fileID: 16333858703800128, guid: 92bd735ac68e8ba4890c2dbd8b01c707,
+  coinPrefab: {fileID: 16333858703800128, guid: 92bd735ac68e8ba4890c2dbd8b01c707,
     type: 3}
-  energyCount: 2
+  coinCount: 2
   eruptionForce: 2
   spreadAngle: 90

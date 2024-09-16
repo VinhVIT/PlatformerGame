@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Enemy5 : Entity
 {
-    private Stats Stats => stats ?? Core.GetCoreComponent(ref stats);
-    private Stats stats;
     public E5_IdleState IdleState { get; private set; }
     public E5_MoveState MoveState { get; private set; }
     public E5_PlayerDetectedState PlayerDetectedState { get; private set; }
@@ -43,10 +41,8 @@ public class Enemy5 : Entity
     {
         base.Start();
         stateMachine.Initialize(MoveState);
-        Stats.Health.OnCurrentValueZero += OnHealthZero;
     }
-
-    private void OnHealthZero()
+    protected override void OnHealthZero()
     {
         stateMachine.ChangeState(DeadState);
     }

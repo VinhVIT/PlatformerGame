@@ -1,0 +1,554 @@
+fileFormatVersion: 2
+guid: 1c4c9fdd2a4e2ed4eba46987c98fd385
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IceHand_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 524
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da02787d180037145b0f01260ce0edb6
+      internalID: -2110848071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_1
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 524
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 931a39b519311b14eba88515fe34b654
+      internalID: 318210045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_2
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 524
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 991d1fbe1c18d1f4bb8f221796c3d15e
+      internalID: 967631402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_3
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 524
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 504a242cd2d65af4093910282f87b14c
+      internalID: 1486587790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_4
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 524
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fbd962c9e24a9e49b69e6af5266f803
+      internalID: -656762954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 410
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4126af205ee09c4bb775adda04d7d22
+      internalID: 420293762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 410
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a671831ba18b28e4eb0256d7cc764c44
+      internalID: 1126188450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_7
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 410
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2093ca495834ec4aad86456ff7735c6
+      internalID: -1534065750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_8
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 410
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 893e1ebb5559bb349876a4c2764d2bf1
+      internalID: -1812284057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_9
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 410
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41e035305897da4489ed4d32a8b53fde
+      internalID: 1237000859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 296
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48f86eb880af1ce4086d19c63aa5661c
+      internalID: 1811559999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_11
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 296
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e0bdd5774831e4096d30608a8e9c6c
+      internalID: 1497961291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_12
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 296
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3964872f931ba746b70e2a8dff6132f
+      internalID: -1999708086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_13
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 296
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 716eaa71ca2988b4cbb3a5cded89ebcd
+      internalID: -261457563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_14
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 296
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445bd79f3da3aab499fc782a73d5212c
+      internalID: 912326093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b775a638721f24146bf5ec2c8f74ad0e
+      internalID: -1937676722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_16
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 182
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c594c9fb8ea22c84daf77d0ced51917e
+      internalID: -457013157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_17
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 182
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c410822a6c6a65f4f87a402ba25e19db
+      internalID: -356839277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceHand_18
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 182
+        width: 360
+        height: 114
+      alignment: 9
+      pivot: {x: 0.68, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d715bc877ff9c949afc4734fa8b0b5d
+      internalID: -205009752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      IceHand_9: 1237000859
+      IceHand_11: 1497961291
+      IceHand_3: 1486587790
+      IceHand_5: 420293762
+      IceHand_16: -457013157
+      IceHand_7: -1534065750
+      IceHand_2: 967631402
+      IceHand_4: -656762954
+      IceHand_17: -356839277
+      IceHand_10: 1811559999
+      IceHand_6: 1126188450
+      IceHand_14: 912326093
+      IceHand_15: -1937676722
+      IceHand_0: -2110848071
+      IceHand_12: -1999708086
+      IceHand_8: -1812284057
+      IceHand_13: -261457563
+      IceHand_1: 318210045
+      IceHand_18: -205009752
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

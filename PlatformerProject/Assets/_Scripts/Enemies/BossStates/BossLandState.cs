@@ -27,7 +27,7 @@ public class BossLandState : State
     public override void AnimationTrigger()
     {
         base.AnimationTrigger();
-        CameraManager.instance.ShakeWithProfile(stateData.profile, entity.ImpulseSource);
+        CameraManager.Instance.ShakeWithProfile(stateData.profile, entity.ImpulseSource);
 
     }
 }

@@ -67,7 +67,7 @@ public class PlayerInAirState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
+        fallSpeedYDampingChangeThreshold = CameraManager.Instance.fallSpeedYDampingChangeThreshold;
         player.RunState.CheckIfShouldSprintJump();
 
         Combat.OnBeingAttacked += HandlerOnBeingAttacked;
@@ -211,14 +211,14 @@ public class PlayerInAirState : PlayerState
 
     private void HandleCamera()
     {
-        if (Movement.CurrentVelocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        if (Movement.CurrentVelocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
         {
-            CameraManager.instance.LerpYDamping(true);
+            CameraManager.Instance.LerpYDamping(true);
         }
-        if (Movement.CurrentVelocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        if (Movement.CurrentVelocity.y >= 0f && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
         {
-            CameraManager.instance.LerpedFromPlayerFalling = false;
-            CameraManager.instance.LerpYDamping(false);
+            CameraManager.Instance.LerpedFromPlayerFalling = false;
+            CameraManager.Instance.LerpYDamping(false);
         }
     }
 

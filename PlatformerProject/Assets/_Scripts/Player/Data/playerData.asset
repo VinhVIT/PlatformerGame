@@ -101,7 +101,7 @@ MonoBehaviour:
     knockbackAngle: {x: 1, y: 0}
   turnSlideSpeed: 3
   turnSlideDeceleration: 1
-  perfectBlockTime: 0.1
+  perfectBlockTime: 1
   blockRecoveryTime: 2
   blockKnockbackForce: 2
   blockKnockbackTime: 0.1

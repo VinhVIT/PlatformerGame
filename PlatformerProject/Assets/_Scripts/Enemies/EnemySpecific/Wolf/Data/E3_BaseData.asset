@@ -27,3 +27,4 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 2048
+  profile: {fileID: 11400000, guid: 07cae2df429541c418684d5bd28962c0, type: 2}

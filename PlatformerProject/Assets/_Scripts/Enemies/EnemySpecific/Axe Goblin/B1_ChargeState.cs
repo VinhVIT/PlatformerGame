@@ -32,7 +32,7 @@ public class B1_ChargeState : ChargeState
         shakeTimer += Time.deltaTime;
         if (shakeTimer >= timer)
         {
-            CameraManager.instance.ShakeWithProfile(stateData.profile, boss.ImpulseSource);
+            CameraManager.Instance.ShakeWithProfile(stateData.profile, boss.ImpulseSource);
             shakeTimer = 0f;
         }
     }
