@@ -18,7 +18,6 @@ public class PlayerStats : Stats
 
         Energy.OnValueChanged += (oldValue, newValue) => OnEnergyChanged?.Invoke(newValue);
     }
-
     private void Update()
     {
         if (Time.time >= Stamina.LastDecreaseTime + staminaRecoveryDelay)

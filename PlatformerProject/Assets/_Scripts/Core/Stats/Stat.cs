@@ -8,9 +8,9 @@ public class Stat
 {
     public event Action OnCurrentValueZero;
     public event Action<int, int> OnValueChanged;
+    public event Action<int> OnMaxValueChanged;
     public event Action<int> OnValueIncreased;
     [field: SerializeField] public int MaxValue { get; private set; }
-
 
     public int CurrentValue
     {
@@ -32,7 +32,7 @@ public class Stat
         }
     }
 
-    [SerializeField] private int currentValue;
+    [SerializeField] private int currentValue;//SerializeField to see it in inspector
     public float LastDecreaseTime { get; private set; }
     public float LastIncreaseTime { get; private set; }
 
@@ -70,5 +70,12 @@ public class Stat
         }
         Debug.Log("Not enough Value to use");
         return false;
+    }
+    public void SetMaxValue(int maxValue)
+    {
+        MaxValue = maxValue;
+        CurrentValue = maxValue;
+        OnMaxValueChanged?.Invoke(maxValue);
+        CurrentValue = Mathf.Clamp(CurrentValue, 0, MaxValue);
     }
 }

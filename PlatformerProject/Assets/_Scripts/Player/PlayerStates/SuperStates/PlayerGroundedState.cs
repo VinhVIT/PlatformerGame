@@ -128,13 +128,13 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.GroundAttackState);
             return true;
         }
-        else if (yInput > 0 && attackInput && !isTouchingCeiling
+        else if (player.CanUseHolySlash() && yInput > 0 && attackInput && !isTouchingCeiling
         && PlayerStats.Energy.EnoughToUse(playerData.holySlashEnergy))
         {
             stateMachine.ChangeState(player.HolySlashState);
             return true;
         }
-        else if (yInput < 0 && attackInput && !isTouchingCeiling
+        else if (player.CanUseLightCutter() && yInput < 0 && attackInput && !isTouchingCeiling
          && PlayerStats.Energy.EnoughToUse(playerData.lightCutEnergy))
         {
             stateMachine.ChangeState(player.LightCutAttackState);

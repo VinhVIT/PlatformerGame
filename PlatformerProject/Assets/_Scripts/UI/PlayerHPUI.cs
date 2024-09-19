@@ -4,33 +4,33 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class PlayerHPUI : MonoBehaviour
 {
     [SerializeField] private GameObject portrait;
     private PlayerStats playerStats;
     private Combat combat;
-
-    [Header("Health Settings")]
-    [SerializeField, Range(1, 8)] private int maxHealth;
-    [SerializeField] private GameObject HPContainer;
-    [SerializeField] private RectTransform healthBarBackground;
-    [SerializeField] private GameObject healthBarBreak;
-    [SerializeField] private List<GameObject> hpList = new List<GameObject>();
-    [SerializeField] private List<GameObject> hpBreakList = new List<GameObject>();
-
-    [Header("Animation Ref")]
-    [SerializeField] private GameObject HPParticle;
-    [SerializeField] private GameObject healthBar;
-    [SerializeField] private Image healthLossBar;
-    [SerializeField] private GameObject animateHPPrefab;
-    [SerializeField] private float healthLossAnimationDuration = 0.5f;
     private Animator healthBarAnimator;
     private Coroutine healthLossCoroutine;
     private const float HP_OFFSET = 66;// this value is the width of the HP prefab
     private float hpLossValue;
     private int currentHealth;
     private List<GameObject> currentHPList = new List<GameObject>();
+    [Header("Health Settings")]
+    [SerializeField, Range(1, 8)] private int maxHealth;
+    [SerializeField] private GameObject HPContainer;
+    [SerializeField] private RectTransform healthBarBackground;
+    [SerializeField] private GameObject healthBarBreak;
+    [SerializeField] private List<GameObject> hPList = new List<GameObject>();
+    [SerializeField] private List<GameObject> hpBreakList = new List<GameObject>();
+
+    [Header("Animation Ref")]
+    [SerializeField] private GameObject HPParticle;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private Image healthLossBar;
+    [SerializeField] private float healthLossAnimationDuration = 0.5f;
+
 
     [Header("Energy Settings")]
     [SerializeField] private Slider energySlider;
@@ -51,17 +51,55 @@ public class PlayerHPUI : MonoBehaviour
     private void Start()
     {
         SetupInitialState();
-        combat.OnGotDamaged += DecreaseHealth;
+        combat.OnGotDamaged += Combat_OnGotDamaged;
         playerStats.Health.OnValueIncreased += IncreaseHealth;
         playerStats.OnEnergyChanged += UpdateEnergySlider;
+        playerStats.Health.OnMaxValueChanged += PlayerStats_Health_OnMaxValueChanged;
 
         InitializeEnergySlider();
     }
     private void OnDestroy()
     {
-        combat.OnGotDamaged -= DecreaseHealth;
-        playerStats.OnEnergyChanged -= UpdateEnergySlider;
+        combat.OnGotDamaged -= Combat_OnGotDamaged;
         playerStats.Health.OnValueIncreased -= IncreaseHealth;
+        playerStats.OnEnergyChanged -= UpdateEnergySlider;
+        playerStats.Health.OnMaxValueChanged -= PlayerStats_Health_OnMaxValueChanged;
+    }
+    public void Combat_OnGotDamaged(int amount)
+    {
+        TriggerHurtAnimations();
+        UpdateHealthLossBar();
+        UpdateCurrentHealth(amount);
+        UpdateHealthUI();
+        UpdateHPTexts();
+    }
+    public void IncreaseHealth(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+            currentHPList[currentHealth - 2].GetComponent<Animator>().SetBool("hurt", false);
+            currentHPList.Last().SetActive(true);
+        }
+        else
+        {
+            currentHPList[currentHealth - 1].SetActive(true);
+            currentHPList[currentHealth - 1].GetComponent<Animator>().SetBool("hurt", true);
+            currentHPList[currentHealth - 2].GetComponent<Animator>().SetBool("hurt", false);
+
+        }
+        UpdateHPTexts();
+    }
+    private void PlayerStats_Health_OnMaxValueChanged(int value)
+    {
+        maxHealth = value;
+        currentHealth = maxHealth;
+        IncreaseMaxHealth();
+    }
+    private void TriggerHurtAnimations()
+    {
+        healthBarAnimator.SetTrigger("hurt");
     }
     #region HP
     private void SetupInitialState()
@@ -69,26 +107,55 @@ public class PlayerHPUI : MonoBehaviour
         maxHealth = playerStats.Health.CurrentValue;
         currentHealth = maxHealth;
         hpLossValue = 1f / maxHealth + 0.05f;
-        InitHPBar();
-        currentHPList = GetCurrentHPList();
+
+        InitHpBar();
+        UpdateCurrentHPList();
         UpdateHPTexts();
+
         UpdateEnergyTexts();
     }
-
-    private void InitHPBar()
+    private void UpdateCurrentHPList()
     {
-        List<GameObject> currenthpList = GetHPList();
-
-        if (maxHealth > currenthpList.Count)
+        currentHPList = GetCurrentHPList();
+    }
+    private void UpdateCurrentHealthUI()
+    {
+        foreach (GameObject hp in currentHPList)
         {
-            for (int i = 1; i <= maxHealth - currenthpList.Count; i++)
+            hp.SetActive(true);
+            Animator hpAnim;
+            if (hp.TryGetComponent<Animator>(out hpAnim))
             {
-                hpList[i].SetActive(true);
-                IncreaseRightOffset(HP_OFFSET);
+                hpAnim.SetBool("hurt", false);
             }
+
         }
     }
+    private void IncreaseMaxHealth()
+    {
+        UpdateCurrentHealthUI();
+        UpdateHPTexts();
+        foreach (Transform child in HPContainer.transform)
+        {
+            if (!child.gameObject.activeSelf)
+            {
+                child.gameObject.SetActive(true);
+                break;
+            }
+        }
+        hpLossValue = 1f / maxHealth + 0.05f;
+        IncreaseRightOffset(HP_OFFSET);
+        UpdateCurrentHPList();
+    }
 
+    private void InitHpBar()
+    {
+        for (int i = 0; i < 8 - maxHealth; i++)
+        {
+            hPList[i].SetActive(false);
+            DecreaseRightOffset(HP_OFFSET);
+        }
+    }
     private void InitBreakHP()
     {
         if (maxHealth > 3)
@@ -100,7 +167,7 @@ public class PlayerHPUI : MonoBehaviour
         }
     }
 
-    private List<GameObject> GetHPList()
+    private List<GameObject> GetCurrentHPList()
     {
         List<GameObject> hpList = new List<GameObject>();
         foreach (Transform child in HPContainer.transform)
@@ -113,19 +180,6 @@ public class PlayerHPUI : MonoBehaviour
         return hpList;
     }
 
-    private List<GameObject> GetCurrentHPList()
-    {
-        List<GameObject> currentHPList = new List<GameObject>();
-        for (int i = 0; i < hpList.Count; i++)
-        {
-            if (hpList[i].activeSelf)
-            {
-                currentHPList.Add(hpList[i]);
-            }
-        }
-        return currentHPList;
-    }
-
     private void IncreaseRightOffset(float amount)
     {
         Vector2 offsetMin = healthBarBackground.offsetMin;
@@ -133,14 +187,11 @@ public class PlayerHPUI : MonoBehaviour
         offsetMax.x += amount;
         healthBarBackground.offsetMax = offsetMax;
     }
-
-    public void DecreaseHealth(int amount)
+    private void DecreaseRightOffset(float amount)
     {
-        TriggerHurtAnimations();
-        UpdateHealthLossBar();
-        UpdateCurrentHealth(amount);
-        UpdateHealthUI();
-        UpdateHPTexts();
+        Vector2 offsetMax = healthBarBackground.offsetMax;
+        offsetMax.x -= amount;
+        healthBarBackground.offsetMax = offsetMax;
     }
 
     private void UpdateHealthLossBar()
@@ -161,7 +212,7 @@ public class PlayerHPUI : MonoBehaviour
     {
         if (currentHealth == 1)//critical health
         {
-            animateHPPrefab.SetActive(false);
+            currentHPList[currentHealth].SetActive(false);
             healthBarAnimator.SetBool("injured", true);
         }
         else if (currentHealth <= 0)//death
@@ -171,7 +222,8 @@ public class PlayerHPUI : MonoBehaviour
         }
         else//losing health
         {
-            currentHPList[currentHealth - 1].SetActive(false);
+            currentHPList[currentHealth].SetActive(false);
+            currentHPList[currentHealth - 1].GetComponent<Animator>().SetBool("hurt", true);
             UpdateHPParticlePosition();
             HPParticle.GetComponent<Animator>().SetTrigger("hurt");
             healthBarAnimator.SetBool("injured", false);
@@ -184,26 +236,9 @@ public class PlayerHPUI : MonoBehaviour
         newPosition.z = HPParticle.transform.position.z;
         HPParticle.transform.position = newPosition;
     }
-
-    public void IncreaseHealth(int amount)
-    {
-        currentHealth += amount;
-        if (currentHealth >= maxHealth)
-        {
-            currentHealth = maxHealth;
-            animateHPPrefab.GetComponent<Animator>().SetBool("hurt", false);
-            currentHPList.Last().SetActive(true);
-        }
-        else
-        {
-            currentHPList[currentHealth - 2].SetActive(true);
-        }
-        UpdateHPTexts();
-    }
-
     private void PlayerDeathHandler()
     {
-        hpList[currentHealth].SetActive(false);
+        hPList[currentHealth].SetActive(false);
         portrait.GetComponent<Animator>().SetBool("break", true);
 
         healthBarBreak.SetActive(true);
@@ -231,11 +266,7 @@ public class PlayerHPUI : MonoBehaviour
         maxHPText.text = (maxHealth * 10).ToString();
         currentHPText.text = $"{currentHealth * 10} /";
     }
-    private void TriggerHurtAnimations()
-    {
-        animateHPPrefab.GetComponent<Animator>().SetBool("hurt", true);
-        healthBarAnimator.SetTrigger("hurt");
-    }
+
     #endregion
     #region Energy
     private void InitializeEnergySlider()
