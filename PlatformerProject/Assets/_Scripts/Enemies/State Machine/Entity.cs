@@ -71,7 +71,7 @@ public class Entity : MonoBehaviour
 		Core.LogicUpdate();
 		stateMachine.currentState.LogicUpdate();
 
-		anim.SetFloat("yVelocity", Movement.RB.velocity.y);
+		anim.SetFloat("yVelocity", Movement.RB.linearVelocity.y);
 	}
 
 	public virtual void FixedUpdate()
@@ -122,8 +122,8 @@ public class Entity : MonoBehaviour
 
 	public virtual void DamageHop(float velocity)
 	{
-		velocityWorkspace.Set(Movement.RB.velocity.x, velocity);
-		Movement.RB.velocity = velocityWorkspace;
+		velocityWorkspace.Set(Movement.RB.linearVelocity.x, velocity);
+		Movement.RB.linearVelocity = velocityWorkspace;
 	}
 
 	private void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();

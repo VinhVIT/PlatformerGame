@@ -39,8 +39,8 @@ public class PlayerGroundAttackState : PlayerAttackState
     {
         foreach (IDamageable item in detectedDamageables.ToList())
         {   
-            item.Damage(AttackDetails.attackDamage);
-            PlayerStats.Energy.Increase(playerData.energyGain);
+            item.Damage(AttackDetails.attackDamage + AttackBonus);
+            PlayerStats.Energy.Increase(EnergyGain);
 
         }
         foreach (IKnockbackable item in detectedKnockbackables.ToList())

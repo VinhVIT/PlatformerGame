@@ -15,12 +15,12 @@ public class InAirState : PlayerState
     {
         base.LogicUpdate();
 
-        if (player.RB.velocity.y < 0 && !isFalling)
+        if (player.RB.linearVelocity.y < 0 && !isFalling)
         {
             isFalling = true;
             player.RB.gravityScale = normalGravityScale * fallingGravityMultiplier;
         }
-        else if (player.RB.velocity.y >= 0 && isFalling)
+        else if (player.RB.linearVelocity.y >= 0 && isFalling)
         {
             isFalling = false;
             player.RB.gravityScale = normalGravityScale;

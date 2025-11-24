@@ -49,11 +49,11 @@ public class Player : MonoBehaviour
     public Rigidbody2D RB { get; private set; }
     public Transform DashDirectionIndicator { get; private set; }
     public BoxCollider2D MovementCollider { get; private set; }
+    public PlayerSkillHandler PlayerSkillHandler { get; private set; }
+
     private Combat Combat => combat ?? Core.GetCoreComponent(ref combat);
     private Combat combat;
-    private PlayerStats PlayerStats => playerStats ?? Core.GetCoreComponent(ref playerStats);
-    private PlayerStats playerStats;
-    public PlayerSkills PlayerSkills { get; private set; }
+
     #endregion
 
     #region Other Variables
@@ -65,8 +65,9 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Core = GetComponentInChildren<Core>();
+        PlayerSkillHandler = GetComponent<PlayerSkillHandler>();
         StateMachine = new PlayerStateMachine();
-        PlayerSkills = new PlayerSkills();
+
 
         //Behaviour
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
@@ -117,22 +118,9 @@ public class Player : MonoBehaviour
 
         StateMachine.Initialize(IdleState);
 
-        PlayerSkills.OnSkillUnlocked += HandlerOnSkillUnlocked;
     }
 
-    private void HandlerOnSkillUnlocked(object sender, PlayerSkills.UnlockSkillEventArgs e)
-    {
-        switch (e.skillType)
-        {
-            case PlayerSkills.SkillType.MaxHP_1:
-                IncreaseMaxHP();
-                break;
-            case PlayerSkills.SkillType.Stamina_1:
-                break;
-            default:
-                break;
-        }
-    }
+
 
     private void Update()
     {
@@ -145,18 +133,6 @@ public class Player : MonoBehaviour
         StateMachine.CurrentState.PhysicsUpdate();
     }
     #endregion
-    private void IncreaseMaxHP()
-    {
-        PlayerStats.Health.SetMaxValue(PlayerStats.Health.MaxValue + 1);
-    }
-    public bool CanUseHolySlash()
-    {
-        return PlayerSkills.IsSkillUnlocked(PlayerSkills.SkillType.HolySlash);
-    }
-    public bool CanUseLightCutter()
-    {
-        return PlayerSkills.IsSkillUnlocked(PlayerSkills.SkillType.LightCutter);
-    }
     #region Other Functions
 
     public void SetColliderHeight(float height)
@@ -169,10 +145,12 @@ public class Player : MonoBehaviour
         MovementCollider.size = workspace;
         MovementCollider.offset = center;
     }
+    public PlayerData GetPlayerData() => playerData;
     public void SetGravity(float amount) => RB.gravityScale = amount;
     public void ResetGravity() => RB.gravityScale = originGravity;
     public void ChangeLayer() => gameObject.layer = LayerMask.NameToLayer("NoCollisionWithEnemy");
     public void ResetLayer() => gameObject.layer = LayerMask.NameToLayer("Player");
+
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     private void AnimationStartTrigger() => StateMachine.CurrentState.AnimationStartTrigger();

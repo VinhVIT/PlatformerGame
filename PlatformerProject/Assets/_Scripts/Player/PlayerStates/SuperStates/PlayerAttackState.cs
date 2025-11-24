@@ -1,22 +1,25 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public abstract class PlayerAttackState : PlayerAbilityState
-{
+{   
+    public event Action OnAttackBonusChanged;
     private int xInput;
     protected int attackCounter;
     private float velocityToSet;
     private float lastAttackTime;
     protected bool setVelocity;
     private bool shouldCheckFlip;
-
+    public int EnergyGain { get; private set; }
+    public int AttackBonus { get; private set; }
     protected List<IDamageable> detectedDamageables = new List<IDamageable>();
     protected List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
-
+        EnergyGain = playerData.energyGain;
+        AttackBonus = 0;
     }
     protected abstract int AttackCounter { get; }
     protected abstract AttackDetails AttackDetails { get; }
@@ -98,8 +101,8 @@ public abstract class PlayerAttackState : PlayerAbilityState
     {
 
         foreach (IDamageable item in detectedDamageables.ToList())
-        {   
-            item.Damage(AttackDetails.attackDamage);
+        {
+            item.Damage(AttackDetails.attackDamage + AttackBonus);
 
         }
         foreach (IKnockbackable item in detectedKnockbackables.ToList())
@@ -121,6 +124,19 @@ public abstract class PlayerAttackState : PlayerAbilityState
             attackCounter = 0;
         }
     }
+    public void IncreaseEneryGain(int amount) => EnergyGain += amount;
+    public void IncreaseAttackBonus(int amount)
+    {
+        AttackBonus += amount;
+        OnAttackBonusChanged?.Invoke();
+    }
+
+    public void DecreaseAttackBonus(int amount)
+    {
+        AttackBonus -= amount;
+        OnAttackBonusChanged?.Invoke();
+    }
+
     public void SetFlipCheck(bool value) => shouldCheckFlip = value;
     public override void AnimationTurnOffFlipTrigger() => SetFlipCheck(false);
     public override void AnimationTurnOnFlipTrigger() => SetFlipCheck(true);

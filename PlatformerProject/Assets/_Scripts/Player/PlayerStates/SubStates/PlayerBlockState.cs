@@ -6,10 +6,15 @@ using UnityEngine;
 public class PlayerBlockState : PlayerGroundedState
 {
     public bool CanBlock { get; private set; }
+    private float perfectBlockTime;
     private bool isPerfectBlock;
     private float lastBlockTime;
+    private int blockStamina;
+    private int currentBlockStamina;
     public PlayerBlockState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
+        blockStamina = playerData.blockStamina;
+        perfectBlockTime = playerData.perfectBlockTime;
     }
     public override void Enter()
     {
@@ -55,14 +60,14 @@ public class PlayerBlockState : PlayerGroundedState
         base.LogicUpdate();
         // Movement.CanSetVelocity = false;
 
-        if (Time.time >= startTime + playerData.perfectBlockTime)
+        if (Time.time >= startTime + perfectBlockTime)
         {
             //perfectBlock time pass
             isPerfectBlock = false;
             // player.Anim.SetBool("blockCounter", false);
 
         }
-        if (!PlayerStats.Stamina.EnoughToUse(playerData.blockStamina))
+        if (!PlayerStats.Stamina.EnoughToUse(blockStamina))
         {   //Cant block anymore
             player.Anim.SetBool("blockFailed", true);
         }
@@ -81,7 +86,7 @@ public class PlayerBlockState : PlayerGroundedState
     public override void AnimationActionTrigger()
     {
         base.AnimationActionTrigger();
-        PlayerStats.Stamina.Decrease(30);
+        PlayerStats.Stamina.Decrease(blockStamina);
     }
     public override void AnimationFinishTrigger()
     {
@@ -90,4 +95,12 @@ public class PlayerBlockState : PlayerGroundedState
         lastBlockTime = Time.time;
         stateMachine.ChangeState(player.IdleState);
     }
+    public void ReduceBlockStamina(int amount) => blockStamina -= amount;
+    public void IncreaseBlockTime(float amount) => perfectBlockTime += amount;
+    public void SetBlockStaminaToZero()
+    {   
+        currentBlockStamina = blockStamina;
+        blockStamina = 0;
+    }
+    public void ResetBlockStamina() => blockStamina = currentBlockStamina;
 }

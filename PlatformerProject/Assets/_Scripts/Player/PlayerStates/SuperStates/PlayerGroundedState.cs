@@ -128,13 +128,13 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.GroundAttackState);
             return true;
         }
-        else if (player.CanUseHolySlash() && yInput > 0 && attackInput && !isTouchingCeiling
+        else if (playerSkillHandler.CanUseHolySlash() && yInput > 0 && attackInput && !isTouchingCeiling
         && PlayerStats.Energy.EnoughToUse(playerData.holySlashEnergy))
         {
             stateMachine.ChangeState(player.HolySlashState);
             return true;
         }
-        else if (player.CanUseLightCutter() && yInput < 0 && attackInput && !isTouchingCeiling
+        else if (playerSkillHandler.CanUseLightCutter() && yInput < 0 && attackInput && !isTouchingCeiling
          && PlayerStats.Energy.EnoughToUse(playerData.lightCutEnergy))
         {
             stateMachine.ChangeState(player.LightCutAttackState);
@@ -166,8 +166,12 @@ public class PlayerGroundedState : PlayerState
     {
         if (buffInput)
         {
-            stateMachine.ChangeState(player.BuffState);
-            return true;
+            if ((buffSlotInput == 1 && playerSkillHandler.CanUseAttackBuff()) ||
+            (buffSlotInput == 2))
+            {
+                stateMachine.ChangeState(player.BuffState);
+                return true;
+            }
         }
         return false;
     }

@@ -18,7 +18,7 @@ public class BaseProjectTile : MonoBehaviour
     }
     protected virtual void Start()
     {
-        rb.velocity = transform.right * attackDetails.attackMovementSpeed;
+        rb.linearVelocity = transform.right * attackDetails.attackMovementSpeed;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {

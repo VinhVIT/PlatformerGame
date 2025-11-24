@@ -1,61 +1,79 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillTreeUI : MonoBehaviour
 {
-    [SerializeField] private Material skillLockMaterial;
-    [SerializeField] private Material skillUnlockMaterial;
+    [SerializeField] private List<SkillButton> skillTreeList;
+    [SerializeField] private TextMeshProUGUI skillPointsText;
+    [Header("Skill Info")]
+    [SerializeField] private TextMeshProUGUI skillNameText;
+    [SerializeField] private TextMeshProUGUI SkillDescriptionText;
+    [SerializeField] private TextMeshProUGUI statusText;
+    [SerializeField] private TextMeshProUGUI energyCostText;
+    [SerializeField] private Animator skillVideoAnimator;
+    [SerializeField] private RuntimeAnimatorController noneSkillAC;
     private PlayerSkills playerSkills;
     public void SetPlayerSkills(PlayerSkills playerSkills)
     {
         this.playerSkills = playerSkills;
+
+        foreach (SkillButton skillButton in skillTreeList)
+        {
+            skillButton.Initialize(playerSkills);
+            skillButton.SetSkillTreeUI(this);
+        }
+
         playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
+        playerSkills.OnSKillPointsChanged += PlayerSkills_OnSKillPointsChanged;
+
         UpdateVisuals();
+        UpdateSkillPoints();
+        UpdateSkillInfoUI(skillTreeList[0].GetSkillData());
+    }
+
+    private void PlayerSkills_OnSKillPointsChanged(object sender, EventArgs e)
+    {
+        UpdateSkillPoints();
     }
 
     private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.UnlockSkillEventArgs e)
     {
         UpdateVisuals();
     }
-
-    public void UnlockHolySlash()
+    private void UpdateSkillPoints()
     {
-        if (!playerSkills.TryUnlockSkill(PlayerSkills.SkillType.HolySlash))
-        {
-            Tooltip_Warning.ShowTooltip_Static("Cannot unlock!");
-        }
-
+        skillPointsText.SetText(playerSkills.GetSkillPoints().ToString());
     }
-    public void UnlockLightCutter()
-    {
-        if (!playerSkills.TryUnlockSkill(PlayerSkills.SkillType.LightCutter))
-        {
-            Tooltip_Warning.ShowTooltip_Static("Cannot unlock!");
-        }
-    }
-
-    public void UnlockMaxHP_1() => playerSkills.TryUnlockSkill(PlayerSkills.SkillType.MaxHP_1);
-    public void UnlockStamina_1() => playerSkills.TryUnlockSkill(PlayerSkills.SkillType.Stamina_1);
-
     private void UpdateVisuals()
     {
-        if (playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.HolySlash))
+        foreach (SkillButton skillButton in skillTreeList)
         {
-            transform.Find("HolySlash").GetComponent<Image>().material = null;
+            skillButton.UpdateVisual();
+        }
+        //apply skill path color
+        foreach (SkillButton skillButton in skillTreeList)
+        {
+            skillButton.SetSkillPathColor();
+        }
+    }
+    public void UpdateSkillInfoUI(SkillSO skillData)
+    {
+        skillNameText.SetText(skillData.skillName);
+        SkillDescriptionText.SetText(skillData.skillDescription);
+        statusText.SetText(skillData.skillStatus.ToString());
+        energyCostText.SetText(skillData.EnergyCost.ToString());
+        if(skillData.skillAnimatorController == null)
+        {
+            skillVideoAnimator.runtimeAnimatorController = noneSkillAC;
         }
         else
         {
-            if (playerSkills.CanUnlock(PlayerSkills.SkillType.HolySlash))
-            {
-                transform.Find("HolySlash").GetComponent<Image>().material = skillUnlockMaterial;
-            }
-            else
-            {
-                transform.Find("HolySlash").GetComponent<Image>().material = skillLockMaterial;
-            }
+            skillVideoAnimator.runtimeAnimatorController = skillData.skillAnimatorController;
         }
+
     }
 }
+

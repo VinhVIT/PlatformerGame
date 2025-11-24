@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerSkillHandler playerSkillHandler;
     [SerializeField] private SkillTreeUI skillTreeUI;
     private void Start()
     {
-        skillTreeUI.SetPlayerSkills(player.PlayerSkills);
+        skillTreeUI.SetPlayerSkills(playerSkillHandler.PlayerSkills);
     }
 }

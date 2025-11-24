@@ -86,9 +86,19 @@ public class PlayerHPUI : MonoBehaviour
         {
             currentHPList[currentHealth - 1].SetActive(true);
             currentHPList[currentHealth - 1].GetComponent<Animator>().SetBool("hurt", true);
-            currentHPList[currentHealth - 2].GetComponent<Animator>().SetBool("hurt", false);
+            //Note that first hp doesnt have an animator
+            if (currentHPList[currentHealth - 2].GetComponent<Animator>() != null)
+            {
+                currentHPList[currentHealth - 2].GetComponent<Animator>().SetBool("hurt", false);
+            }
+            else
+            {
+                healthBarAnimator.SetBool("injured", false);
+                return;
+            }
 
         }
+        Debug.Log(currentHealth);
         UpdateHPTexts();
     }
     private void PlayerStats_Health_OnMaxValueChanged(int value)
@@ -218,6 +228,7 @@ public class PlayerHPUI : MonoBehaviour
         else if (currentHealth <= 0)//death
         {
             PlayerDeathHandler();
+            currentHPList[currentHealth].SetActive(false);
             healthBarAnimator.SetBool("injured", false);
         }
         else//losing health

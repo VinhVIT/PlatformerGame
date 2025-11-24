@@ -39,8 +39,8 @@ public class PlayerAirAttackState : PlayerAttackState
     {
         foreach (IDamageable item in detectedDamageables.ToList())
         {
-            item.Damage(AttackDetails.attackDamage);
-            PlayerStats.Energy.Increase(playerData.energyGain);
+            item.Damage(AttackDetails.attackDamage + AttackBonus);
+            PlayerStats.Energy.Increase(EnergyGain);
 
         }
         foreach (IKnockbackable item in detectedKnockbackables.ToList())
@@ -82,9 +82,12 @@ public class PlayerAirAttackState : PlayerAttackState
             player.ChangeLayer();
         }
     }
-    public void CheckIsDownWardAttack(float yInput)
+    public void CanDownWardAttack(float yInput)
     {
-        if (yInput < 0) isDownWardAttack = true;
+        if (yInput < 0 && playerSkillHandler.CanUseDownwardAttack())
+        {
+            isDownWardAttack = true;
+        }
     }
 
 }

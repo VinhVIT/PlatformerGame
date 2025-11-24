@@ -8,6 +8,6 @@ public class DarkBall : BaseProjectTile
     {
         base.OnTriggerEnter2D(collision);
         anim.SetTrigger("hit");
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 }

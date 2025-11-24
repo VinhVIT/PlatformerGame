@@ -7,6 +7,7 @@ public class PlayerState
 {   
     protected Core core;
     protected Player player;
+    protected PlayerSkillHandler playerSkillHandler;
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
 
@@ -22,6 +23,7 @@ public class PlayerState
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
     {
         this.player = player;
+        playerSkillHandler = player.PlayerSkillHandler;
         this.stateMachine = stateMachine;
         this.playerData = playerData;
         this.animBoolName = animBoolName;

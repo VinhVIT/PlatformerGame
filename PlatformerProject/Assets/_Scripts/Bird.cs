@@ -36,7 +36,7 @@ public class Bird : MonoBehaviour
         if (jumpTimer <= 0)
         {
             jumpDirection = Random.Range(0, 2) == 0 ? 1 : -1;
-            rb.velocity = new Vector2(jumpDirection * jumpForce, jumpForce);
+            rb.linearVelocity = new Vector2(jumpDirection * jumpForce, jumpForce);
             jumpTimer = Random.Range(minJumpInterval, maxJumpInterval);
 
             if (jumpDirection > 0)
@@ -67,7 +67,7 @@ public class Bird : MonoBehaviour
     {
         Vector2 flyDirection = new Vector2(direction.x, 1).normalized;
         col.enabled = false;
-        rb.velocity = flyDirection * flyAwaySpeed;
+        rb.linearVelocity = flyDirection * flyAwaySpeed;
         rb.gravityScale = 0;
         if (flyDirection.x > 0)
         {

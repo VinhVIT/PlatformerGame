@@ -121,5 +121,5 @@ MonoBehaviour:
   airAttackStamina: 25
   holySlashEnergy: 10
   lightCutEnergy: 5
-  healEnergy: 20
+  healEnergy: 0
   blockFX: {fileID: 6240072112886026631, guid: 0a346589ff39d004c98b333d5bbfd41d, type: 3}

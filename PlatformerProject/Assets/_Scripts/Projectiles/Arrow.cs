@@ -25,7 +25,7 @@ public class Arrow : BaseProjectTile
 
             if (isGravityOn)
             {
-                float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
         }
@@ -37,7 +37,7 @@ public class Arrow : BaseProjectTile
         {
             hasHitGround = true;
             rb.gravityScale = 0f;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(gameObject, 2f);
         }

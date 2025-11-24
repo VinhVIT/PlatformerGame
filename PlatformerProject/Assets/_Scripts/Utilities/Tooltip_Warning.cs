@@ -1,18 +1,4 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
-*/
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +6,8 @@ public class Tooltip_Warning : MonoBehaviour {
 
     private static Tooltip_Warning instance;
     
+    [SerializeField]
+    private Camera uiCamera;
     [SerializeField]
     private RectTransform canvasRectTransform;
 
@@ -30,6 +18,7 @@ public class Tooltip_Warning : MonoBehaviour {
     private float showTimer;
     private float flashTimer;
     private int flashState;
+    private Vector2 fixedPosition;
 
     private void Awake() {
         instance = this;
@@ -41,65 +30,52 @@ public class Tooltip_Warning : MonoBehaviour {
     }
 
     private void Update() {
-        Vector2 localPoint;
-        // Convert screen point to local point within the canvas rect
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            transform.parent.GetComponent<RectTransform>(), 
-            Input.mousePosition, 
-            null, // No camera needed for Screen Space - Overlay
-            out localPoint
-        );
-        transform.localPosition = localPoint;
-
-        SetText(getTooltipStringFunc());
-
-        Vector2 anchoredPosition = transform.GetComponent<RectTransform>().anchoredPosition;
-        if (anchoredPosition.x + backgroundRectTransform.rect.width > canvasRectTransform.rect.width) {
-            anchoredPosition.x = canvasRectTransform.rect.width - backgroundRectTransform.rect.width;
-        }
-        if (anchoredPosition.y + backgroundRectTransform.rect.height > canvasRectTransform.rect.height) {
-            anchoredPosition.y = canvasRectTransform.rect.height - backgroundRectTransform.rect.height;
-        }
-        transform.GetComponent<RectTransform>().anchoredPosition = anchoredPosition;
-
-        flashTimer += Time.deltaTime;
-        float flashTimerMax = .033f;
-        if (flashTimer > flashTimerMax) {
-            flashTimer = 0f;
-            flashState++;
-            switch (flashState) {
-            case 1:
-            case 3:
-            case 5:
-                tooltipText.color = new Color(1, 1, 1, 1);
-                backgroundImage.color = new Color(178f / 255f, 0 / 255f, 0 / 255f, 1);
-                break;
-            case 2:
-            case 4:
-                tooltipText.color = new Color(178f / 255f, 0 / 255f, 0 / 255f, 1);
-                backgroundImage.color = new Color(1, 1, 1, 1);
-                break;
-            }
-        }
-
-        showTimer -= Time.deltaTime;
         if (showTimer <= 0f) {
             HideTooltip();
+        } else {
+            showTimer -= Time.deltaTime;
+
+            flashTimer += Time.deltaTime;
+            float flashTimerMax = .033f;
+            if (flashTimer > flashTimerMax) {
+                flashTimer = 0f;
+                flashState++;
+                switch (flashState) {
+                case 1:
+                case 3:
+                case 5:
+                    tooltipText.color = new Color(255, 219, 0, 155);
+                    backgroundImage.color = new Color(128f/255f, 128f/255f, 128f/255f, 1);
+                    break;
+                case 2:
+                case 4:
+                    tooltipText.color = new Color(128f/255f, 128f/255f, 128f/255f, 1);
+                    backgroundImage.color = new Color(255, 219, 0, 155);
+                    break;
+                }
+            }
         }
     }
 
-    private void ShowTooltip(string tooltipString, float showTimerMax = 2f) {
+    private void ShowTooltip(string tooltipString, float showTimerMax = 1f) {
         ShowTooltip(() => tooltipString, showTimerMax);
     }
 
-    private void ShowTooltip(Func<string> getTooltipStringFunc, float showTimerMax = 2f) {
+    private void ShowTooltip(Func<string> getTooltipStringFunc, float showTimerMax = 1f) {
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
         this.getTooltipStringFunc = getTooltipStringFunc;
+        SetText(getTooltipStringFunc());
         showTimer = showTimerMax;
         flashTimer = 0f;
         flashState = 0;
-        Update();
+
+        SetFixedPosition();
+    }
+
+    private void SetFixedPosition() {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, Input.mousePosition, uiCamera, out fixedPosition);
+        transform.GetComponent<RectTransform>().anchoredPosition = fixedPosition;
     }
 
     private void SetText(string tooltipString) {
@@ -124,5 +100,4 @@ public class Tooltip_Warning : MonoBehaviour {
     public static void HideTooltip_Static() {
         instance.HideTooltip();
     }
-
 }

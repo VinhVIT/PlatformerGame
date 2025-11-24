@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+using System.Diagnostics;
 
 public class PlayerMoveState : PlayerGroundedState
-{
-
+{   
+    public event Action OnMovementVelocityChanged;
     public PlayerMoveState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
         : base(player, stateMachine, playerData, animBoolName)
     {
-    }
+        movementVelocity = playerData.movementVelocity;
 
+    }
+    private float movementVelocity;
     public override void Enter()
     {
         base.Enter();
@@ -24,7 +25,7 @@ public class PlayerMoveState : PlayerGroundedState
             if (stateMachine.CurrentState != player.RollState)
             {
                 Movement?.CheckIfShouldFlip(xInput);
-                Movement?.SetVelocityX(playerData.movementVelocity * xInput);
+                Movement?.SetVelocityX(movementVelocity * xInput);
             }
             if (xInput == 0)
             {
@@ -35,38 +36,13 @@ public class PlayerMoveState : PlayerGroundedState
                 stateMachine.ChangeState(player.RunState);
             }
         }
-
     }
-
-    private void HandleMovement()
+    public void IncreaseMovementVelocity(float amount)
     {
 
-        if (xInput != Movement.FacingDirection)
-        {
-            stateMachine.ChangeState(player.TurnState);
-            return;
-        }
-
-        if (!isExitingState)
-        {
-            if (stateMachine.CurrentState != player.RollState)
-            {
-                Movement?.CheckIfShouldFlip(xInput);
-                Movement?.SetVelocityX(playerData.movementVelocity * xInput);
-            }
-
-        }
+        movementVelocity += amount;
+        OnMovementVelocityChanged?.Invoke();
     }
 
-    private void HandleIdle()
-    {
-        if (xInput != Movement.FacingDirection)
-        {
-            stateMachine.ChangeState(player.TurnState);
-        }
-        else
-        {
-            stateMachine.ChangeState(player.IdleState);
-        }
-    }
+    public float GetMovementVelocity() => movementVelocity;
 }

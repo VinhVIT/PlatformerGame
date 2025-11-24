@@ -10,7 +10,6 @@ public class PlayerBlockCounterState : PlayerAttackState
         attackCounter = 0;
     }
     protected override int AttackCounter => 0;
-
     protected override AttackDetails AttackDetails => playerData.blockCounterAttackDetails[attackCounter];
     public override void DoChecks()
     {
@@ -37,7 +36,7 @@ public class PlayerBlockCounterState : PlayerAttackState
         bool counterSuccess = false;
         foreach (IDamageable item in detectedDamageables.ToList())
         {
-            item.Damage(AttackDetails.attackDamage);
+            item.Damage(AttackDetails.attackDamage + AttackBonus);
             counterSuccess = true;
         }
         foreach (IKnockbackable item in detectedKnockbackables.ToList())

@@ -132,7 +132,7 @@ public class PlayerInAirState : PlayerState
     {
         if (attackInput && PlayerStats.Stamina.EnoughToUse(playerData.airAttackStamina))
         {
-            player.AirAttackState.CheckIsDownWardAttack(yInput);
+            player.AirAttackState.CanDownWardAttack(yInput);
             player.AirAttackState.CheckToResetAttackCounter();
             stateMachine.ChangeState(player.AirAttackState);
             return true;
@@ -197,13 +197,13 @@ public class PlayerInAirState : PlayerState
     private void HandleMovement()
     {
         Movement?.CheckIfShouldFlip(xInput);
-        if (runInput && PlayerStats.Stamina.EnoughToUse(playerData.blockStamina))
+        if (runInput && PlayerStats.Stamina.EnoughToUse(playerData.runStamina))
         {
             Movement?.SetVelocityX(playerData.runVelocity * xInput);
         }
         else
         {
-            Movement?.SetVelocityX(playerData.movementVelocity * xInput);
+            Movement?.SetVelocityX(player.MoveState.GetMovementVelocity() * xInput);
         }
         player.Anim.SetFloat("yVelocity", Movement.CurrentVelocity.y);
         player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
